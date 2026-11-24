@@ -23,17 +23,19 @@ Web de Grupo FAHE (Caldas de Reis): la portada del grupo y una página para cada
 
 ## Panel de administración
 
-Se entra con **usuario y contraseña**. La primera vez que se abre, pide crearlos (solo se puede hacer desde el propio ordenador). Se guardan en `config/admin.php` (la contraseña cifrada) y ese archivo no va a git. Para cambiar la contraseña: borrar ese archivo y volver a entrar al panel desde el ordenador.
+Inspirado en los paneles de LocalNode: barra lateral con secciones, cifras, tablas, ventanas y avisos. Se entra con **usuario y contraseña**; la primera vez (sin usuarios) pide crear el administrador, y eso solo se puede hacer desde el propio ordenador.
 
-Desde el panel se puede:
+| Sección | Qué hay |
+| --- | --- |
+| Resumen | Cifras (páginas, secciones, fotos, usuarios, cambios de la semana), avisos de cosas pendientes (fotos que faltan, datos sin completar, fotos sin usar…), últimos cambios y acceso rápido a las páginas |
+| Páginas | Tabla con buscador; editar, ver, duplicar, historial y borrar. Editor con los 17 tipos de sección: añadir, duplicar, reordenar y quitar |
+| Fotos | Subir (arrastrando o eligiendo, varias a la vez), ver en qué páginas se usa cada una y borrar las que no se usan (van a `storage/papelera`) |
+| Ajustes | Contacto y datos generales, y empresas del menú |
+| Usuarios | Crear, editar, desactivar, cambiar la contraseña y borrar. Roles: **Administrador** (todo) y **Editor** (páginas y fotos) |
+| Historial | Quién hizo qué y cuándo, con filtros. Cada cambio guarda la versión anterior y la nueva: se ve qué cambió y se puede **deshacer o restaurar** (también recuperar una página borrada) |
+| Mi cuenta | Cambiar tu nombre y tu contraseña |
 
-- Editar cualquier texto, botón, enlace, foto o dato de contacto de cualquier página.
-- Añadir, quitar, duplicar y reordenar secciones (17 tipos de bloque: portada, tarjetas, pasos, opiniones, contacto, texto largo…).
-- **Crear páginas nuevas** combinando esos bloques, y borrarlas (salvo portada, privacidad y «gracias»).
-- Subir fotos (JPG, PNG, WebP o GIF, hasta 8 MB).
-- Cambiar los datos generales (teléfonos, WhatsApp, correo, enlace de Booking) y las empresas del menú.
-
-Al guardar, el panel escribe el JSON en `src/_data/` y regenera la web con Eleventy (≈1 s). Si un cambio impidiera generar la web, no se guarda y el archivo queda como estaba. Seguridad: contraseña con hash, bloqueo de 10 min tras 5 intentos fallidos, protección CSRF y sesiones propias en `storage/`. Los cambios quedan en tu copia local: para llevarlos a GitHub, commit y push como siempre.
+Al guardar, el panel escribe el JSON en `src/_data/` y regenera la web con Eleventy (≈1 s). Si un cambio impidiera generar la web, no se guarda y el archivo queda como estaba. Usuarios e historial están en `storage/panel.sqlite` (SQLite, no va a git). Seguridad: contraseñas con hash, bloqueo de 10 min tras 5 intentos fallidos (y se apuntan en el historial), protección CSRF y sesiones propias. Los cambios de contenido quedan en tu copia local: para llevarlos a GitHub, commit y push como siempre.
 
 **Publicación en internet (pendiente):** el panel necesita PHP, así que donde se publique tendrá que haber PHP y Node (o generar la web en local y subir `public/`). `.github/workflows/deploy.yml` (GitHub Pages) está desactivado desde que el repositorio es privado.
 
@@ -49,10 +51,9 @@ src/
   _includes/bloques/      el diseño de cada tipo de sección
   _includes/              plantilla base, cabecera, pie y macros
   assets/                 CSS, JS, logos y fotos subidas desde el panel (img/subidas)
-  admin/                  panel: acceso (index.php), API (api.php), editor (panel.js) y campos (esquema.json)
+  admin/                  panel: acceso (index.php), API (api.php), pantallas (panel/*.js), estilos y campos (esquema.json)
 public/                   la web generada (no va a git)
-config/admin.php          usuario y contraseña del panel (no va a git)
-storage/                  sesiones e intentos de acceso (no va a git)
+storage/                  usuarios e historial (panel.sqlite), sesiones y papelera de fotos (no va a git)
 ```
 
 ```bash

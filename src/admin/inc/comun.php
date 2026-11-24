@@ -6,22 +6,27 @@
  * Desde cualquiera de los dos sitios, la raíz del proyecto está tres carpetas
  * más arriba.
  *
- *   config/admin.php   usuario y contraseña (hash) — NO va a git
- *   storage/           sesiones, intentos de acceso, registros de la regeneración
- *   src/_data/         el contenido que edita el panel
- *   public/            la web generada (lo que sirve Laragon)
+ *   storage/panel.sqlite  usuarios e historial de cambios (con cada versión)
+ *   storage/sesiones/     sesiones del panel
+ *   src/_data/            el contenido que edita el panel
+ *   public/               la web generada (lo que sirve Laragon)
  */
 declare(strict_types=1);
 
 const RAIZ = __DIR__ . '/../../..';
 const PAGINAS_PROTEGIDAS = ['index', 'gracias', 'politica-privacidad'];
 const AJUSTES = [
-    'sitio'    => 'src/_data/sitio.json',
-    'empresas' => 'src/_data/empresas.json',
+    'sitio'    => ['archivo' => 'src/_data/sitio.json', 'titulo' => 'Contacto y datos generales'],
+    'empresas' => ['archivo' => 'src/_data/empresas.json', 'titulo' => 'Empresas del menú'],
 ];
+const ROLES = ['admin' => 'Administrador', 'editor' => 'Editor'];
 const MAX_INTENTOS = 5;
 const BLOQUEO_SEGUNDOS = 600;
 const MAX_FOTO_MB = 8;
+const CARPETA_SUBIDAS = 'assets/img/subidas';
+const CARPETA_LOGOS = 'assets/img/logos';
+
+date_default_timezone_set('Europe/Madrid');
 
 // Los avisos de PHP no se muestran (estropearían las respuestas JSON): se guardan en storage/errores.log
 ini_set('display_errors', '0');
@@ -43,7 +48,70 @@ function carpetaStorage(string $sub = ''): string
     return $dir;
 }
 
-/* ---------------------------------------------------------------- sesión */
+function ahora(): string
+{
+    return date('Y-m-d H:i:s');
+}
+
+/* ------------------------------------------------------- base de datos */
+
+function db(): PDO
+{
+    static $pdo = null;
+    if ($pdo) {
+        return $pdo;
+    }
+    $pdo = new PDO('sqlite:' . carpetaStorage() . DIRECTORY_SEPARATOR . 'panel.sqlite', null, null, [
+        PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+    ]);
+    $pdo->exec('PRAGMA busy_timeout = 5000');
+    $pdo->exec('CREATE TABLE IF NOT EXISTS usuarios (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        usuario TEXT NOT NULL UNIQUE COLLATE NOCASE,
+        nombre TEXT NOT NULL,
+        rol TEXT NOT NULL,
+        hash TEXT NOT NULL,
+        activo INTEGER NOT NULL DEFAULT 1,
+        creado TEXT NOT NULL,
+        ultimo_acceso TEXT
+    )');
+    $pdo->exec('CREATE TABLE IF NOT EXISTS historial (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        fecha TEXT NOT NULL,
+        usuario_id INTEGER,
+        usuario TEXT,
+        accion TEXT NOT NULL,
+        tipo TEXT,
+        entidad TEXT,
+        titulo TEXT,
+        antes TEXT,
+        despues TEXT,
+        ip TEXT
+    )');
+    $pdo->exec('CREATE INDEX IF NOT EXISTS historial_fecha ON historial (fecha)');
+    $pdo->exec('CREATE INDEX IF NOT EXISTS historial_entidad ON historial (tipo, entidad)');
+    migrarUsuarioAntiguo($pdo);
+    return $pdo;
+}
+
+/** La primera versión del panel guardaba un único usuario en config/admin.php: se pasa a la base de datos. */
+function migrarUsuarioAntiguo(PDO $pdo): void
+{
+    $f = raiz('config/admin.php');
+    if (!is_file($f) || (int) $pdo->query('SELECT COUNT(*) FROM usuarios')->fetchColumn() > 0) {
+        return;
+    }
+    $c = require $f;
+    if (is_array($c) && !empty($c['usuario']) && !empty($c['hash'])) {
+        $st = $pdo->prepare('INSERT INTO usuarios (usuario, nombre, rol, hash, activo, creado) VALUES (?, ?, ?, ?, 1, ?)');
+        $st->execute([$c['usuario'], $c['usuario'], 'admin', $c['hash'], ahora()]);
+        @unlink($f);
+        @rmdir(dirname($f));
+    }
+}
+
+/* --------------------------------------------------------------- sesión */
 
 function iniciarSesion(): void
 {
@@ -65,9 +133,26 @@ function iniciarSesion(): void
     session_start();
 }
 
-function usuarioActual(): ?string
+/** Usuario con sesión iniciada (y todavía activo), o null. */
+function usuarioActual(): ?array
 {
-    return $_SESSION['usuario'] ?? null;
+    static $cache = false;
+    if ($cache !== false) {
+        return $cache;
+    }
+    $id = $_SESSION['uid'] ?? null;
+    if (!$id) {
+        return $cache = null;
+    }
+    $st = db()->prepare('SELECT id, usuario, nombre, rol, ultimo_acceso FROM usuarios WHERE id = ? AND activo = 1');
+    $st->execute([$id]);
+    return $cache = ($st->fetch() ?: null);
+}
+
+function esAdmin(?array $u = null): bool
+{
+    $u ??= usuarioActual();
+    return ($u['rol'] ?? '') === 'admin';
 }
 
 function csrf(): string
@@ -88,37 +173,35 @@ function esLocal(): bool
     return in_array($_SERVER['REMOTE_ADDR'] ?? '', ['127.0.0.1', '::1'], true);
 }
 
-/* ---------------------------------------------------------- credenciales */
+/* ------------------------------------------------------------- usuarios */
 
-function rutaCredenciales(): string
+function hayUsuarios(): bool
 {
-    return raiz('config/admin.php');
+    return (int) db()->query('SELECT COUNT(*) FROM usuarios')->fetchColumn() > 0;
 }
 
-/** @return array{usuario: string, hash: string, node?: string}|null */
-function credenciales(): ?array
+function usuarioValido(string $usuario): bool
 {
-    $f = rutaCredenciales();
-    if (!is_file($f)) {
-        return null;
-    }
-    $c = require $f;
-    return is_array($c) && isset($c['usuario'], $c['hash']) ? $c : null;
+    return (bool) preg_match('/^[A-Za-z0-9._@-]{3,40}$/', $usuario);
 }
 
-function guardarCredenciales(string $usuario, string $contrasena): void
+function crearUsuario(string $usuario, string $nombre, string $rol, string $contrasena): int
 {
-    $dir = dirname(rutaCredenciales());
-    if (!is_dir($dir)) {
-        mkdir($dir, 0775, true);
-    }
-    $datos = credenciales() ?? [];
-    $datos['usuario'] = $usuario;
-    $datos['hash'] = password_hash($contrasena, PASSWORD_DEFAULT);
-    $php = "<?php\n// Acceso al panel de administración. Generado por el panel: no subir a git.\n"
-         . "// Para cambiar la contraseña, borra este archivo y vuelve a entrar en /admin/ desde este ordenador.\n"
-         . 'return ' . var_export($datos, true) . ";\n";
-    file_put_contents(rutaCredenciales(), $php, LOCK_EX);
+    $st = db()->prepare('INSERT INTO usuarios (usuario, nombre, rol, hash, activo, creado) VALUES (?, ?, ?, ?, 1, ?)');
+    $st->execute([$usuario, $nombre, $rol, password_hash($contrasena, PASSWORD_DEFAULT), ahora()]);
+    return (int) db()->lastInsertId();
+}
+
+function buscarUsuario(string $usuario): ?array
+{
+    $st = db()->prepare('SELECT * FROM usuarios WHERE usuario = ?');
+    $st->execute([$usuario]);
+    return $st->fetch() ?: null;
+}
+
+function adminsActivos(): int
+{
+    return (int) db()->query("SELECT COUNT(*) FROM usuarios WHERE rol = 'admin' AND activo = 1")->fetchColumn();
 }
 
 /* ------------------------------------------------- intentos de acceso */
@@ -162,6 +245,16 @@ function registrarIntento(bool $correcto): void
     file_put_contents(archivoIntentos(), json_encode($todos), LOCK_EX);
 }
 
+/* ------------------------------------------------------------ historial */
+
+/** Apunta una acción en el historial. $antes/$despues: contenido completo del archivo (para poder restaurarlo). */
+function registrar(string $accion, ?string $tipo = null, ?string $entidad = null, ?string $titulo = null, ?string $antes = null, ?string $despues = null, ?array $usuario = null): void
+{
+    $u = $usuario ?? usuarioActual();
+    $st = db()->prepare('INSERT INTO historial (fecha, usuario_id, usuario, accion, tipo, entidad, titulo, antes, despues, ip) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)');
+    $st->execute([ahora(), $u['id'] ?? null, $u['nombre'] ?? ($u['usuario'] ?? null), $accion, $tipo, $entidad, $titulo, $antes, $despues, $_SERVER['REMOTE_ADDR'] ?? null]);
+}
+
 /* ------------------------------------------------------------- contenido */
 
 function slugValido(string $slug): bool
@@ -191,9 +284,20 @@ function rutaContenido(string $tipo, string $id): ?string
         return raiz("src/_data/paginas/$id.json");
     }
     if ($tipo === 'ajuste' && isset(AJUSTES[$id])) {
-        return raiz(AJUSTES[$id]);
+        return raiz(AJUSTES[$id]['archivo']);
     }
     return null;
+}
+
+/** Nombre legible de un contenido para el historial. */
+function tituloContenido(string $tipo, string $id, ?string $json = null): string
+{
+    if ($tipo === 'ajuste') {
+        return AJUSTES[$id]['titulo'] ?? $id;
+    }
+    $d = $json !== null ? json_decode($json) : null;
+    $t = is_object($d) && isset($d->titulo_seo) ? (string) $d->titulo_seo : $id;
+    return explode(' · ', $t)[0];
 }
 
 /** JSON con sangría de 2 espacios, acentos y barras sin escapar (igual que los archivos originales). */
@@ -217,30 +321,92 @@ function escribirArchivo(string $ruta, string $contenido): void
     }
 }
 
-function listarPaginas(): array
+/** Datos de una página para las listas del panel. */
+function resumenPagina(string $archivo): array
 {
-    $paginas = [];
-    foreach (glob(raiz('src/_data/paginas') . DIRECTORY_SEPARATOR . '*.json') ?: [] as $f) {
-        $d = json_decode((string) file_get_contents($f));
-        $slug = basename($f, '.json');
-        $paginas[] = [
-            'slug'      => $slug,
-            'titulo'    => is_object($d) && isset($d->titulo_seo) ? (string) $d->titulo_seo : $slug,
-            'protegida' => in_array($slug, PAGINAS_PROTEGIDAS, true),
-        ];
+    $json = (string) file_get_contents($archivo);
+    $d = json_decode($json);
+    $slug = basename($archivo, '.json');
+    $titulo = is_object($d) && isset($d->titulo_seo) ? (string) $d->titulo_seo : $slug;
+    return [
+        'slug'       => $slug,
+        'titulo'     => $titulo,
+        'nombre'     => explode(' · ', $titulo)[0],
+        'secciones'  => is_object($d) && isset($d->secciones) && is_array($d->secciones) ? count($d->secciones) : 0,
+        'protegida'  => in_array($slug, PAGINAS_PROTEGIDAS, true),
+        'oculta'     => is_object($d) && !empty($d->noindex),
+        'modificada' => date('Y-m-d H:i:s', (int) filemtime($archivo)),
+    ];
+}
+
+function archivosPaginas(): array
+{
+    return glob(raiz('src/_data/paginas') . DIRECTORY_SEPARATOR . '*.json') ?: [];
+}
+
+function listarPaginas(bool $conUltimoCambio = false): array
+{
+    $paginas = array_map('resumenPagina', archivosPaginas());
+    usort($paginas, fn ($a, $b) => [$a['slug'] !== 'index', $a['nombre']] <=> [$b['slug'] !== 'index', $b['nombre']]);
+    if ($conUltimoCambio) {
+        $st = db()->prepare("SELECT fecha, usuario FROM historial WHERE tipo = 'pagina' AND entidad = ? ORDER BY id DESC LIMIT 1");
+        foreach ($paginas as &$p) {
+            $st->execute([$p['slug']]);
+            $p['ultimo_cambio'] = $st->fetch() ?: null;
+        }
     }
-    usort($paginas, fn ($a, $b) => [$a['slug'] !== 'index', $a['titulo']] <=> [$b['slug'] !== 'index', $b['titulo']]);
     return $paginas;
+}
+
+/* ---------------------------------------------------------------- fotos */
+
+function listarFotos(): array
+{
+    // Texto de todo el contenido, para saber dónde se usa cada foto
+    $contenidos = [];
+    foreach (archivosPaginas() as $f) {
+        $slug = basename($f, '.json');
+        $txt = (string) file_get_contents($f);
+        $contenidos[] = ['tipo' => 'pagina', 'id' => $slug, 'titulo' => tituloContenido('pagina', $slug, $txt), 'texto' => $txt];
+    }
+    foreach (AJUSTES as $id => $a) {
+        $contenidos[] = ['tipo' => 'ajuste', 'id' => $id, 'titulo' => $a['titulo'], 'texto' => (string) @file_get_contents(raiz($a['archivo']))];
+    }
+    $fotos = [];
+    foreach ([CARPETA_SUBIDAS => 'subida', CARPETA_LOGOS => 'logo'] as $carpeta => $grupo) {
+        $archivos = array_filter(glob(raiz('src/' . $carpeta) . DIRECTORY_SEPARATOR . '*') ?: [], fn ($f) => (bool) preg_match('/\.(jpe?g|png|webp|gif|svg)$/i', $f));
+        foreach ($archivos as $f) {
+            $ruta = $carpeta . '/' . basename($f);
+            $usos = [];
+            foreach ($contenidos as $c) {
+                if (str_contains($c['texto'], $ruta)) {
+                    $usos[] = ['tipo' => $c['tipo'], 'id' => $c['id'], 'titulo' => $c['titulo']];
+                }
+            }
+            $dim = @getimagesize($f) ?: [null, null];
+            $fotos[] = [
+                'ruta'   => $ruta,
+                'nombre' => basename($f),
+                'grupo'  => $grupo,
+                'bytes'  => (int) filesize($f),
+                'ancho'  => $dim[0],
+                'alto'   => $dim[1],
+                'fecha'  => date('Y-m-d H:i:s', (int) filemtime($f)),
+                'usos'   => $usos,
+            ];
+        }
+    }
+    usort($fotos, fn ($a, $b) => [$a['grupo'] !== 'subida', $b['fecha']] <=> [$b['grupo'] !== 'subida', $a['fecha']]);
+    return $fotos;
 }
 
 /* -------------------------------------------------- regenerar la web */
 
 function buscarNode(): string
 {
-    $c = credenciales();
     $candidatos = [];
-    if (!empty($c['node'])) {
-        $candidatos[] = $c['node'];
+    if ($n = getenv('NODE_BINARY')) {
+        $candidatos[] = $n;
     }
     // Node de Laragon (C:\laragon\bin\nodejs\node-vXX\node.exe): la raíz de Laragon está dos niveles por encima del proyecto
     $laragon = glob(dirname(raiz(), 2) . '/bin/nodejs/*/node.exe') ?: [];
@@ -291,13 +457,13 @@ function regenerarWeb(): array
 }
 
 /**
- * Escribe un archivo de contenido y regenera la web. Si la web no se puede
- * generar con el cambio, deja el archivo como estaba.
- * @return array{0: bool, 1: string}
+ * Escribe (o borra, con null) un archivo de contenido y regenera la web.
+ * Si la web no se puede generar con el cambio, deja el archivo como estaba.
+ * @return array{0: bool, 1: string, 2: ?string} [correcto, salida, contenido anterior]
  */
 function guardarYRegenerar(string $ruta, ?string $contenido): array
 {
-    $anterior = is_file($ruta) ? file_get_contents($ruta) : null;
+    $anterior = is_file($ruta) ? (string) file_get_contents($ruta) : null;
     if ($contenido === null) {
         unlink($ruta);
     } else {
@@ -312,7 +478,7 @@ function guardarYRegenerar(string $ruta, ?string $contenido): array
         }
         regenerarWeb();
     }
-    return [$ok, $salida];
+    return [$ok, $salida, $anterior];
 }
 
 /* ---------------------------------------------------------- respuestas */
