@@ -7,7 +7,9 @@ Web estática de Grupo FAHE (Caldas de Reis): la portada del grupo y una página
 | `index.html` | Grupo FAHE: las tres empresas, nosotros y contacto |
 | `hospederias.html` | Hospederías do Camiño y su Albergue Urraca: disponibilidad, el albergue, la etapa, opiniones |
 | `infaes.html` | Infaes: gestión y promoción de bienes inmuebles |
-| `caldasgo.html` | Caldas GO: reparto de paquetería (GLS, Tipsa, DHL, Amazon; SEUR próximamente) |
+| `caldasgo.html` | Caldas GO: reparto de paquetería (GLS, Tipsa, DHL y Amazon) y zona de reparto |
+| `politica-privacidad.html` | Política de privacidad y cookies (faltan NIF y domicilio de cada empresa) |
+| `gracias.html` | Confirmación tras enviar un formulario |
 
 Solo HTML, CSS y JavaScript, sin dependencias ni compilación.
 

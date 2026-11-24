@@ -4,16 +4,16 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Caldas GO · Reparto de paquetería en Caldas de Reis</title>
-  <meta name="description" content="Caldas GO, de Grupo FAHE: reparto de paquetería de última milla en Caldas de Reis y su comarca para GLS, Tipsa, DHL y Amazon.">
+  <meta name="description" content="Caldas GO, de Grupo FAHE: reparto de paquetería de última milla para GLS, Tipsa, DHL y Amazon en Caldas de Reis y los ayuntamientos de alrededor.">
   <meta name="theme-color" content="#040a1a">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="es_ES">
   <meta property="og:title" content="Caldas GO · Reparto de paquetería">
-  <meta property="og:description" content="Reparto de última milla en Caldas de Reis y su comarca.">
+  <meta property="og:description" content="Reparto de última milla en Caldas de Reis y alrededores.">
   <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
   <link rel="stylesheet" href="assets/css/styles.css">
   <script>document.documentElement.classList.add('js');</script>
@@ -31,7 +31,7 @@
       </a>
       <nav class="nav" id="site-nav" aria-label="Principal">
         <a href="#operadores">Operadores</a>
-        <a href="#servicio">Servicio</a>
+        <a href="#zona">Zona de reparto</a>
         <a href="#empleo">Empleo</a>
         <div class="dd">
           <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-grupo">Grupo FAHE <i class="ti ti-chevron-down" aria-hidden="true"></i></button>
@@ -57,10 +57,8 @@
         <div class="reveal">
           <span class="medal"><img src="assets/img/logos/caldas-go-light.png" alt="Caldas GO"></span>
           <span class="eyebrow both">Paquetería · Última milla</span>
-          <h1>Tu paquete,
-            <span class="line serif grad">en buenas manos</span>
-          </h1>
-          <p class="lead">Repartimos los envíos de los principales operadores de paquetería en Caldas de Reis y su comarca.</p>
+          <h1>Tu paquete, <span class="line grad">en buenas manos</span></h1>
+          <p class="lead">Reparto de paquetería en Caldas de Reis y los ayuntamientos de alrededor.</p>
           <div class="hero-actions">
             <a class="btn btn-accent btn-lg" href="#contacto">Contactar</a>
             <a class="btn btn-glow btn-lg" href="#empleo">Trabaja con nosotros</a>
@@ -74,30 +72,39 @@
     <section class="section" id="operadores">
       <div class="container">
         <div class="section-head center reveal">
-          <span class="eyebrow both">Operadores</span>
-          <h2>Repartimos <span class="serif grad">para</span></h2>
+          <h2>Repartimos <span class="grad">para</span></h2>
         </div>
         <div class="operators">
-          <div class="glass operator reveal"><b>GLS</b><span>Operador</span></div>
-          <div class="glass operator reveal d1"><b>Tipsa</b><span>Operador</span></div>
-          <div class="glass operator reveal d2"><b>DHL</b><span>Operador</span></div>
-          <div class="glass operator reveal d3"><b>Amazon</b><span>Operador</span></div>
-          <div class="glass operator soon reveal d3"><b>SEUR</b><span>Próximamente</span></div>
+          <div class="glass operator reveal"><b>GLS</b></div>
+          <div class="glass operator reveal d1"><b>Tipsa</b></div>
+          <div class="glass operator reveal d2"><b>DHL</b></div>
+          <div class="glass operator reveal d3"><b>Amazon</b></div>
         </div>
       </div>
     </section>
 
-    <!-- ============ SERVICIO ============ -->
-    <section class="section" id="servicio" style="padding-top: 0;">
+    <!-- ============ ZONA DE REPARTO ============ -->
+    <section class="section" id="zona" style="padding-top: 0;">
       <div class="container">
-        <div class="section-head center reveal">
-          <span class="eyebrow both">Servicio</span>
-          <h2>Cada día, <span class="serif grad">en cada puerta</span></h2>
-        </div>
-        <div class="grid grid-3">
-          <div class="glass pad card-sm reveal"><span class="icon-glow"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span><h3>Última milla</h3><p>Entregas diarias en Caldas de Reis y su comarca.</p></div>
-          <div class="glass pad card-sm reveal d1"><span class="icon-glow"><i class="ti ti-map-2" aria-hidden="true"></i></span><h3>Conocemos la zona</h3><p>Rutas planificadas y conductores de aquí.</p></div>
-          <div class="glass pad card-sm reveal d2"><span class="icon-glow"><i class="ti ti-heart-handshake" aria-hidden="true"></i></span><h3>Trato directo</h3><p>Un responsable cercano, sin centralitas.</p></div>
+        <div class="frame reveal">
+          <p class="frame-label">Zona de reparto</p>
+          <div class="split">
+            <div>
+              <h2>Caldas de Reis <span class="grad">y alrededores</span></h2>
+              <p class="lead">Rutas planificadas por conductores que conocen cada calle, con un responsable cercano y sin centralitas.</p>
+            </div>
+            <!-- PENDIENTE: confirmar que se reparte en todos estos ayuntamientos (son los colindantes con Caldas de Reis) -->
+            <ul class="towns" aria-label="Ayuntamientos de la zona de reparto">
+              <li class="chip home"><i class="ti ti-map-pin" aria-hidden="true"></i> Caldas de Reis</li>
+              <li class="chip">Catoira</li>
+              <li class="chip">Cuntis</li>
+              <li class="chip">Moraña</li>
+              <li class="chip">Portas</li>
+              <li class="chip">Valga</li>
+              <li class="chip">Vilagarcía de Arousa</li>
+              <li class="chip">Vilanova de Arousa</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -109,9 +116,9 @@
           <div>
             <span class="eyebrow">Trabaja con nosotros</span>
             <h2>¿Tienes carné B y conoces la zona?</h2>
-            <p>Buscamos repartidores y repartidoras para nuestras rutas.</p>
+            <p>Buscamos repartidores y repartidoras.</p>
           </div>
-          <a class="btn btn-accent btn-lg" href="mailto:hospederiasdocaminosl@gmail.com?subject=Repartidor%2Fa%20Caldas%20GO" data-open="cv" data-position="Repartidor/a de Caldas GO"><i class="ti ti-send" aria-hidden="true"></i> Envíanos tu CV</a>
+          <a class="btn btn-accent btn-lg" href="mailto:hospederiasdocaminosl@gmail.com?subject=Repartidor%2Fa%20Caldas%20GO" data-open="cv" data-position="Repartidor/a de Caldas GO"><i class="ti ti-file-upload" aria-hidden="true"></i> Envíanos tu CV</a>
         </div>
       </div>
     </section>
@@ -124,16 +131,13 @@
           <div class="contact-grid">
             <div>
               <h2>Hablemos</h2>
-              <p class="lead">Para operadores, empresas y cualquier consulta sobre nuestro servicio de reparto.</p>
-              <div class="contact-actions">
-                <a class="btn btn-wa" href="https://wa.me/34683605335" data-wa="¡Hola! Os escribo desde la web de Caldas GO."><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp</a>
-                <a class="btn btn-glass" href="tel:+34683605335"><i class="ti ti-phone" aria-hidden="true"></i> Llamar</a>
-              </div>
+              <p class="lead">Para operadores, empresas y consultas sobre el reparto.</p>
             </div>
             <ul class="glass pad contact-list">
-              <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34683605335"><small>Teléfono</small>+34 683 60 53 35</a></li>
-              <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34630542897"><small>Teléfono</small>+34 630 54 28 97</a></li>
-              <li><span class="ic"><i class="ti ti-mail" aria-hidden="true"></i></span><a href="mailto:hospederiasdocaminosl@gmail.com" data-open="email"><small>Correo</small>hospederiasdocaminosl@gmail.com</a></li>
+              <li><span class="ic wa"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i></span><a href="https://wa.me/34683605335" data-wa="¡Hola! Os escribo desde la web de Caldas GO."><small>WhatsApp</small>+34 683 60 53 35</a></li>
+              <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34683605335"><small>Llamar</small>+34 683 60 53 35</a></li>
+              <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34630542897"><small>Llamar</small>+34 630 54 28 97</a></li>
+              <li><span class="ic"><i class="ti ti-mail" aria-hidden="true"></i></span><a href="mailto:hospederiasdocaminosl@gmail.com" data-open="email"><small>Escribir un correo</small>hospederiasdocaminosl@gmail.com</a></li>
             </ul>
           </div>
         </div>
@@ -149,22 +153,15 @@
             <span class="mark-ic"><i class="ti ti-truck-delivery" aria-hidden="true"></i></span>
             <span class="brand-name">CALDAS <span class="go">GO</span></span>
           </a>
-          <p>Una empresa de <a href="index.html">Grupo FAHE</a>, en Caldas de Reis.</p>
+          <p>Una empresa de <a href="index.html">Grupo FAHE</a>.</p>
         </div>
         <div>
           <h4>Caldas GO</h4>
           <ul>
             <li><a href="#operadores">Operadores</a></li>
-            <li><a href="#servicio">Servicio</a></li>
+            <li><a href="#zona">Zona de reparto</a></li>
             <li><a href="#empleo">Trabaja con nosotros</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4>Contacto</h4>
-          <ul>
-            <li><a href="tel:+34683605335">+34 683 60 53 35</a></li>
-            <li><a href="tel:+34630542897">+34 630 54 28 97</a></li>
-            <li><a href="mailto:hospederiasdocaminosl@gmail.com" data-open="email">Escríbenos</a></li>
+            <li><a href="#contacto">Contacto</a></li>
           </ul>
         </div>
       </div>
@@ -172,9 +169,8 @@
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> Caldas GO · Grupo FAHE</span>
         <nav aria-label="Legal">
-          <a href="#">Aviso legal</a>
-          <a href="#">Privacidad</a>
-          <a href="#">Cookies</a>
+          <a href="politica-privacidad.html">Privacidad</a>
+          <a href="politica-privacidad.html#cookies">Cookies</a>
         </nav>
       </div>
     </div>

@@ -26,7 +26,7 @@
   --accent: var(--gold);
   --accent-2: var(--gold-3);
   --accent-rgb: 255, 199, 44;
-  --grad-text: linear-gradient(100deg, #ffffff 0%, var(--gold-3) 45%, var(--gold) 100%);
+  --grad-text: linear-gradient(100deg, var(--gold-3) 0%, var(--gold) 100%);
 
   --radius-sm: 14px;
   --radius: 22px;
@@ -35,12 +35,11 @@
   --nav-h: 84px;
 
   --font-body: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-display: "Inter Tight", "Inter", system-ui, -apple-system, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
+  --font-display: "Manrope", "Inter", system-ui, -apple-system, sans-serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
 }
-body.theme-go { --accent: var(--teal); --accent-2: #a6f0e6; --accent-rgb: 34, 199, 207; --grad-text: linear-gradient(100deg, #ffffff 0%, #a6f0e6 40%, var(--green) 100%); }
-body.theme-infaes { --accent: var(--coral); --accent-2: #ffc6ae; --accent-rgb: 255, 125, 80; --grad-text: linear-gradient(100deg, #ffffff 0%, #ffc6ae 38%, var(--pink) 100%); }
+body.theme-go { --accent: var(--teal); --accent-2: #a6f0e6; --accent-rgb: 34, 199, 207; --grad-text: linear-gradient(100deg, #a6f0e6 0%, var(--green) 100%); }
+body.theme-infaes { --accent: var(--coral); --accent-2: #ffc6ae; --accent-rgb: 255, 125, 80; --grad-text: linear-gradient(100deg, #ffc6ae 0%, var(--pink) 100%); }
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
@@ -64,10 +63,10 @@ main { overflow-x: clip; }
 img, svg { display: block; max-width: 100%; }
 a { color: inherit; }
 p { margin: 0 0 1em; }
-h1, h2, h3 { font-family: var(--font-display); font-weight: 600; color: #fff; line-height: 1.06; letter-spacing: -.032em; margin: 0 0 .5em; text-wrap: balance; }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 700; color: #fff; line-height: 1.12; letter-spacing: -.022em; margin: 0 0 .5em; text-wrap: balance; }
 h1 { font-size: clamp(2.4rem, 1.3rem + 3.8vw, 4.4rem); }
 h2 { font-size: clamp(2rem, 1.35rem + 2.2vw, 3.2rem); }
-h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); letter-spacing: -.02em; line-height: 1.25; }
+h3 { font-size: clamp(1.12rem, 1.04rem + .35vw, 1.35rem); letter-spacing: -.012em; line-height: 1.3; }
 ::selection { background: rgba(var(--accent-rgb), .35); color: #fff; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 8px; }
 .container { width: min(100% - 2.5rem, var(--container)); margin-inline: auto; }
@@ -83,7 +82,6 @@ h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); letter-spacing: -.02em; 
 .eyebrow::before, .eyebrow.both::after { content: ""; width: 24px; height: 1px; background: linear-gradient(90deg, transparent, rgba(var(--accent-rgb), .8)); }
 .eyebrow.both::after { background: linear-gradient(90deg, rgba(var(--accent-rgb), .8), transparent); }
 .grad { background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
 
 /* ---------- Botones ---------- */
 .btn {
@@ -179,10 +177,10 @@ h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); letter-spacing: -.02em; 
 .hero-kicker { display: block; margin: 0 0 .3rem .55em; font-size: .78rem; font-weight: 500; letter-spacing: .55em; text-transform: uppercase; color: var(--text-2); }
 .wordmark {
   display: block; margin: 0; font-family: var(--font-display); font-weight: 700; color: #fff;
-  font-size: clamp(4rem, 1rem + 11vw, 9.5rem); line-height: .88; letter-spacing: -.065em;
+  font-size: clamp(3.8rem, 1rem + 10vw, 8.8rem); font-weight: 800; line-height: .9; letter-spacing: -.045em;
   text-shadow: 0 0 24px rgba(255, 255, 255, .45), 0 0 90px rgba(120, 160, 255, .4), 0 0 150px rgba(255, 199, 44, .18);
 }
-.tagline { display: block; margin-top: 1.1rem; font-size: clamp(1.35rem, 1.1rem + 1vw, 2rem); line-height: 1.2; }
+.tagline { display: block; margin-top: 1.2rem; font-family: var(--font-display); font-weight: 600; font-size: clamp(1.05rem, .95rem + .55vw, 1.35rem); letter-spacing: .01em; line-height: 1.4; }
 .hero h1 .line { display: block; }
 .hero .lead { margin-top: 1.3rem; }
 .hero-actions { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2.2rem; }
@@ -255,7 +253,7 @@ h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); letter-spacing: -.02em; 
 .stack { display: grid; gap: 1.5rem; }
 .stack-panel { padding-bottom: clamp(1.8rem, 1.2rem + 2vw, 2.8rem); }
 .stack-body { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(1.5rem, 1rem + 3vw, 4rem); align-items: center; }
-.stack-body h3 { font-size: clamp(1.7rem, 1.25rem + 1.4vw, 2.4rem); letter-spacing: -.035em; margin-bottom: .55rem; }
+.stack-body h3 { font-size: clamp(1.6rem, 1.2rem + 1.3vw, 2.25rem); letter-spacing: -.025em; margin-bottom: .55rem; }
 .stack-body p { color: var(--text-2); max-width: 46ch; }
 .stack-body .chips { margin: 1.2rem 0 1.8rem; }
 .stack-visual { position: relative; display: grid; place-items: center; min-height: 250px; }
@@ -299,15 +297,10 @@ h3 { font-size: clamp(1.15rem, 1.05rem + .4vw, 1.4rem); letter-spacing: -.02em; 
 @media (max-width: 400px) { .amenities { grid-template-columns: 1fr; } }
 
 /* ---------- Operadores (Caldas GO) ---------- */
-.operators { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1rem; }
+.operators { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; max-width: 880px; margin-inline: auto; }
 .operator { display: grid; place-items: center; gap: .35rem; padding: 1.8rem 1rem; text-align: center; }
 .operator b { font-family: var(--font-display); font-size: clamp(1.35rem, 1.05rem + 1vw, 1.9rem); font-weight: 700; letter-spacing: -.02em; color: #fff; }
-.operator span { font-size: .66rem; font-weight: 600; letter-spacing: .22em; text-transform: uppercase; color: var(--text-3); }
-.operator.soon { border-style: dashed; background: transparent; }
-.operator.soon b { color: var(--text-2); }
-.operator.soon span { color: var(--accent); }
-@media (max-width: 860px) { .operators { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 520px) { .operators { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .operators { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 
 /* ---------- Ruta del Camino (Hospederías) ---------- */
 .route { position: relative; display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; padding: 0; margin: 0; }
@@ -392,17 +385,43 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacit
 
 /* ---------- Pie ---------- */
 .site-footer { position: relative; padding: clamp(3.5rem, 3rem + 2vw, 5rem) 0 2rem; border-top: 1px solid var(--line); color: var(--text-3); font-size: .93rem; overflow: hidden; }
-.footer-grid { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 2.2rem; }
+.footer-grid { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 2.2rem; }
 .site-footer h4 { margin: 0 0 1rem; font-family: var(--font-body); font-size: .68rem; font-weight: 600; letter-spacing: .26em; text-transform: uppercase; color: var(--accent); }
 .site-footer ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .55rem; }
 .site-footer a { color: var(--text-2); text-decoration: none; transition: color .15s; }
 .site-footer a:hover { color: #fff; }
 .footer-brand p { margin: 1rem 0 0; max-width: 34ch; }
-.footer-brand .serif { display: block; margin-top: .8rem; font-size: 1.35rem; color: var(--gold-3); }
+.footer-brand .tag-line { display: block; margin-top: .8rem; font-family: var(--font-display); font-weight: 600; color: var(--gold-3); }
 .footer-word { margin: 3rem 0 0; text-align: center; user-select: none; pointer-events: none; font-family: var(--font-display); font-weight: 700; letter-spacing: -.07em; line-height: .78; font-size: clamp(4.5rem, 2rem + 15vw, 15rem); background: linear-gradient(180deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, 0) 85%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .8rem 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); font-size: .84rem; }
 .footer-bottom nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
-@media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } .footer-brand { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .footer-grid { grid-template-columns: minmax(0, 1fr); } }
+
+/* ---------- Lista de contacto: cada fila es una acción ---------- */
+.contact-list .ic.wa { color: #25d366; background: rgba(37, 211, 102, .1); border-color: rgba(37, 211, 102, .35); }
+.contact-list li > a, .contact-list li > .val { flex: 1; }
+
+/* ---------- Zona de reparto (Caldas GO) ---------- */
+.towns { display: flex; flex-wrap: wrap; gap: .6rem; list-style: none; margin: 0; padding: 0; }
+.towns .chip { padding: .55rem 1rem; font-size: .95rem; color: var(--text); }
+.towns .chip.home { color: #06121c; font-weight: 600; background: linear-gradient(180deg, var(--accent-2), var(--accent)); border-color: transparent; }
+
+/* ---------- Páginas legales ---------- */
+.page-hero { padding: calc(var(--nav-h) + 3.5rem) 0 1rem; text-align: center; }
+.page-hero h1 { font-size: clamp(2.1rem, 1.4rem + 2.6vw, 3.4rem); }
+.page-hero .lead { margin-inline: auto; }
+.legal { max-width: 800px; margin-inline: auto; }
+.legal h2 { font-size: clamp(1.25rem, 1.1rem + .6vw, 1.55rem); margin: 2.6rem 0 .8rem; }
+.legal > h2:first-child { margin-top: 0; }
+.legal p, .legal li { color: var(--text-2); }
+.legal ul { margin: 0 0 1em; padding-left: 1.2rem; display: grid; gap: .45rem; }
+.legal strong { color: #fff; font-weight: 600; }
+.legal a { color: var(--accent-2); }
+.legal-entities { list-style: none; padding: 0 !important; display: grid; gap: .8rem !important; }
+.legal-entities li { padding: 1.1rem 1.3rem; }
+.legal-entities strong { display: block; margin-bottom: .15rem; }
+.pending { color: var(--accent); border-bottom: 1px dashed rgba(var(--accent-rgb), .6); }
+.check a { color: var(--accent-2); }
 
 /* ---------- WhatsApp flotante (solo Hospederías) ---------- */
 .wa-float { position: fixed; right: 1.1rem; bottom: 1.1rem; z-index: 50; display: inline-flex; align-items: center; gap: .5rem; padding: .8rem 1.15rem .8rem .9rem; border-radius: 999px; text-decoration: none; color: #fff; font-weight: 600; font-size: .92rem; background: rgba(10, 30, 22, .78); border: 1px solid rgba(37, 211, 102, .45); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 16px 34px -14px rgba(37, 211, 102, .7); transition: transform .2s var(--ease); }
@@ -508,7 +527,7 @@ html { -webkit-tap-highlight-color: rgba(255, 199, 44, .12); }
   .grid-4 .card-sm p { font-size: .9rem; }
 }
 @media (max-width: 380px) { .grid-4 { grid-template-columns: minmax(0, 1fr); } }
-@media (max-width: 520px) { .operator.soon { grid-column: 1 / -1; } .operator { padding: 1.35rem .8rem; } }
+@media (max-width: 520px) { .operator { padding: 1.35rem .8rem; } }
 
 /* --- Formularios: mismo aspecto en iPhone y Android --- */
 .field input:not([type="checkbox"]):not([type="radio"]), .field select { min-height: 3.2rem; }
@@ -522,7 +541,7 @@ html { -webkit-tap-highlight-color: rgba(255, 199, 44, .12); }
 
 /* --- Textos pequeños: nunca por debajo de ~11 px --- */
 .frame-label { font-size: .72rem; }
-.contact-list small, .operator span { font-size: .7rem; }
+.contact-list small { font-size: .7rem; }
 .route .badge { font-size: .7rem; }
 .scroll-hint { font-size: .7rem; }
 .brand-name small { font-size: .64rem; }
@@ -563,7 +582,7 @@ html { -webkit-tap-highlight-color: rgba(255, 199, 44, .12); }
   .medal.sm::before { inset: -9px; }
   .medal-pair .medal.sm { margin-left: -30px; margin-top: 66px; }
   .stack-visual { min-height: 200px; }
-  .stack-body h3 { font-size: 1.7rem; }
+  .stack-body h3 { font-size: 1.6rem; }
   .hero .medal { margin-bottom: 1.6rem; }
   .footer-grid { gap: 1.6rem; }
   .footer-word { font-size: clamp(3.6rem, 1rem + 15vw, 15rem); }

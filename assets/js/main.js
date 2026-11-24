@@ -260,7 +260,7 @@
     <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">`;
   const consent = `
     <label class="check"><input type="checkbox" name="Privacidad" value="Aceptada" required data-label="privacidad">
-      <span>Acepto que ${esc(company)} use estos datos solo para atender mi solicitud.</span></label>`;
+      <span>He leído y acepto la <a href="politica-privacidad.html" target="_blank" rel="noopener">política de privacidad</a>. ${esc(company)} solo usará estos datos para atender mi solicitud.</span></label>`;
   const head = (kind, eyebrow, title, sub) => `
     <div class="modal-head">
       <div><span class="eyebrow">${eyebrow}</span><h2 id="dlg-${kind}-t">${title}</h2></div>
