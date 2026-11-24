@@ -423,8 +423,6 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacit
 .footer-brand p { margin: 0; font-size: .86rem; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1.5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .82rem; }
 .footer-bottom nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
-.footer-bottom .footer-admin { display: inline-grid; place-items: center; width: 26px; height: 26px; margin: -4px 0; border: 1px solid var(--line); border-radius: 50%; color: var(--text-3); font-size: .85rem; opacity: .55; transition: opacity .2s, color .2s, border-color .2s; }
-.footer-bottom .footer-admin:hover, .footer-bottom .footer-admin:focus-visible { opacity: 1; color: var(--gold); border-color: rgba(var(--accent-rgb), .5); }
 
 /* ---------- Lista de contacto: cada fila es una acción ---------- */
 .contact-list .ic.wa { color: #25d366; background: rgba(37, 211, 102, .1); border-color: rgba(37, 211, 102, .35); }
@@ -457,6 +455,11 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacit
 .wa-float i { font-size: 1.45rem; color: #25d366; }
 .wa-float:hover { transform: translateY(-2px); }
 @media (max-width: 520px) { .wa-float span { display: none; } .wa-float { padding: .85rem; } }
+/* Acceso al panel de administración: esquina inferior izquierda */
+.panel-esquina { position: fixed; left: 1.1rem; bottom: 1.1rem; z-index: 50; display: inline-flex; align-items: center; gap: .45rem; padding: .6rem 1rem .6rem .8rem; border-radius: 999px; text-decoration: none; color: var(--text-2); font-size: .85rem; font-weight: 600; background: rgba(8, 17, 42, .72); border: 1px solid var(--line-2); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .8); transition: color .2s, border-color .2s, transform .2s var(--ease); }
+.panel-esquina .ti { font-size: 1.05rem; color: var(--gold); }
+.panel-esquina:hover, .panel-esquina:focus-visible { color: #fff; border-color: rgba(var(--accent-rgb), .55); transform: translateY(-2px); }
+@media (max-width: 520px) { .panel-esquina span { display: none; } .panel-esquina { padding: .7rem; } }
 
 /* ---------- Foto (hueco para foto real) ---------- */
 .photo { position: relative; margin: 0; min-height: 380px; border-radius: var(--radius-lg); overflow: hidden; display: grid; place-items: center; font-size: 3.4rem; color: rgba(var(--accent-rgb), .75); background: radial-gradient(90% 80% at 70% 15%, rgba(var(--accent-rgb), .2), transparent 60%), linear-gradient(160deg, #13224f, #070e24); border: 1px solid var(--line); }
@@ -603,8 +606,6 @@ html { -webkit-tap-highlight-color: rgba(255, 199, 44, .12); }
   .site-footer { padding: 1.4rem 0 1.1rem; }
   .footer-grid { gap: .6rem 1.4rem; }
   .footer-bottom { margin-top: .9rem; padding-top: .8rem; }
-  .footer-bottom nav { flex: 1 1 100%; }
-  .footer-bottom .footer-admin { margin-left: auto; }
   .site-footer ul { gap: 0 1.2rem; }
 }
 @media (max-width: 480px) {

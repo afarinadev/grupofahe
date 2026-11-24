@@ -319,7 +319,7 @@
         ]
       },
       {
-        "label": "Acceso al panel (candado en la esquina del pie)",
+        "label": "Botón de acceso al panel (esquina inferior izquierda)",
         "name": "acceso_panel",
         "widget": "boolean",
         "required": false,

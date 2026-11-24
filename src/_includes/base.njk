@@ -43,5 +43,9 @@
 
   <a class="wa-float" href="https://wa.me/{{ sitio.whatsapp }}" data-wa="{{ p.whatsapp_flotante.mensaje }}" aria-label="Escríbenos por WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span>{{ p.whatsapp_flotante.texto or '¿Hablamos?' }}</span></a>
 {%- endif %}
+{%- if p.acceso_panel %}
+
+  <a class="panel-esquina" href="admin/" title="Panel de administración"><i class="ti ti-lock" aria-hidden="true"></i><span>Panel</span></a>
+{%- endif %}
 </body>
 </html>

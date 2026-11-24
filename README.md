@@ -16,7 +16,7 @@ Web de Grupo FAHE (Caldas de Reis): la portada del grupo y una página para cada
 | Qué | Dirección |
 | --- | --- |
 | Web | http://grupofahe.test (o http://localhost/grupofahe/) |
-| Panel | http://grupofahe.test/admin/ (o el candado de la esquina del pie de la portada) |
+| Panel | http://grupofahe.test/admin/ (o el botón «Panel» de la esquina inferior izquierda de la portada) |
 
 - Laragon sirve la carpeta del proyecto y el `.htaccess` de la raíz lo manda todo a `public/`, la web generada. El código, el contenido y el usuario del panel no son accesibles desde el navegador.
 - Primera vez (o en otro PC): `npm install` en la carpeta del proyecto y `npm run build`.
