@@ -30,11 +30,13 @@
     let w = 0, h = 0, stars = [], shooting = null, nextShot = 6000, last = 0, raf = 0;
 
     const build = () => {
-      const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
+      const small = w < 760;
+      // En móviles: menos estrellas y menos resolución, para no gastar batería
+      const dpr = Math.min(window.devicePixelRatio || 1, small ? 1.5 : 2);
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(320, Math.round((w * h) / 5200));
+      const count = Math.min(small ? 140 : 320, Math.round((w * h) / (small ? 4200 : 5200)));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
