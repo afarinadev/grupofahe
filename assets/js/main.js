@@ -236,6 +236,142 @@
     });
   });
 
+  /* ---- Formularios de correo y de currículum ----
+     La web es estática (GitHub Pages), así que los formularios se envían con FormSubmit
+     (https://formsubmit.co): convierte el formulario en un correo, con adjuntos, sin servidor propio.
+     El primer envío manda a CONTACT_EMAIL un correo de activación que hay que confirmar una vez.
+     Tras confirmarlo, FormSubmit da un alias (una cadena aleatoria) que puede sustituir al correo
+     en FORM_ACTION para que la dirección no aparezca en el código. */
+  const CONTACT_EMAIL = 'hospederiasdocaminosl@gmail.com';
+  const FORM_ACTION = `https://formsubmit.co/${CONTACT_EMAIL}`;
+  const MAX_CV_MB = 5;
+
+  const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const company = document.body.dataset.company || 'Grupo FAHE';
+  const thisPage = location.pathname.split('/').pop() || 'index.html';
+  const thanksURL = new URL(`gracias.html?volver=${encodeURIComponent(thisPage)}`, location.href).href;
+
+  const hidden = (subject) => `
+    <input type="hidden" name="_subject" value="${esc(subject)}">
+    <input type="hidden" name="_template" value="table">
+    <input type="hidden" name="_captcha" value="false">
+    <input type="hidden" name="_next" value="${esc(thanksURL)}">
+    <input type="hidden" name="Empresa" value="${esc(company)}">
+    <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">`;
+  const consent = `
+    <label class="check"><input type="checkbox" name="Privacidad" value="Aceptada" required data-label="privacidad">
+      <span>Acepto que ${esc(company)} use estos datos solo para atender mi solicitud.</span></label>`;
+  const head = (kind, eyebrow, title, sub) => `
+    <div class="modal-head">
+      <div><span class="eyebrow">${eyebrow}</span><h2 id="dlg-${kind}-t">${title}</h2></div>
+      <button class="modal-close" type="button" data-close aria-label="Cerrar"><i class="ti ti-x" aria-hidden="true"></i></button>
+    </div>
+    <p class="sub">${sub}</p>`;
+
+  const templates = {
+    email: () => `
+      <dialog class="modal" id="dlg-email" aria-labelledby="dlg-email-t">
+        <form class="modal-card form-card" method="post" action="${FORM_ACTION}" novalidate data-mail-form>
+          ${head('email', 'Correo', 'Escríbenos', 'Te contestaremos a tu correo lo antes posible.')}
+          ${hidden(`Nuevo mensaje desde la web · ${company}`)}
+          <div class="field"><label for="m-nombre">Nombre</label><input id="m-nombre" name="Nombre" autocomplete="name" required data-label="Nombre"></div>
+          <div class="field"><label for="m-email">Tu correo</label><input id="m-email" name="email" type="email" inputmode="email" autocomplete="email" required data-label="Tu correo"></div>
+          <div class="field"><label for="m-msg">Mensaje</label><textarea id="m-msg" name="Mensaje" required data-label="Mensaje"></textarea></div>
+          ${consent}
+          <p class="form-error" role="alert"></p>
+          <button class="btn btn-accent btn-lg btn-block" type="submit"><i class="ti ti-send" aria-hidden="true"></i> Enviar correo</button>
+        </form>
+      </dialog>`,
+    cv: () => `
+      <dialog class="modal" id="dlg-cv" aria-labelledby="dlg-cv-t">
+        <form class="modal-card form-card" method="post" action="${FORM_ACTION}" enctype="multipart/form-data" novalidate data-mail-form>
+          ${head('cv', 'Trabaja con nosotros', 'Envíanos tu CV', `Adjunta tu currículum en PDF (máximo ${MAX_CV_MB} MB).`)}
+          ${hidden('Nuevo currículum desde la web')}
+          <input type="hidden" name="Puesto" value="Candidatura espontánea">
+          <div class="field"><label for="c-nombre">Nombre y apellidos</label><input id="c-nombre" name="Nombre" autocomplete="name" required data-label="Nombre y apellidos"></div>
+          <div class="field-row">
+            <div class="field"><label for="c-email">Correo</label><input id="c-email" name="email" type="email" inputmode="email" autocomplete="email" required data-label="Correo"></div>
+            <div class="field"><label for="c-tel">Teléfono</label><input id="c-tel" name="Telefono" type="tel" inputmode="tel" autocomplete="tel" data-label="Teléfono"></div>
+          </div>
+          <div class="field">
+            <label for="c-file">Currículum</label>
+            <div class="file-drop">
+              <i class="ti ti-file-type-pdf" aria-hidden="true"></i>
+              <div><strong data-file-name>Elige tu CV en PDF</strong><span data-file-hint>Toca aquí para buscarlo en tu móvil u ordenador</span></div>
+              <input id="c-file" name="Curriculum" type="file" accept="application/pdf,.pdf" required data-label="Currículum">
+            </div>
+          </div>
+          <div class="field"><label for="c-msg">Mensaje (opcional)</label><textarea id="c-msg" name="Mensaje" data-label="Mensaje" placeholder="Cuéntanos algo sobre ti, disponibilidad…"></textarea></div>
+          ${consent}
+          <p class="form-error" role="alert"></p>
+          <button class="btn btn-accent btn-lg btn-block" type="submit"><i class="ti ti-send" aria-hidden="true"></i> Enviar CV</button>
+        </form>
+      </dialog>`,
+  };
+
+  const dialogs = {};
+  const getDialog = (kind) => {
+    if (dialogs[kind]) return dialogs[kind];
+    document.body.insertAdjacentHTML('beforeend', templates[kind]());
+    const dlg = document.getElementById(`dlg-${kind}`);
+    const form = $('form', dlg);
+    const err = $('.form-error', form);
+    const fail = (msg, field) => { err.textContent = msg; err.classList.add('show'); if (field) field.focus(); };
+
+    $('[data-close]', dlg).addEventListener('click', () => dlg.close());
+    dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
+    form.addEventListener('input', () => err.classList.remove('show'));
+
+    const fileInput = $('input[type="file"]', form);
+    if (fileInput) {
+      fileInput.addEventListener('change', () => {
+        const f = fileInput.files[0];
+        $('[data-file-name]', form).textContent = f ? f.name : 'Elige tu CV en PDF';
+        $('[data-file-hint]', form).textContent = f ? `${(f.size / 1048576).toFixed(1)} MB` : 'Toca aquí para buscarlo en tu móvil u ordenador';
+        fileInput.closest('.file-drop').classList.toggle('has-file', !!f);
+      });
+    }
+
+    form.addEventListener('submit', (e) => {
+      const missing = $$('[required]', form).find((f) => (f.type === 'checkbox' ? !f.checked : f.type === 'file' ? !f.files.length : !f.value.trim()));
+      if (missing) {
+        e.preventDefault();
+        if (missing.type === 'checkbox') return fail('Marca la casilla de privacidad para poder enviarlo.', missing);
+        if (missing.type === 'file') return fail('Adjunta tu currículum en PDF.', missing);
+        return fail(`Completa el campo «${missing.dataset.label}».`, missing);
+      }
+      const email = form.elements.email;
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { e.preventDefault(); return fail('Revisa tu correo: parece que no está bien escrito.', email); }
+      if (fileInput) {
+        const f = fileInput.files[0];
+        if (!/\.pdf$/i.test(f.name) && f.type !== 'application/pdf') { e.preventDefault(); return fail('El currículum tiene que estar en PDF.', fileInput); }
+        if (f.size > MAX_CV_MB * 1048576) { e.preventDefault(); return fail(`El PDF ocupa demasiado: el máximo son ${MAX_CV_MB} MB.`, fileInput); }
+      }
+      const btn = $('button[type="submit"]', form);
+      btn.disabled = true;
+      btn.innerHTML = '<i class="ti ti-loader-2" aria-hidden="true"></i> Enviando…';
+      return true;
+    });
+
+    dialogs[kind] = dlg;
+    return dlg;
+  };
+
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-open]');
+    if (!trigger || typeof HTMLDialogElement === 'undefined') return; // sin soporte: se usa el enlace mailto de siempre
+    const kind = trigger.dataset.open;
+    if (!templates[kind]) return;
+    e.preventDefault();
+    const dlg = getDialog(kind);
+    if (kind === 'cv') {
+      const puesto = trigger.dataset.position || 'Candidatura espontánea';
+      dlg.querySelector('[name="Puesto"]').value = puesto;
+      dlg.querySelector('[name="_subject"]').value = `Nuevo currículum · ${puesto}`;
+    }
+    dlg.showModal();
+  });
+
   /* ---- Enlaces directos a WhatsApp con mensaje predefinido ---- */
   $$('[data-wa]').forEach((a) => {
     a.setAttribute('href', waLink(a.dataset.wa));

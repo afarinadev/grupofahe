@@ -9,7 +9,13 @@ Web estática de Grupo FAHE (Caldas de Reis): la portada del grupo y una página
 | `infaes.html` | Infaes: gestión y promoción de bienes inmuebles |
 | `caldasgo.html` | Caldas GO: reparto de paquetería (GLS, Tipsa, DHL, Amazon; SEUR próximamente) |
 
-Solo HTML, CSS y JavaScript, sin dependencias ni compilación. Los formularios abren WhatsApp con el mensaje ya escrito.
+Solo HTML, CSS y JavaScript, sin dependencias ni compilación.
+
+## Contacto
+
+- **Llamar** (`tel:`) y **WhatsApp** (`wa.me`) abren directamente la llamada o el chat.
+- **Correo** y **Envíanos tu CV** abren un formulario dentro de la web que llega como correo a `hospederiasdocaminosl@gmail.com` a través de [FormSubmit](https://formsubmit.co) (la web no tiene servidor propio). El CV se adjunta en PDF, máximo 5 MB. Tras enviarse, se muestra `gracias.html`.
+- **Activación (una sola vez):** el primer envío manda a ese correo un mensaje de FormSubmit para confirmar la dirección; hasta confirmarlo no llega nada. Después se puede cambiar el correo de `FORM_ACTION` en `assets/js/main.js` por el alias que da FormSubmit.
 
 ## Verla en local
 
