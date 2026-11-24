@@ -1,4 +1,4 @@
-// Configuración de Eleventy: genera la web estática en _site/ a partir de
+// Configuración de Eleventy: genera la web estática en public/ (la carpeta que sirve Laragon) a partir de
 // - src/_data/sitio.json        → ajustes generales (teléfonos, correo, WhatsApp…)
 // - src/_data/empresas.json     → empresas del menú desplegable
 // - src/_data/paginas/*.json    → una página por archivo, hecha de bloques (secciones)
@@ -56,7 +56,7 @@ export default function (eleventyConfig) {
   ));
 
   return {
-    dir: { input: 'src', includes: '_includes', data: '_data', output: '_site' },
+    dir: { input: 'src', includes: '_includes', data: '_data', output: 'public' },
     templateFormats: ['njk'],
     htmlTemplateEngine: 'njk',
   };

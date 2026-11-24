@@ -29,6 +29,9 @@
           {%- for l in sitio.enlaces_legales %}
           <a href="{{ l.enlace }}"{% if l.enlace == (pagina.slug | url) %} aria-current="page"{% endif %}>{{ l.texto }}</a>
           {%- endfor %}
+          {%- if pagina.acceso_panel %}
+          <a class="footer-admin" href="admin/" title="Panel de administración" aria-label="Panel de administración"><i class="ti ti-lock" aria-hidden="true"></i></a>
+          {%- endif %}
         </nav>
       </div>
     </div>

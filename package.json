@@ -5,8 +5,9 @@
   "description": "Web estática de Grupo FAHE generada con Eleventy y editable desde el panel /admin (Sveltia CMS).",
   "type": "module",
   "scripts": {
-    "dev": "eleventy --serve --port=8090",
-    "build": "eleventy"
+    "dev": "eleventy --serve --port=8090 --output=_dev",
+    "build": "eleventy",
+    "watch": "eleventy --watch --quiet"
   },
   "devDependencies": {
     "@11ty/eleventy": "3.1.8",

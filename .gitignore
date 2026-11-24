@@ -2,4 +2,11 @@ Thumbs.db
 .DS_Store
 desktop.ini
 node_modules/
-_site/
+
+# Web generada (la sirve Laragon) y vista previa de npm run dev
+public/
+_dev/
+
+# Panel: usuario y contraseña, sesiones e intentos de acceso
+config/admin.php
+storage/

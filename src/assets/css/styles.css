@@ -422,7 +422,9 @@ input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(1) opacit
 .footer-brand .brand { min-height: 0; }
 .footer-brand p { margin: 0; font-size: .86rem; }
 .footer-bottom { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .4rem 1.5rem; margin-top: 1.2rem; padding-top: 1rem; border-top: 1px solid var(--line); font-size: .82rem; }
-.footer-bottom nav { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+.footer-bottom nav { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2rem; }
+.footer-bottom .footer-admin { display: inline-grid; place-items: center; width: 26px; height: 26px; margin: -4px 0; border: 1px solid var(--line); border-radius: 50%; color: var(--text-3); font-size: .85rem; opacity: .55; transition: opacity .2s, color .2s, border-color .2s; }
+.footer-bottom .footer-admin:hover, .footer-bottom .footer-admin:focus-visible { opacity: 1; color: var(--gold); border-color: rgba(var(--accent-rgb), .5); }
 
 /* ---------- Lista de contacto: cada fila es una acción ---------- */
 .contact-list .ic.wa { color: #25d366; background: rgba(37, 211, 102, .1); border-color: rgba(37, 211, 102, .35); }
@@ -601,6 +603,8 @@ html { -webkit-tap-highlight-color: rgba(255, 199, 44, .12); }
   .site-footer { padding: 1.4rem 0 1.1rem; }
   .footer-grid { gap: .6rem 1.4rem; }
   .footer-bottom { margin-top: .9rem; padding-top: .8rem; }
+  .footer-bottom nav { flex: 1 1 100%; }
+  .footer-bottom .footer-admin { margin-left: auto; }
   .site-footer ul { gap: 0 1.2rem; }
 }
 @media (max-width: 480px) {

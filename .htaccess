@@ -1,0 +1,8 @@
+# Laragon sirve esta carpeta (http://grupofahe.test y http://localhost/grupofahe/).
+# Todo se sirve desde public/, la web generada. El resto del proyecto (código,
+# contenido, usuario del panel) no es accesible desde el navegador.
+Options -Indexes
+DirectoryIndex index.html index.php
+RewriteEngine On
+RewriteRule ^public/ - [L]
+RewriteRule ^(.*)$ public/$1 [L]
