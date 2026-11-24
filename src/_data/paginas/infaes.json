@@ -1,0 +1,90 @@
+{
+  "slug": "infaes",
+  "titulo_seo": "Infaes · Gestión y promoción de bienes inmuebles · Caldas de Reis",
+  "descripcion_seo": "Infaes, de Grupo FAHE: gestión de alquileres, rehabilitación y promoción de casas, pisos, locales y terrenos en Caldas de Reis y alrededores.",
+  "og_titulo": "Infaes · Bienes inmuebles en Caldas de Reis",
+  "og_descripcion": "Gestión y promoción de bienes inmuebles.",
+  "tema": "coral",
+  "empresa": "Infaes",
+  "marca": { "simbolo": "icono", "icono": "ti-building-estate", "nombre": "", "destacado": "Infaes", "estilo_destacado": "coral", "subtitulo": "Bienes inmuebles" },
+  "desplegable": { "etiqueta": "Grupo FAHE", "posicion": "final", "incluir_grupo": true },
+  "menu": [
+    { "texto": "Servicios", "enlace": "#servicios" },
+    { "texto": "Cómo trabajamos", "enlace": "#como-trabajamos" }
+  ],
+  "boton_menu": { "texto": "Contacto", "enlace": "#contacto", "estilo": "color" },
+  "pie": {
+    "texto": "Una empresa de [Grupo FAHE](index.html).",
+    "enlaces": [
+      { "texto": "Servicios", "enlace": "#servicios" },
+      { "texto": "Cómo trabajamos", "enlace": "#como-trabajamos" },
+      { "texto": "Contacto", "enlace": "#contacto" }
+    ],
+    "copyright": "Infaes · Grupo FAHE"
+  },
+  "secciones": [
+    {
+      "type": "portada",
+      "logo": "assets/img/logos/infaes-light.png",
+      "logo_alt": "Infaes, gestión y promoción de bienes inmuebles",
+      "titulo": "Cuidamos tu inmueble",
+      "destacado": "como si fuera nuestro",
+      "entradilla": "Casas, pisos, locales y terrenos en Caldas de Reis y alrededores.",
+      "botones": [
+        { "texto": "Cuéntanos tu inmueble", "accion": "enlace", "enlace": "#contacto", "estilo": "principal" },
+        { "texto": "Servicios", "accion": "enlace", "enlace": "#servicios", "estilo": "secundario" }
+      ],
+      "enlace_desliza": "#servicios"
+    },
+    {
+      "type": "tarjetas",
+      "id": "servicios",
+      "titulo": "Nuestros",
+      "destacado": "servicios",
+      "columnas": 4,
+      "elevar": true,
+      "tarjetas": [
+        { "icono": "ti-key", "titulo": "Gestión de alquileres", "texto": "Inquilinos, contratos y día a día." },
+        { "icono": "ti-hammer", "titulo": "Rehabilitación", "texto": "Reformas y mantenimiento con profesionales de la zona." },
+        { "icono": "ti-building-estate", "titulo": "Promoción", "texto": "Nuevos proyectos y nuevos usos para edificios." },
+        { "icono": "ti-file-certificate", "titulo": "Asesoramiento", "texto": "Te orientamos sobre las opciones que tienes." }
+      ]
+    },
+    {
+      "type": "pasos",
+      "id": "como-trabajamos",
+      "sin_espacio_arriba": true,
+      "titulo": "Cómo",
+      "destacado": "trabajamos",
+      "pasos": [
+        { "titulo": "Visitamos el inmueble", "texto": "Lo vemos contigo y escuchamos qué quieres hacer." },
+        { "titulo": "Te hacemos una propuesta", "texto": "Por escrito y con números claros." },
+        { "titulo": "Nos ponemos en marcha", "texto": "Coordinamos todo y te mantenemos informado." }
+      ]
+    },
+    {
+      "type": "contacto",
+      "id": "contacto",
+      "sin_espacio_arriba": true,
+      "rotulo": "Contacto",
+      "titulo": "Cuéntanos",
+      "destacado": "tu inmueble",
+      "texto": "Sin compromiso. Te llamamos para conocerlo.",
+      "filas": [
+        { "tipo": "telefono" },
+        { "tipo": "telefono2" },
+        { "tipo": "correo" }
+      ],
+      "formulario": {
+        "mensaje_inicial": "¡Hola! Os escribo desde la web de Infaes por un inmueble.",
+        "boton": "Enviar por WhatsApp",
+        "campos": [
+          { "etiqueta": "Nombre", "nombre": "nombre", "tipo": "texto", "obligatorio": true },
+          { "etiqueta": "Tipo", "nombre": "tipo", "tipo": "seleccion", "etiqueta_mensaje": "Tipo de inmueble", "opciones": ["Casa", "Piso", "Local", "Terreno"], "mitad": true },
+          { "etiqueta": "Ubicación", "nombre": "ubicacion", "tipo": "texto", "obligatorio": true, "marcador": "Ej.: Caldas de Reis", "mitad": true },
+          { "etiqueta": "¿Qué necesitas?", "nombre": "objetivo", "tipo": "seleccion", "etiqueta_mensaje": "Necesito", "opciones": ["Gestionar el alquiler", "Reformarlo", "Venderlo", "Asesoramiento"] }
+        ]
+      }
+    }
+  ]
+}

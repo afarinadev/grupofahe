@@ -1,0 +1,47 @@
+{%- from "macros.njk" import simbolo, nombreMarca -%}
+{%- set p = pagina -%}
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{ p.titulo_seo }}</title>
+  {%- if p.descripcion_seo %}
+  <meta name="description" content="{{ p.descripcion_seo }}">{% endif %}
+  {%- if p.noindex %}
+  <meta name="robots" content="noindex">{% endif %}
+  <meta name="theme-color" content="#040a1a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="{{ p.og_titulo or p.titulo_seo }}">
+  {%- if p.og_descripcion or p.descripcion_seo %}
+  <meta property="og:description" content="{{ p.og_descripcion or p.descripcion_seo }}">{% endif %}
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script>window.SITIO = {{ sitio | json | safe }};</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body{% if p.tema | tema %} class="{{ p.tema | tema }}"{% endif %} data-company="{{ p.empresa or sitio.grupo }}">
+  <canvas id="stars" aria-hidden="true"></canvas>
+{%- if not p.sin_cabecera %}
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+{% include "cabecera.njk" %}
+{%- endif %}
+
+  <main id="main">
+{{ content | safe }}
+  </main>
+{%- if not p.sin_pie %}
+{% include "pie.njk" %}
+{%- endif %}
+{%- if p.whatsapp_flotante and p.whatsapp_flotante.activo %}
+
+  <a class="wa-float" href="https://wa.me/{{ sitio.whatsapp }}" data-wa="{{ p.whatsapp_flotante.mensaje }}" aria-label="Escríbenos por WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span>{{ p.whatsapp_flotante.texto or '¿Hablamos?' }}</span></a>
+{%- endif %}
+</body>
+</html>

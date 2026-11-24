@@ -1,0 +1,35 @@
+{%- from "macros.njk" import simbolo, nombreMarca -%}
+{%- set m = pagina.marca -%}
+{%- set dd = pagina.desplegable -%}
+{%- set urlActual = pagina.slug | url -%}
+{%- set desplegable -%}
+        <div class="dd">
+          <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-menu">{{ dd.etiqueta }} <i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+          <div class="dd-panel" id="dd-menu">
+          {%- for e in empresas.lista %}{% if dd.incluir_grupo or not e.grupo %}
+            <a href="{{ e.enlace }}"{% if e.enlace == urlActual %} aria-current="page"{% endif %}><img src="{{ e.logo }}" alt=""><span><strong>{{ e.nombre }}</strong><span>{{ e.descripcion }}</span></span></a>
+          {%- endif %}{% endfor %}
+          </div>
+        </div>
+{%- endset %}
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="{{ m.enlace or urlActual }}" aria-label="{{ m.nombre_completo or (m.nombre + (' ' if m.nombre and m.destacado else '') + (m.destacado or '')) }}, inicio">
+        {{ simbolo(m) }}
+        <span class="brand-name">{{ nombreMarca(m) }}{% if m.subtitulo %}<small>{{ m.subtitulo }}</small>{% endif %}</span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Principal">
+{%- if dd and dd.etiqueta and dd.posicion == 'inicio' %}
+{{ desplegable | safe }}{% endif %}
+        {%- for l in pagina.menu %}
+        <a href="{{ l.enlace }}">{{ l.texto }}</a>
+        {%- endfor %}
+{%- if dd and dd.etiqueta and dd.posicion != 'inicio' %}
+{{ desplegable | safe }}{% endif %}
+        {%- if pagina.boton_menu and pagina.boton_menu.texto %}
+        <a class="btn {{ 'btn-gold' if pagina.boton_menu.estilo == 'dorado' else 'btn-accent' }} btn-sm nav-cta" href="{{ pagina.boton_menu.enlace }}">{% if pagina.boton_menu.icono %}<i class="ti {{ pagina.boton_menu.icono }}" aria-hidden="true"></i> {% endif %}{{ pagina.boton_menu.texto }}</a>
+        {%- endif %}
+      </nav>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menú"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
+    </div>
+  </header>

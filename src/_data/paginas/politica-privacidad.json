@@ -1,0 +1,35 @@
+{
+  "slug": "politica-privacidad",
+  "titulo_seo": "Política de privacidad · Grupo FAHE",
+  "descripcion_seo": "Cómo tratan tus datos personales las empresas de Grupo FAHE: Hospederías do Camiño, Infaes y Caldas GO.",
+  "tema": "dorado",
+  "empresa": "Grupo FAHE",
+  "marca": { "simbolo": "monograma", "nombre": "Grupo FAHE", "subtitulo": "Caldas de Reis", "enlace": "index.html" },
+  "desplegable": { "etiqueta": "Empresas", "posicion": "inicio", "incluir_grupo": false },
+  "menu": [
+    { "texto": "Nosotros", "enlace": "index.html#nosotros" }
+  ],
+  "boton_menu": { "texto": "Contacto", "enlace": "index.html#contacto", "estilo": "dorado" },
+  "pie": {
+    "texto": "Empresa familiar de Caldas de Reis (Pontevedra).",
+    "enlaces": [
+      { "texto": "Hospederías do Camiño", "enlace": "hospederias.html" },
+      { "texto": "Infaes", "enlace": "infaes.html" },
+      { "texto": "Caldas GO", "enlace": "caldasgo.html" }
+    ],
+    "copyright": "Grupo FAHE"
+  },
+  "secciones": [
+    {
+      "type": "cabecera_pagina",
+      "titulo": "Política de",
+      "destacado": "privacidad",
+      "texto": "Qué datos recogemos en esta web, para qué y cómo puedes ejercer tus derechos.",
+      "nota": "Última actualización: 25 de noviembre de 2026"
+    },
+    {
+      "type": "texto_largo",
+      "cuerpo": "## 1. Quién es el responsable\n\nEsta web reúne a las empresas de Grupo FAHE. Cada una es responsable de los datos que recoge en su propia página:\n\n- **Hospederías do Camiño SLU**: alojamiento (Albergue Urraca). NIF: <span class='pending'>pendiente de completar</span>\n- **Infaes**: gestión y promoción de bienes inmuebles. NIF: <span class='pending'>pendiente de completar</span>\n- **Caldas GO**: reparto de paquetería. NIF: <span class='pending'>pendiente de completar</span>\n\nDomicilio: <span class='pending'>dirección completa pendiente</span>, 36650 Caldas de Reis (Pontevedra). Correo de contacto para cualquier cuestión de privacidad: [hospederiasdocaminosl@gmail.com](mailto:hospederiasdocaminosl@gmail.com). Teléfono: [+34 683 60 53 35](tel:+34683605335).\n\n## 2. Qué datos tratamos y para qué\n\n- **Formulario de correo:** tu nombre, tu correo y tu mensaje, para responderte.\n- **Envío de currículum:** tu nombre, correo, teléfono, el CV en PDF y lo que nos cuentes, para valorar tu candidatura en los procesos de selección del grupo.\n- **Consulta de disponibilidad del albergue:** fechas y número de personas, que tú mismo nos envías por WhatsApp, para responderte y, si quieres, gestionar tu reserva.\n- **Formulario de inmuebles (Infaes):** tu nombre y los datos del inmueble, que nos envías por WhatsApp, para atender tu consulta.\n- **Llamadas y mensajes de WhatsApp:** los datos que nos facilites, para atenderte.\n\nNo tomamos decisiones automatizadas ni elaboramos perfiles con tus datos.\n\n## 3. Por qué podemos tratarlos\n\n- **Tu consentimiento**, que das al marcar la casilla de los formularios o al escribirnos (art. 6.1.a del RGPD). Puedes retirarlo cuando quieras.\n- **La aplicación de medidas precontractuales** cuando nos pides disponibilidad, un presupuesto o un servicio (art. 6.1.b del RGPD).\n\n## 4. Cuánto tiempo los guardamos\n\n- **Mensajes y consultas:** el tiempo necesario para responderte y, como máximo, un año.\n- **Currículums:** un año desde que los recibimos, salvo que nos pidas antes que los borremos.\n- **Reservas y servicios contratados:** el tiempo que exija la ley (por ejemplo, la normativa fiscal o la de registro de viajeros).\n\n## 5. Con quién los compartimos\n\nNo vendemos ni cedemos tus datos. Para que la web funcione usamos estos proveedores:\n\n- **FormSubmit** (formsubmit.co): convierte los formularios de correo y de currículum en un correo que nos llega.\n- **GitHub Pages** (GitHub, Inc.): aloja la web y registra datos técnicos de las visitas, como la dirección IP.\n- **Google Fonts y jsDelivr**: sirven los tipos de letra y los iconos, para lo que reciben tu dirección IP.\n- **WhatsApp** (Meta) y **Booking.com**, solo si decides escribirnos por WhatsApp o reservar en Booking; en ese caso se aplican también sus propias políticas de privacidad.\n\nAlgunos de estos proveedores pueden tratar los datos fuera del Espacio Económico Europeo. En ese caso, la transferencia se apoya en las garantías que ofrece cada proveedor conforme al RGPD, como las cláusulas contractuales tipo de la Comisión Europea.\n\n## 6. Tus derechos\n\nPuedes pedirnos en cualquier momento **acceder** a tus datos, **rectificarlos** o **suprimirlos**, **oponerte** a su tratamiento o pedir que lo **limitemos**, solicitar su **portabilidad** y **retirar tu consentimiento**.\n\nEscríbenos a [hospederiasdocaminosl@gmail.com](mailto:hospederiasdocaminosl@gmail.com?subject=Protecci%C3%B3n%20de%20datos) con el asunto «Protección de datos». Si crees que no hemos atendido bien tu solicitud, puedes reclamar ante la [Agencia Española de Protección de Datos](https://www.aepd.es).\n\n## 7. Cookies\n\nEsta web **no usa cookies**, ni propias ni de terceros, ni herramientas de analítica o publicidad. Por eso no te mostramos ningún aviso de cookies.\n\nLos tipos de letra y los iconos se cargan desde servidores externos (Google Fonts y jsDelivr), que reciben tu dirección IP para poder enviarte esos archivos, sin instalar cookies en tu navegador.\n\n## 8. Cambios en esta política\n\nSi cambiamos la forma en que tratamos tus datos, actualizaremos esta página y la fecha de arriba."
+    }
+  ]
+}

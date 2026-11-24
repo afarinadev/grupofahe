@@ -1,0 +1,15 @@
+{
+  "grupo": "Grupo FAHE",
+  "responsable": "Jesús Fariña",
+  "telefono": "+34 683 60 53 35",
+  "telefono2": "+34 630 54 28 97",
+  "whatsapp": "34683605335",
+  "correo": "hospederiasdocaminosl@gmail.com",
+  "booking_url": "https://www.booking.com/hotel/es/la-torre-hostel.es.html",
+  "cv_max_mb": 5,
+  "formsubmit_alias": "",
+  "enlaces_legales": [
+    { "texto": "Privacidad", "enlace": "politica-privacidad.html" },
+    { "texto": "Cookies", "enlace": "politica-privacidad.html#cookies" }
+  ]
+}

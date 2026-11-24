@@ -1,0 +1,16 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ TARJETAS ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        {%- if s.titulo %}
+        <div class="section-head center reveal">
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+        </div>
+        {%- endif %}
+        <div class="grid grid-{{ s.columnas or 3 }}">
+          {%- for t in s.tarjetas %}
+          <div class="glass{% if s.elevar %} lift{% endif %} pad card-sm reveal{{ loop.index0 | retraso }}">{% if t.icono %}<span class="icon-glow"><i class="ti {{ t.icono }}" aria-hidden="true"></i></span>{% endif %}<h3>{{ t.titulo }}</h3><p>{{ t.texto }}</p></div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>

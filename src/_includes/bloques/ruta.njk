@@ -1,0 +1,20 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ RUTA ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        <div class="frame reveal">
+          {%- if s.rotulo %}
+          <p class="frame-label">{{ s.rotulo }}</p>{% endif %}
+          {%- if s.titulo %}
+          <div class="section-head center" style="margin-bottom: 2.8rem;">
+            <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+          </div>
+          {%- endif %}
+          <ol class="route">
+            {%- for p in s.paradas %}
+            <li{% if p.aqui %} class="here"{% endif %}><span class="pin"><i class="ti {{ p.icono or 'ti-map-pin' }}" aria-hidden="true"></i></span><div><h3>{{ p.nombre }}</h3>{% if p.aqui and s.texto_aqui %}<span class="badge">{{ s.texto_aqui }}</span>{% endif %}<p>{{ p.texto }}</p></div></li>
+            {%- endfor %}
+          </ol>
+        </div>
+      </div>
+    </section>

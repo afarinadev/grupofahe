@@ -1,0 +1,120 @@
+{
+  "slug": "index",
+  "titulo_seo": "Grupo FAHE · Empresa familiar de Caldas de Reis",
+  "descripcion_seo": "Grupo FAHE es una empresa familiar de Caldas de Reis con tres empresas: Hospederías do Camiño (alojamiento), Infaes (bienes inmuebles) y Caldas GO (paquetería).",
+  "og_titulo": "Grupo FAHE · Caldas de Reis",
+  "og_descripcion": "Turismo, patrimonio y desarrollo sostenible.",
+  "tema": "dorado",
+  "empresa": "Grupo FAHE",
+  "marca": { "simbolo": "monograma", "nombre": "Grupo FAHE", "subtitulo": "Caldas de Reis" },
+  "desplegable": { "etiqueta": "Empresas", "posicion": "inicio", "incluir_grupo": false },
+  "menu": [
+    { "texto": "Nosotros", "enlace": "#nosotros" }
+  ],
+  "boton_menu": { "texto": "Contacto", "enlace": "#contacto", "estilo": "dorado" },
+  "pie": {
+    "texto": "Empresa familiar de Caldas de Reis (Pontevedra).",
+    "enlaces": [
+      { "texto": "Hospederías do Camiño", "enlace": "hospederias.html" },
+      { "texto": "Infaes", "enlace": "infaes.html" },
+      { "texto": "Caldas GO", "enlace": "caldasgo.html" }
+    ],
+    "copyright": "Grupo FAHE"
+  },
+  "secciones": [
+    {
+      "type": "portada_grupo",
+      "antetitulo": "Grupo",
+      "titulo": "FAHE",
+      "lema": "Turismo, patrimonio y desarrollo sostenible",
+      "entradilla": "Alojamiento, bienes inmuebles y reparto de paquetería en Caldas de Reis.",
+      "titulo_accesos": "¿Qué necesitas?",
+      "accesos": [
+        { "titulo": "Peregrinos", "subtitulo": "Ver el albergue y reservar", "icono": "ti-bed", "enlace": "hospederias.html", "color": "dorado" },
+        { "titulo": "Inmuebles", "subtitulo": "Gestionar, reformar o vender", "icono": "ti-home-2", "enlace": "infaes.html", "color": "coral" },
+        { "titulo": "Paquetes", "subtitulo": "Preguntar por un envío", "icono": "ti-package", "enlace": "caldasgo.html", "color": "turquesa" },
+        { "titulo": "Contacto", "subtitulo": "Hablar con nosotros", "icono": "ti-message-circle", "enlace": "#contacto", "color": "azul" }
+      ],
+      "enlace_desliza": "#empresas"
+    },
+    {
+      "type": "empresas",
+      "id": "empresas",
+      "titulo": "Tres empresas,",
+      "destacado": "un mismo grupo",
+      "paneles": [
+        {
+          "rotulo": "Turismo",
+          "color": "dorado",
+          "logo": "assets/img/logos/hospederias-light.png",
+          "logo2": "assets/img/logos/albergue-urraca-light.png",
+          "logo2_alt": "Albergue Urraca",
+          "nombre": "Hospederías do Camiño",
+          "texto": "Alojamiento para peregrinos del Camino Portugués en el Albergue Urraca.",
+          "chips": [
+            { "icono": "ti-bed", "texto": "Literas y habitaciones familiares" },
+            { "icono": "ti-star", "texto": "8,1 en Booking" }
+          ],
+          "boton": "Visitar",
+          "enlace": "hospederias.html"
+        },
+        {
+          "rotulo": "Patrimonio",
+          "color": "coral",
+          "logo": "assets/img/logos/infaes-light.png",
+          "nombre": "Infaes",
+          "texto": "Cuidamos y damos valor a casas, pisos, locales y terrenos.",
+          "chips": [
+            { "icono": "ti-key", "texto": "Gestión" },
+            { "icono": "ti-hammer", "texto": "Rehabilitación" },
+            { "icono": "ti-building-estate", "texto": "Promoción" }
+          ],
+          "boton": "Visitar",
+          "enlace": "infaes.html"
+        },
+        {
+          "rotulo": "Movilidad sostenible",
+          "color": "turquesa",
+          "logo": "assets/img/logos/caldas-go-light.png",
+          "nombre": "Caldas GO",
+          "texto": "Reparto de paquetería en Caldas de Reis y ayuntamientos colindantes.",
+          "chips": [
+            { "texto": "GLS" },
+            { "texto": "Tipsa" },
+            { "texto": "DHL" },
+            { "texto": "Amazon" }
+          ],
+          "boton": "Visitar",
+          "enlace": "caldasgo.html"
+        }
+      ]
+    },
+    {
+      "type": "texto_valores",
+      "id": "nosotros",
+      "titulo": "Una empresa",
+      "destacado": "familiar",
+      "texto": "Crecemos en el lugar donde vivimos, con proyectos pensados para durar.",
+      "valores": [
+        { "icono": "ti-heart-handshake", "titulo": "Cercanía", "texto": "Trato directo, sin intermediarios." },
+        { "icono": "ti-map-pin", "titulo": "Arraigo", "texto": "Conocemos el territorio y a su gente." },
+        { "icono": "ti-shield-check", "titulo": "Compromiso", "texto": "Cumplimos lo que prometemos." }
+      ]
+    },
+    {
+      "type": "contacto",
+      "id": "contacto",
+      "sin_espacio_arriba": true,
+      "rotulo": "Contacto",
+      "titulo": "Hablemos",
+      "texto": "¿Una propuesta o una consulta? Te atendemos directamente.",
+      "filas": [
+        { "tipo": "texto", "icono": "ti-user", "etiqueta": "Responsable", "valor": "Jesús Fariña" },
+        { "tipo": "whatsapp", "mensaje": "¡Hola! Os escribo desde la web de Grupo FAHE." },
+        { "tipo": "telefono" },
+        { "tipo": "telefono2" },
+        { "tipo": "correo" }
+      ]
+    }
+  ]
+}

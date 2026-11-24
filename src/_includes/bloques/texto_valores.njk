@@ -1,0 +1,18 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ TEXTO + VALORES ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container split">
+        <div class="reveal">
+          {%- if s.antetitulo %}
+          <span class="eyebrow">{{ s.antetitulo }}</span>{% endif %}
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+          {%- if s.texto %}
+          <p class="lead">{{ s.texto }}</p>{% endif %}
+        </div>
+        <ul class="values">
+          {%- for v in s.valores %}
+          <li class="glass reveal{{ loop.index0 | retraso }}"><span class="icon-glow"><i class="ti {{ v.icono }}" aria-hidden="true"></i></span><div><h3>{{ v.titulo }}</h3><p>{{ v.texto }}</p></div></li>
+          {%- endfor %}
+        </ul>
+      </div>
+    </section>

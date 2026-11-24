@@ -2,9 +2,10 @@
 (() => {
   'use strict';
 
-  // Teléfono que recibe los mensajes de WhatsApp de la web (formato internacional, sin "+")
-  const WA_NUMBER = '34683605335';
-  const BOOKING_URL = 'https://www.booking.com/hotel/es/la-torre-hostel.es.html';
+  // Ajustes generales: vienen de src/_data/sitio.json (editable en el panel /admin) vía window.SITIO
+  const SITIO = window.SITIO || {};
+  const WA_NUMBER = SITIO.whatsapp || '34683605335'; // formato internacional, sin "+"
+  const BOOKING_URL = SITIO.booking_url || 'https://www.booking.com/hotel/es/la-torre-hostel.es.html';
 
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
@@ -242,9 +243,9 @@
      El primer envío manda a CONTACT_EMAIL un correo de activación que hay que confirmar una vez.
      Tras confirmarlo, FormSubmit da un alias (una cadena aleatoria) que puede sustituir al correo
      en FORM_ACTION para que la dirección no aparezca en el código. */
-  const CONTACT_EMAIL = 'hospederiasdocaminosl@gmail.com';
-  const FORM_ACTION = `https://formsubmit.co/${CONTACT_EMAIL}`;
-  const MAX_CV_MB = 5;
+  const CONTACT_EMAIL = SITIO.correo || 'hospederiasdocaminosl@gmail.com';
+  const FORM_ACTION = `https://formsubmit.co/${SITIO.formsubmit_alias || CONTACT_EMAIL}`;
+  const MAX_CV_MB = Number(SITIO.cv_max_mb) || 5;
 
   const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   const company = document.body.dataset.company || 'Grupo FAHE';

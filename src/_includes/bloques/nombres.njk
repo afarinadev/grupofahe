@@ -1,0 +1,16 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ NOMBRES DESTACADOS (p. ej. operadores) ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        {%- if s.titulo %}
+        <div class="section-head center reveal">
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+        </div>
+        {%- endif %}
+        <div class="operators">
+          {%- for o in s.elementos %}
+          <div class="glass operator reveal{{ loop.index0 | retraso }}"><b>{{ o.nombre }}</b></div>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>

@@ -1,0 +1,63 @@
+{%- from "macros.njk" import titulo, attrs, filaContacto -%}
+    <!-- ============ CONTACTO ============ -->
+    <section class="section"{{ attrs(s, 'contacto') }}>
+      <div class="container">
+        <div class="frame reveal">
+          {%- if s.rotulo %}
+          <p class="frame-label">{{ s.rotulo }}</p>{% endif %}
+          {%- set form = s.formulario %}
+          {%- set conForm = form and form.campos and form.campos.length %}
+          <div class="contact-grid{% if conForm %} top{% endif %}">
+            <div>
+              <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+              {%- if s.texto %}
+              <p class="lead">{{ s.texto }}</p>{% endif %}
+              {%- if conForm and s.filas and s.filas.length %}
+              <ul class="contact-list" style="margin-top: 1.8rem;">
+                {%- for f in s.filas %}
+                {{ filaContacto(f, sitio) }}
+                {%- endfor %}
+              </ul>
+              {%- endif %}
+            </div>
+            {%- if conForm %}
+            <form class="glass pad form-card" data-wa-form="{{ form.mensaje_inicial }}" novalidate>
+              {%- if form.titulo %}
+              <h2>{{ form.titulo }}</h2>{% endif %}
+              {%- for fila in form.campos | filas %}
+              {%- if fila.length > 1 %}
+              <div class="field-row">{% endif %}
+                {%- for c in fila %}
+                {%- set cid = 'f-' + (c.nombre or loop.index) %}
+                <div class="field">
+                  <label for="{{ cid }}">{{ c.etiqueta }}</label>
+                  {%- if c.tipo == 'seleccion' %}
+                  <select id="{{ cid }}" name="{{ c.nombre or cid }}" data-label="{{ c.etiqueta_mensaje or c.etiqueta }}">
+                    {%- for o in c.opciones %}
+                    <option>{{ o }}</option>
+                    {%- endfor %}
+                  </select>
+                  {%- elif c.tipo == 'parrafo' %}
+                  <textarea id="{{ cid }}" name="{{ c.nombre or cid }}"{% if c.obligatorio %} required{% endif %} data-label="{{ c.etiqueta_mensaje or c.etiqueta }}"{% if c.marcador %} placeholder="{{ c.marcador }}"{% endif %}></textarea>
+                  {%- else %}
+                  <input id="{{ cid }}" name="{{ c.nombre or cid }}"{% if c.obligatorio %} required{% endif %} data-label="{{ c.etiqueta_mensaje or c.etiqueta }}"{% if c.marcador %} placeholder="{{ c.marcador }}"{% endif %}{% if c.nombre == 'nombre' %} autocomplete="name"{% endif %}>
+                  {%- endif %}
+                </div>
+                {%- endfor %}
+              {%- if fila.length > 1 %}
+              </div>{% endif %}
+              {%- endfor %}
+              <p class="form-error" role="alert"></p>
+              <button class="btn btn-wa btn-lg btn-block" type="submit"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> {{ form.boton or 'Enviar por WhatsApp' }}</button>
+            </form>
+            {%- elif s.filas and s.filas.length %}
+            <ul class="glass pad contact-list">
+              {%- for f in s.filas %}
+              {{ filaContacto(f, sitio) }}
+              {%- endfor %}
+            </ul>
+            {%- endif %}
+          </div>
+        </div>
+      </div>
+    </section>

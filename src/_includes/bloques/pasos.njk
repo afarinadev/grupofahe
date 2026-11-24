@@ -1,0 +1,16 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ PASOS ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        {%- if s.titulo %}
+        <div class="section-head center reveal">
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+        </div>
+        {%- endif %}
+        <ol class="steps">
+          {%- for p in s.pasos %}
+          <li class="glass reveal{{ loop.index0 | retraso }}"><h3>{{ p.titulo }}</h3><p>{{ p.texto }}</p></li>
+          {%- endfor %}
+        </ol>
+      </div>
+    </section>

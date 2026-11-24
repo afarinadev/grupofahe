@@ -1,0 +1,35 @@
+{%- from "macros.njk" import simbolo, nombreMarca -%}
+{%- set m = pagina.marca -%}
+{%- set pie = pagina.pie or {} -%}
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="{{ m.enlace or (pagina.slug | url) }}" aria-label="{{ m.nombre_completo or (m.nombre + (' ' if m.nombre and m.destacado else '') + (m.destacado or '')) }}, inicio">
+            {{ simbolo(m) }}
+            <span class="brand-name">{{ nombreMarca(m) }}</span>
+          </a>
+          {%- if pie.texto %}
+          <p>{{ pie.texto | mdLinea | safe }}</p>
+          {%- endif %}
+        </div>
+        {%- if pie.enlaces and pie.enlaces.length %}
+        <div>
+          <ul>
+            {%- for l in pie.enlaces %}
+            <li><a href="{{ l.enlace }}"{% if l.enlace.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{{ l.texto }}</a></li>
+            {%- endfor %}
+          </ul>
+        </div>
+        {%- endif %}
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year>{{ anio }}</span> {{ pie.copyright or sitio.grupo }}</span>
+        <nav aria-label="Legal">
+          {%- for l in sitio.enlaces_legales %}
+          <a href="{{ l.enlace }}"{% if l.enlace == (pagina.slug | url) %} aria-current="page"{% endif %}>{{ l.texto }}</a>
+          {%- endfor %}
+        </nav>
+      </div>
+    </div>
+  </footer>

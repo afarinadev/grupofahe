@@ -1,0 +1,8 @@
+{
+  "lista": [
+    { "nombre": "Grupo FAHE", "descripcion": "Quiénes somos", "logo": "assets/img/favicon.svg", "enlace": "index.html", "grupo": true },
+    { "nombre": "Hospederías do Camiño", "descripcion": "Alojamiento para peregrinos", "logo": "assets/img/logos/hospederias-light.png", "enlace": "hospederias.html", "grupo": false },
+    { "nombre": "Infaes", "descripcion": "Bienes inmuebles", "logo": "assets/img/logos/infaes-light.png", "enlace": "infaes.html", "grupo": false },
+    { "nombre": "Caldas GO", "descripcion": "Reparto de paquetería", "logo": "assets/img/logos/caldas-go-light.png", "enlace": "caldasgo.html", "grupo": false }
+  ]
+}

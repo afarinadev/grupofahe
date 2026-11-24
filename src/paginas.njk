@@ -1,0 +1,13 @@
+---
+# Genera una página HTML por cada archivo de src/_data/paginas/
+pagination:
+  data: paginas
+  size: 1
+  alias: pagina
+  resolve: values
+permalink: "{{ pagina.slug | url }}"
+layout: base.njk
+---
+{%- for s in pagina.secciones %}
+{% include "bloques/" + s.type + ".njk" %}
+{%- endfor %}

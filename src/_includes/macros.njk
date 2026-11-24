@@ -1,0 +1,56 @@
+{# Título con una parte destacada en el color de la empresa. salto=true la pone en una línea nueva. #}
+{% macro titulo(texto, destacado, salto) -%}
+{{ texto }}{% if destacado %} <span class="{% if salto %}line {% endif %}grad">{{ destacado }}</span>{% endif %}
+{%- endmacro %}
+
+{# Atributos id / padding comunes a todas las secciones #}
+{% macro attrs(s, idPorDefecto) -%}
+{% set elId = s.id or idPorDefecto %}{% if elId %} id="{{ elId }}"{% endif %}{% if s.sin_espacio_arriba %} style="padding-top: 0;"{% endif %}
+{%- endmacro %}
+
+{# Botón: enlace normal, WhatsApp, formulario de correo o formulario de CV #}
+{% macro boton(b, sitio, tam) -%}
+{% set clases = { principal: 'btn-accent', secundario: 'btn-glow', dorado: 'btn-gold', whatsapp: 'btn-wa', cristal: 'btn-glass' } %}
+{% set clase = clases[b.estilo] or 'btn-accent' %}
+{% if b.accion == 'whatsapp' -%}
+<a class="btn {{ clase }} {{ tam }}" href="https://wa.me/{{ sitio.whatsapp }}" data-wa="{{ b.mensaje }}">{% if b.icono %}<i class="ti {{ b.icono }}" aria-hidden="true"></i> {% endif %}{{ b.texto }}</a>
+{%- elif b.accion == 'correo' -%}
+<a class="btn {{ clase }} {{ tam }}" href="mailto:{{ sitio.correo }}" data-open="email">{% if b.icono %}<i class="ti {{ b.icono }}" aria-hidden="true"></i> {% endif %}{{ b.texto }}</a>
+{%- elif b.accion == 'cv' -%}
+<a class="btn {{ clase }} {{ tam }}" href="mailto:{{ sitio.correo }}?subject={{ (b.puesto or 'Candidatura espontánea') | urlencode }}" data-open="cv" data-position="{{ b.puesto or 'Candidatura espontánea' }}">{% if b.icono %}<i class="ti {{ b.icono }}" aria-hidden="true"></i> {% endif %}{{ b.texto }}</a>
+{%- else -%}
+<a class="btn {{ clase }} {{ tam }}" href="{{ b.enlace }}"{% if b.enlace and b.enlace.startsWith('http') %} target="_blank" rel="noopener"{% endif %}>{% if b.icono %}<i class="ti {{ b.icono }}" aria-hidden="true"></i> {% endif %}{{ b.texto }}</a>
+{%- endif %}
+{%- endmacro %}
+
+{# Fila de la lista de contacto #}
+{% macro filaContacto(f, sitio) -%}
+{% if f.tipo == 'whatsapp' -%}
+<li><span class="ic wa"><i class="ti {{ f.icono or 'ti-brand-whatsapp' }}" aria-hidden="true"></i></span><a href="https://wa.me/{{ sitio.whatsapp }}" data-wa="{{ f.mensaje }}"><small>{{ f.etiqueta or 'WhatsApp' }}</small>{{ f.valor or sitio.telefono }}</a></li>
+{%- elif f.tipo == 'telefono' or f.tipo == 'telefono2' -%}
+{%- set num = f.valor or (sitio.telefono2 if f.tipo == 'telefono2' else sitio.telefono) -%}
+<li><span class="ic"><i class="ti {{ f.icono or 'ti-phone' }}" aria-hidden="true"></i></span><a href="tel:{{ num | soloDigitos }}"><small>{{ f.etiqueta or 'Llamar' }}</small>{{ num }}</a></li>
+{%- elif f.tipo == 'correo' -%}
+<li><span class="ic"><i class="ti {{ f.icono or 'ti-mail' }}" aria-hidden="true"></i></span><a href="mailto:{{ sitio.correo }}" data-open="email"><small>{{ f.etiqueta or 'Escribir un correo' }}</small>{{ f.valor or sitio.correo }}</a></li>
+{%- elif f.tipo == 'mapa' -%}
+<li><span class="ic"><i class="ti {{ f.icono or 'ti-map-pin' }}" aria-hidden="true"></i></span><a href="{{ f.enlace }}" target="_blank" rel="noopener"><small>{{ f.etiqueta or 'Ver en el mapa' }}</small>{{ f.valor }}</a></li>
+{%- else -%}
+<li><span class="ic"><i class="ti {{ f.icono or 'ti-info-circle' }}" aria-hidden="true"></i></span><span class="val"><small>{{ f.etiqueta }}</small>{{ f.valor }}</span></li>
+{%- endif %}
+{%- endmacro %}
+
+{# Símbolo de la marca en la cabecera y el pie #}
+{% macro simbolo(m) -%}
+{% if m.simbolo == 'concha' -%}
+<span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(0 4)"><path d="M32 48 L7.9 23.5 Q5.9 17.4 11.9 15.2 Q12.3 8.7 18.7 8.8 Q21.4 3 27.4 5.4 Q32 1 36.6 5.4 Q42.6 3 45.3 8.8 Q51.7 8.7 52.1 15.2 Q58.1 17.4 56.1 23.5 Z" fill="#ffc72c"/><g stroke="#b97f00" stroke-width="2" stroke-linecap="round" fill="none"><path d="M32 45 L11.9 15.2"/><path d="M32 45 L18.7 8.8"/><path d="M32 45 L27.4 5.4"/><path d="M32 45 L36.6 5.4"/><path d="M32 45 L45.3 8.8"/><path d="M32 45 L52.1 15.2"/></g><path d="M22 45 h20 l-3 8 h-14 z" fill="#ffc72c"/></g></svg></span>
+{%- elif m.simbolo == 'icono' -%}
+<span class="mark-ic"><i class="ti {{ m.icono }}" aria-hidden="true"></i></span>
+{%- else -%}
+<span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="18" fill="#0b1f4d"/><rect x="1" y="1" width="62" height="62" rx="17" fill="none" stroke="#ffc72c" stroke-opacity=".6" stroke-width="2"/><path d="M22 15h21v7H30v7h11v7H30v13h-8z" fill="#ffc72c"/></svg></span>
+{%- endif %}
+{%- endmacro %}
+
+{# Nombre de la marca (con parte destacada opcional: "CALDAS GO", "Infaes") #}
+{% macro nombreMarca(m) -%}
+{{ m.nombre }}{% if m.nombre and m.destacado %} {% endif %}{% if m.destacado %}<span class="{{ 'go' if m.estilo_destacado == 'verde' else 'inf' }}">{{ m.destacado }}</span>{% endif %}
+{%- endmacro %}

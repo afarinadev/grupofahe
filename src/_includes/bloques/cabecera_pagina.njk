@@ -1,0 +1,11 @@
+{%- from "macros.njk" import titulo -%}
+    <!-- ============ CABECERA DE PÁGINA ============ -->
+    <section class="page-hero"{% if s.id %} id="{{ s.id }}"{% endif %}>
+      <div class="container reveal">
+        <h1>{{ titulo(s.titulo, s.destacado) }}</h1>
+        {%- if s.texto %}
+        <p class="lead">{{ s.texto }}</p>{% endif %}
+        {%- if s.nota %}
+        <p class="small muted">{{ s.nota }}</p>{% endif %}
+      </div>
+    </section>

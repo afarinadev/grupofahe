@@ -1,0 +1,8 @@
+    <!-- ============ TEXTO LARGO (Markdown) ============ -->
+    <section class="section-tight"{% if s.id %} id="{{ s.id }}"{% endif %}>
+      <div class="container">
+        <article class="legal reveal">
+{{ s.cuerpo | md | safe }}
+        </article>
+      </div>
+    </section>

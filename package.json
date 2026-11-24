@@ -1,0 +1,15 @@
+{
+  "name": "grupofahe-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Web estática de Grupo FAHE generada con Eleventy y editable desde el panel /admin (Sveltia CMS).",
+  "type": "module",
+  "scripts": {
+    "dev": "eleventy --serve --port=8090",
+    "build": "eleventy"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "3.1.8",
+    "markdown-it": "15.0.3"
+  }
+}

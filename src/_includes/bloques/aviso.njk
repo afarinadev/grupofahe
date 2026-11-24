@@ -1,0 +1,28 @@
+{%- from "macros.njk" import titulo -%}
+    <!-- ============ AVISO (p. ej. mensaje enviado) ============ -->
+    <section class="hero hero-center">
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container">
+        <div class="reveal">
+          <span class="icon-glow" style="width: 76px; height: 76px; font-size: 2.2rem; border-radius: 50%; margin: 0 auto 1.8rem;"><i class="ti {{ s.icono or 'ti-circle-check' }}" aria-hidden="true"></i></span>
+          <h1>{{ titulo(s.titulo, s.destacado, true) }}</h1>
+          {%- if s.texto %}
+          <p class="lead">{{ s.texto }}</p>{% endif %}
+          <div class="hero-actions">
+            <a class="btn btn-gold btn-lg" href="index.html" id="volver"><i class="ti ti-arrow-left" aria-hidden="true"></i> {{ s.boton or 'Volver a la web' }}</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <script>
+      // Vuelve a la página desde la que se envió el formulario (solo páginas de esta web) y usa su color
+      (function () {
+        var temas = {{ paginas | temasPaginas | json | safe }};
+        var p = new URLSearchParams(location.search).get('volver');
+        if (p && Object.prototype.hasOwnProperty.call(temas, p)) {
+          document.getElementById('volver').setAttribute('href', p);
+          if (temas[p]) document.body.classList.add(temas[p]);
+        }
+      })();
+    </script>

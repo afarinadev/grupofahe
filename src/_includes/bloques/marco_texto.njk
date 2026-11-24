@@ -1,0 +1,15 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ MARCO CON TEXTO ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        <div class="frame reveal">
+          {%- if s.rotulo %}
+          <p class="frame-label">{{ s.rotulo }}</p>{% endif %}
+          <div class="section-head center" style="margin-bottom: 0;">
+            <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+            {%- if s.texto %}
+            <p class="lead">{{ s.texto }}</p>{% endif %}
+          </div>
+        </div>
+      </div>
+    </section>

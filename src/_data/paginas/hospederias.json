@@ -1,0 +1,129 @@
+{
+  "slug": "hospederias",
+  "titulo_seo": "Albergue Urraca · Hospederías do Camiño · Caldas de Reis",
+  "descripcion_seo": "Albergue Urraca, de Hospederías do Camiño: alojamiento para peregrinos del Camino Portugués en el centro de Caldas de Reis. Consulta disponibilidad por WhatsApp.",
+  "og_titulo": "Albergue Urraca · Hospederías do Camiño",
+  "og_descripcion": "Descanso para peregrinos en el centro de Caldas de Reis.",
+  "tema": "dorado",
+  "empresa": "Hospederías do Camiño",
+  "marca": { "simbolo": "concha", "nombre": "Hospederías do Camiño", "subtitulo": "Albergue Urraca" },
+  "desplegable": { "etiqueta": "Grupo FAHE", "posicion": "final", "incluir_grupo": true },
+  "menu": [
+    { "texto": "El albergue", "enlace": "#albergue" },
+    { "texto": "La etapa", "enlace": "#etapa" },
+    { "texto": "Opiniones", "enlace": "#opiniones" },
+    { "texto": "Cómo llegar", "enlace": "#contacto" }
+  ],
+  "boton_menu": { "texto": "Reservar", "enlace": "#reservar", "icono": "ti-calendar-event", "estilo": "dorado" },
+  "whatsapp_flotante": { "activo": true, "texto": "¿Hablamos?", "mensaje": "¡Hola! Os escribo desde la web del Albergue Urraca." },
+  "pie": {
+    "texto": "Una empresa de [Grupo FAHE](index.html).",
+    "enlaces": [
+      { "texto": "Disponibilidad", "enlace": "#reservar" },
+      { "texto": "La etapa", "enlace": "#etapa" },
+      { "texto": "Antes de llegar", "enlace": "#info" },
+      { "texto": "Booking.com", "enlace": "https://www.booking.com/hotel/es/la-torre-hostel.es.html" }
+    ],
+    "copyright": "Hospederías do Camiño SLU · Grupo FAHE"
+  },
+  "secciones": [
+    {
+      "type": "portada_reserva",
+      "id": "reservar",
+      "antetitulo": "Camino Portugués",
+      "titulo": "Albergue Urraca",
+      "destacado": "en el centro de Caldas de Reis",
+      "entradilla": "Descanso para peregrinos a dos etapas de Santiago.",
+      "form_titulo": "Consulta disponibilidad",
+      "form_subtitulo": "Te respondemos por WhatsApp.",
+      "noches_max": 3,
+      "personas_max": 6,
+      "boton_whatsapp": "Consultar por WhatsApp",
+      "boton_booking": "Ver precios en Booking"
+    },
+    {
+      "type": "foto_lista",
+      "id": "albergue",
+      "foto": "",
+      "icono_sin_foto": "ti-bed-flat",
+      "pie_foto": "Foto del albergue",
+      "antetitulo": "El albergue",
+      "titulo": "Pequeño, tranquilo",
+      "destacado": "y bien situado",
+      "elementos": [
+        { "icono": "ti-bed-flat", "texto": "Habitaciones de 4 camas" },
+        { "icono": "ti-users", "texto": "Habitaciones familiares" },
+        { "icono": "ti-tools-kitchen-2", "texto": "Cocina equipada" },
+        { "icono": "ti-plant-2", "texto": "Terraza con cascada" },
+        { "icono": "ti-wifi", "texto": "Wifi gratis" },
+        { "icono": "ti-parking", "texto": "Parking gratis" },
+        { "icono": "ti-backpack", "texto": "Recepción de mochilas", "descripcion": "Si envías tu mochila con un servicio de transporte, la recibimos y te la guardamos hasta que llegues." }
+      ]
+    },
+    {
+      "type": "ruta",
+      "id": "etapa",
+      "sin_espacio_arriba": true,
+      "rotulo": "La etapa",
+      "titulo": "De Pontevedra",
+      "destacado": "a Santiago",
+      "texto_aqui": "Duermes aquí",
+      "paradas": [
+        { "nombre": "Pontevedra", "texto": "Salida", "icono": "ti-flag" },
+        { "nombre": "Caldas de Reis", "texto": "≈ 21 km", "icono": "ti-bed", "aqui": true },
+        { "nombre": "Padrón", "texto": "≈ 18 km", "icono": "ti-map-pin" },
+        { "nombre": "Santiago", "texto": "≈ 25 km", "icono": "ti-building-church" }
+      ]
+    },
+    {
+      "type": "opiniones",
+      "id": "opiniones",
+      "sin_espacio_arriba": true,
+      "titulo": "Lo que dicen",
+      "destacado": "los peregrinos",
+      "nota": 8.1,
+      "etiqueta": "Muy bien",
+      "num_opiniones": "1.396 opiniones",
+      "barras": [
+        { "nombre": "Ubicación", "valor": 9.2 },
+        { "nombre": "Personal", "valor": 9.1 },
+        { "nombre": "Limpieza", "valor": 8.4 },
+        { "nombre": "Calidad-precio", "valor": 8.4 }
+      ],
+      "nota_pie": "Datos de Booking.com, noviembre de 2026",
+      "enlace": "https://www.booking.com/hotel/es/la-torre-hostel.es.html#tab-reviews",
+      "enlace_texto": "Leer las opiniones"
+    },
+    {
+      "type": "tarjetas",
+      "id": "info",
+      "sin_espacio_arriba": true,
+      "titulo": "Antes de",
+      "destacado": "llegar",
+      "columnas": 4,
+      "elevar": false,
+      "tarjetas": [
+        { "icono": "ti-login-2", "titulo": "Entrada", "texto": "De 13:00 a 18:00. Avísanos de tu hora de llegada." },
+        { "icono": "ti-sunrise", "titulo": "Salida", "texto": "De 5:00 a 9:30." },
+        { "icono": "ti-id", "titulo": "Documentación", "texto": "DNI o pasaporte." },
+        { "icono": "ti-smoking-no", "titulo": "Normas", "texto": "Sin mascotas y sin fumar." }
+      ]
+    },
+    {
+      "type": "contacto",
+      "id": "contacto",
+      "sin_espacio_arriba": true,
+      "rotulo": "Cómo llegar",
+      "titulo": "Te esperamos",
+      "destacado": "en Caldas",
+      "texto": "¿Llegas hoy? Escríbenos y te decimos si quedan camas.",
+      "filas": [
+        { "tipo": "mapa", "etiqueta": "Ver en el mapa", "valor": "Rúa Campo da Torre, 1 · 36650 Caldas de Reis", "enlace": "https://www.google.com/maps/search/?api=1&query=Albergue%20Urraca%20Caldas%20de%20Reis" },
+        { "tipo": "whatsapp", "mensaje": "¡Hola! Os escribo desde la web del Albergue Urraca." },
+        { "tipo": "telefono" },
+        { "tipo": "telefono2" },
+        { "tipo": "correo" }
+      ]
+    }
+  ]
+}

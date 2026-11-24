@@ -1,0 +1,51 @@
+{%- from "macros.njk" import titulo -%}
+    <!-- ============ PORTADA + DISPONIBILIDAD ============ -->
+    <section class="hero hero-split" id="{{ s.id or 'reservar' }}">
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container hero-grid">
+        <div class="reveal">
+          {%- if s.antetitulo %}
+          <span class="eyebrow">{{ s.antetitulo }}</span>{% endif %}
+          <h1>{{ titulo(s.titulo, s.destacado, true) }}</h1>
+          {%- if s.entradilla %}
+          <p class="lead">{{ s.entradilla }}</p>{% endif %}
+        </div>
+
+        <form class="glass pad form-card reveal d2" id="booking-form" novalidate>
+          <h2>{{ s.form_titulo or 'Consulta disponibilidad' }}</h2>
+          {%- if s.form_subtitulo %}
+          <p class="sub">{{ s.form_subtitulo }}</p>{% endif %}
+          <div class="field">
+            <label for="b-llegada">Llegada</label>
+            <input type="date" id="b-llegada" name="llegada" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="b-noches">Noches</label>
+              <select id="b-noches" name="noches">
+                {%- for n in (s.noches_max or 3) | rango %}
+                <option value="{{ n }}"{% if n == 1 %} selected{% endif %}>{{ n }} noche{% if n > 1 %}s{% endif %}</option>
+                {%- endfor %}
+              </select>
+            </div>
+            <div class="field">
+              <label for="b-personas">Personas</label>
+              <select id="b-personas" name="personas">
+                {%- set maxP = s.personas_max or 6 %}
+                {%- for n in maxP | rango %}
+                <option value="{{ n }}"{% if n == 1 %} selected{% endif %}>{% if n == maxP %}{{ n }} o más{% else %}{{ n }} persona{% if n > 1 %}s{% endif %}{% endif %}</option>
+                {%- endfor %}
+              </select>
+            </div>
+          </div>
+          <p class="form-error" role="alert"></p>
+          <div class="form-actions">
+            <button class="btn btn-wa btn-lg btn-block" type="submit"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> {{ s.boton_whatsapp or 'Consultar por WhatsApp' }}</button>
+            {%- if sitio.booking_url %}
+            <button class="btn btn-glass btn-block" type="button" data-booking><i class="ti ti-external-link" aria-hidden="true"></i> {{ s.boton_booking or 'Ver precios en Booking' }}</button>
+            {%- endif %}
+          </div>
+        </form>
+      </div>
+    </section>

@@ -1,0 +1,20 @@
+{
+  "slug": "gracias",
+  "titulo_seo": "Mensaje enviado · Grupo FAHE",
+  "tema": "dorado",
+  "empresa": "Grupo FAHE",
+  "noindex": true,
+  "sin_cabecera": true,
+  "sin_pie": true,
+  "marca": { "simbolo": "monograma", "nombre": "Grupo FAHE" },
+  "secciones": [
+    {
+      "type": "aviso",
+      "icono": "ti-circle-check",
+      "titulo": "¡Gracias!",
+      "destacado": "Ya lo hemos recibido",
+      "texto": "Te responderemos lo antes posible al correo que nos has dejado.",
+      "boton": "Volver a la web"
+    }
+  ]
+}

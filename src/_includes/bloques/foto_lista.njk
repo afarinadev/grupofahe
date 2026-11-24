@@ -1,0 +1,28 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ FOTO + LISTA ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container split">
+        <figure class="photo reveal">
+          {%- if s.foto %}<img src="{{ s.foto }}" alt="{{ s.pie_foto or s.titulo }}" loading="lazy">{% else %}<i class="ti {{ s.icono_sin_foto or 'ti-photo' }}" aria-hidden="true"></i>{% endif %}
+          {%- if s.pie_foto %}<figcaption>{{ s.pie_foto }}</figcaption>{% endif -%}
+        </figure>
+        <div class="reveal d1">
+          {%- if s.antetitulo %}
+          <span class="eyebrow">{{ s.antetitulo }}</span>{% endif %}
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+          {%- if s.texto %}
+          <p class="lead">{{ s.texto }}</p>{% endif %}
+          {%- if s.elementos and s.elementos.length %}
+          <ul class="amenities">
+            {%- for e in s.elementos %}
+            {%- if e.descripcion %}
+            <li class="wide"><i class="ti {{ e.icono }}" aria-hidden="true"></i><span><strong>{{ e.texto }}</strong>{{ e.descripcion }}</span></li>
+            {%- else %}
+            <li><i class="ti {{ e.icono }}" aria-hidden="true"></i> {{ e.texto }}</li>
+            {%- endif %}
+            {%- endfor %}
+          </ul>
+          {%- endif %}
+        </div>
+      </div>
+    </section>

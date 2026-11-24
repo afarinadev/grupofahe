@@ -1,0 +1,86 @@
+{
+  "slug": "caldasgo",
+  "titulo_seo": "Caldas GO · Reparto de paquetería en Caldas de Reis",
+  "descripcion_seo": "Caldas GO, de Grupo FAHE: reparto de paquetería de última milla para GLS, Tipsa, DHL y Amazon en Caldas de Reis y ayuntamientos colindantes.",
+  "og_titulo": "Caldas GO · Reparto de paquetería",
+  "og_descripcion": "Reparto de última milla en Caldas de Reis y ayuntamientos colindantes.",
+  "tema": "turquesa",
+  "empresa": "Caldas GO",
+  "marca": { "simbolo": "icono", "icono": "ti-truck-delivery", "nombre_completo": "Caldas GO", "nombre": "CALDAS", "destacado": "GO", "estilo_destacado": "verde", "subtitulo": "Paquetería" },
+  "desplegable": { "etiqueta": "Grupo FAHE", "posicion": "final", "incluir_grupo": true },
+  "menu": [
+    { "texto": "Operadores", "enlace": "#operadores" },
+    { "texto": "Zona de reparto", "enlace": "#zona" },
+    { "texto": "Empleo", "enlace": "#empleo" }
+  ],
+  "boton_menu": { "texto": "Contacto", "enlace": "#contacto", "estilo": "color" },
+  "pie": {
+    "texto": "Una empresa de [Grupo FAHE](index.html).",
+    "enlaces": [
+      { "texto": "Operadores", "enlace": "#operadores" },
+      { "texto": "Zona de reparto", "enlace": "#zona" },
+      { "texto": "Trabaja con nosotros", "enlace": "#empleo" },
+      { "texto": "Contacto", "enlace": "#contacto" }
+    ],
+    "copyright": "Caldas GO · Grupo FAHE"
+  },
+  "secciones": [
+    {
+      "type": "portada",
+      "logo": "assets/img/logos/caldas-go-light.png",
+      "logo_alt": "Caldas GO",
+      "antetitulo": "Paquetería · Última milla",
+      "titulo": "Tu paquete,",
+      "destacado": "en buenas manos",
+      "entradilla": "Reparto de paquetería en Caldas de Reis y ayuntamientos colindantes.",
+      "botones": [
+        { "texto": "Preguntar por mi paquete", "accion": "whatsapp", "mensaje": "¡Hola! Quería preguntar por un paquete. Número de envío: ", "icono": "ti-package", "estilo": "principal" },
+        { "texto": "Trabaja con nosotros", "accion": "enlace", "enlace": "#empleo", "estilo": "secundario" }
+      ],
+      "enlace_desliza": "#operadores"
+    },
+    {
+      "type": "nombres",
+      "id": "operadores",
+      "titulo": "Repartimos",
+      "destacado": "para",
+      "elementos": [
+        { "nombre": "GLS" },
+        { "nombre": "Tipsa" },
+        { "nombre": "DHL" },
+        { "nombre": "Amazon" }
+      ]
+    },
+    {
+      "type": "marco_texto",
+      "id": "zona",
+      "sin_espacio_arriba": true,
+      "rotulo": "Zona de reparto",
+      "titulo": "Caldas de Reis",
+      "destacado": "y ayuntamientos colindantes",
+      "texto": "Rutas planificadas por conductores que conocen cada calle, con un responsable cercano y sin centralitas."
+    },
+    {
+      "type": "banda",
+      "id": "empleo",
+      "sin_espacio_arriba": true,
+      "antetitulo": "Trabaja con nosotros",
+      "titulo": "¿Tienes carné B y conoces la zona?",
+      "texto": "Buscamos repartidores y repartidoras.",
+      "boton": { "texto": "Envíanos tu CV", "accion": "cv", "puesto": "Repartidor/a de Caldas GO", "icono": "ti-file-upload", "estilo": "principal" }
+    },
+    {
+      "type": "contacto",
+      "id": "contacto",
+      "rotulo": "Contacto",
+      "titulo": "Hablemos",
+      "texto": "Para operadores, empresas o si preguntas por un paquete: ten a mano el número de envío.",
+      "filas": [
+        { "tipo": "whatsapp", "mensaje": "¡Hola! Os escribo desde la web de Caldas GO." },
+        { "tipo": "telefono" },
+        { "tipo": "telefono2" },
+        { "tipo": "correo" }
+      ]
+    }
+  ]
+}

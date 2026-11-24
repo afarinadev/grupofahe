@@ -1,0 +1,26 @@
+{%- from "macros.njk" import titulo, boton -%}
+    <!-- ============ PORTADA ============ -->
+    <section class="hero hero-center"{% if s.id %} id="{{ s.id }}"{% endif %}>
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container">
+        <div class="reveal">
+          {%- if s.logo %}
+          <span class="medal"><img src="{{ s.logo }}" alt="{{ s.logo_alt }}"></span>{% endif %}
+          {%- if s.antetitulo %}
+          <span class="eyebrow both">{{ s.antetitulo }}</span>{% endif %}
+          <h1>{{ titulo(s.titulo, s.destacado, true) }}</h1>
+          {%- if s.entradilla %}
+          <p class="lead">{{ s.entradilla }}</p>{% endif %}
+          {%- if s.botones and s.botones.length %}
+          <div class="hero-actions">
+            {%- for b in s.botones %}
+            {{ boton(b, sitio, 'btn-lg') }}
+            {%- endfor %}
+          </div>
+          {%- endif %}
+        </div>
+      </div>
+      {%- if s.enlace_desliza %}
+      <a class="scroll-hint" href="{{ s.enlace_desliza }}">Desliza<i class="ti ti-chevron-down" aria-hidden="true"></i></a>{% endif %}
+    </section>

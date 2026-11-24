@@ -1,0 +1,618 @@
+# ============================================================================
+# Panel de administración de la web de Grupo FAHE (Sveltia CMS)
+# Cada cambio que guardes aquí se convierte en un commit en GitHub y la web
+# se vuelve a generar y publicar sola en 1–2 minutos.
+# ============================================================================
+
+backend:
+  name: github
+  repo: afarinadev/grupofahe
+  branch: main
+  commit_messages:
+    create: "Panel: crear {{collection}} «{{slug}}»"
+    update: "Panel: actualizar {{collection}} «{{slug}}»"
+    delete: "Panel: borrar {{collection}} «{{slug}}»"
+    uploadMedia: "Panel: subir {{path}}"
+    deleteMedia: "Panel: borrar {{path}}"
+
+site_url: https://afarinadev.github.io/grupofahe/
+display_url: https://afarinadev.github.io/grupofahe/
+locale: es
+
+# Las fotos que subas desde el panel se guardan aquí
+media_folder: src/assets/img/subidas
+public_folder: assets/img/subidas
+
+editor:
+  preview: false
+
+collections:
+  # ==========================================================================
+  # PÁGINAS — cada página de la web es una lista de secciones (bloques).
+  # Puedes editar las existentes o crear páginas nuevas combinando bloques.
+  # ==========================================================================
+  - name: paginas
+    label: Páginas
+    label_singular: Página
+    description: Cada página es una lista de secciones. Añade, quita o reordena bloques; los cambios se publican solos.
+    folder: src/_data/paginas
+    extension: json
+    format: json
+    create: true
+    delete: true
+    identifier_field: titulo_seo
+    slug: "{{fields.slug}}"
+    summary: "{{titulo_seo}}  ·  {{slug}}.html"
+    sortable_fields: [titulo_seo, slug]
+    fields:
+      - label: Dirección de la página
+        name: slug
+        widget: string
+        hint: "Nombre del archivo, sin .html. Solo minúsculas, números y guiones (ej.: «ofertas» → ofertas.html). La portada es «index»."
+        pattern: ['^[a-z0-9-]+$', 'Solo minúsculas, números y guiones']
+
+      - { label: Título (pestaña del navegador y Google), name: titulo_seo, widget: string }
+      - { label: Descripción para Google, name: descripcion_seo, widget: text, required: false }
+      - { label: Título al compartir (opcional), name: og_titulo, widget: string, required: false }
+      - { label: Descripción al compartir (opcional), name: og_descripcion, widget: text, required: false }
+
+      - label: Color de la página
+        name: tema
+        widget: select
+        default: dorado
+        options:
+          - { label: "Dorado (Grupo FAHE / Hospederías)", value: dorado }
+          - { label: "Turquesa (Caldas GO)", value: turquesa }
+          - { label: "Coral (Infaes)", value: coral }
+      - { label: Empresa (aparece en los formularios de correo), name: empresa, widget: string, required: false, hint: "Ej.: Caldas GO" }
+
+      - label: Marca de la cabecera
+        name: marca
+        widget: object
+        collapsed: true
+        fields:
+          - label: Símbolo
+            name: simbolo
+            widget: select
+            default: monograma
+            options:
+              - { label: "Monograma F (Grupo FAHE)", value: monograma }
+              - { label: "Concha (Camino)", value: concha }
+              - { label: "Icono", value: icono }
+          - &f_icono { label: Icono, name: icono, widget: string, required: false, hint: "Nombre de un icono de Tabler Icons, p. ej. ti-bed, ti-phone, ti-home-2, ti-truck-delivery (ver tabler.io/icons)." }
+          - { label: Nombre, name: nombre, widget: string, required: false }
+          - { label: Parte del nombre en color, name: destacado, widget: string, required: false, hint: "Ej.: «GO» en CALDAS GO" }
+          - label: Estilo de la parte en color
+            name: estilo_destacado
+            widget: select
+            required: false
+            options:
+              - { label: "Verde en cursiva (Caldas GO)", value: verde }
+              - { label: "Degradado coral (Infaes)", value: coral }
+          - { label: Subtítulo pequeño, name: subtitulo, widget: string, required: false }
+          - { label: Nombre completo (para lectores de pantalla), name: nombre_completo, widget: string, required: false }
+          - { label: Enlace del logo (si no, la propia página), name: enlace, widget: string, required: false }
+
+      - label: Menú desplegable de empresas
+        name: desplegable
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - { label: Texto del botón, name: etiqueta, widget: string, required: false, hint: "Vacío = sin desplegable" }
+          - label: Posición
+            name: posicion
+            widget: select
+            default: final
+            options:
+              - { label: "Al principio del menú", value: inicio }
+              - { label: "Al final del menú", value: final }
+          - { label: Incluir «Grupo FAHE» en la lista, name: incluir_grupo, widget: boolean, default: true }
+
+      - label: Enlaces del menú
+        name: menu
+        widget: list
+        required: false
+        summary: "{{fields.texto}} → {{fields.enlace}}"
+        fields: &f_enlace
+          - { label: Texto, name: texto, widget: string }
+          - { label: Enlace, name: enlace, widget: string, hint: "Una sección (#contacto), otra página (infaes.html) o una web externa (https://…)" }
+
+      - label: Botón destacado del menú
+        name: boton_menu
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - { label: Texto, name: texto, widget: string, required: false }
+          - { label: Enlace, name: enlace, widget: string, required: false }
+          - *f_icono
+          - label: Estilo
+            name: estilo
+            widget: select
+            default: color
+            options:
+              - { label: "Dorado", value: dorado }
+              - { label: "Color de la página", value: color }
+
+      - label: Botón flotante de WhatsApp
+        name: whatsapp_flotante
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - { label: Mostrar, name: activo, widget: boolean, default: false }
+          - { label: Texto, name: texto, widget: string, required: false, default: "¿Hablamos?" }
+          - { label: Mensaje que se escribe solo, name: mensaje, widget: string, required: false }
+
+      - label: Pie de página
+        name: pie
+        widget: object
+        collapsed: true
+        required: false
+        fields:
+          - { label: Texto bajo el nombre, name: texto, widget: string, required: false, hint: "Admite enlaces en Markdown: [Grupo FAHE](index.html)" }
+          - label: Enlaces
+            name: enlaces
+            widget: list
+            required: false
+            summary: "{{fields.texto}}"
+            fields: *f_enlace
+          - { label: Texto del ©, name: copyright, widget: string, required: false }
+
+      - { label: Ocultar a Google (noindex), name: noindex, widget: boolean, required: false, default: false }
+      - { label: Sin cabecera, name: sin_cabecera, widget: boolean, required: false, default: false }
+      - { label: Sin pie de página, name: sin_pie, widget: boolean, required: false, default: false }
+
+      # ----------------------------------------------------------------------
+      # SECCIONES: los bloques con los que se construye cada página
+      # ----------------------------------------------------------------------
+      - label: Secciones
+        name: secciones
+        label_singular: sección
+        widget: list
+        hint: Añade, reordena (arrastrando) o quita secciones. Cada tipo de bloque tiene su propio diseño.
+        types:
+          - label: "Portada del grupo (FAHE grande + accesos)"
+            name: portada_grupo
+            widget: object
+            summary: "Portada · {{fields.antetitulo}} {{fields.titulo}}"
+            fields:
+              - &f_id { label: "Ancla (id)", name: id, widget: string, required: false, hint: "Sin espacios. Sirve para enlazar a la sección con #ancla (ej.: contacto → #contacto)." }
+              - { label: Texto pequeño encima, name: antetitulo, widget: string, required: false }
+              - { label: Título grande, name: titulo, widget: string }
+              - { label: Lema, name: lema, widget: string, required: false }
+              - &f_entradilla { label: Entradilla, name: entradilla, widget: text, required: false }
+              - { label: Título de los accesos, name: titulo_accesos, widget: string, required: false, default: "¿Qué necesitas?" }
+              - label: Accesos directos
+                name: accesos
+                widget: list
+                required: false
+                summary: "{{fields.titulo}} → {{fields.enlace}}"
+                fields:
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Subtítulo, name: subtitulo, widget: string, required: false }
+                  - *f_icono
+                  - { label: Enlace, name: enlace, widget: string }
+                  - &f_color
+                    label: Color
+                    name: color
+                    widget: select
+                    required: false
+                    options:
+                      - { label: "Dorado", value: dorado }
+                      - { label: "Coral", value: coral }
+                      - { label: "Turquesa", value: turquesa }
+                      - { label: "Azul", value: azul }
+              - &f_desliza { label: "Enlace de «Desliza»", name: enlace_desliza, widget: string, required: false, hint: "Ej.: #servicios. Vacío = no se muestra." }
+
+          - label: "Portada con logo y botones"
+            name: portada
+            widget: object
+            summary: "Portada · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - &f_logo { label: Logo, name: logo, widget: image, required: false }
+              - { label: Texto alternativo del logo, name: logo_alt, widget: string, required: false }
+              - &f_antetitulo { label: Antetítulo (texto pequeño encima), name: antetitulo, widget: string, required: false }
+              - &f_titulo { label: Título, name: titulo, widget: string }
+              - &f_destacado { label: Parte del título en color, name: destacado, widget: string, required: false }
+              - *f_entradilla
+              - label: Botones
+                name: botones
+                widget: list
+                required: false
+                summary: "{{fields.texto}}"
+                fields: &f_boton
+                  - { label: Texto, name: texto, widget: string }
+                  - label: Qué hace
+                    name: accion
+                    widget: select
+                    default: enlace
+                    options:
+                      - { label: "Abrir un enlace", value: enlace }
+                      - { label: "Abrir WhatsApp con un mensaje", value: whatsapp }
+                      - { label: "Abrir el formulario de correo", value: correo }
+                      - { label: "Abrir el formulario de CV", value: cv }
+                  - { label: Enlace (si abre un enlace), name: enlace, widget: string, required: false }
+                  - { label: Mensaje de WhatsApp (si abre WhatsApp), name: mensaje, widget: string, required: false }
+                  - { label: Puesto (si abre el formulario de CV), name: puesto, widget: string, required: false }
+                  - *f_icono
+                  - label: Estilo
+                    name: estilo
+                    widget: select
+                    default: principal
+                    options:
+                      - { label: "Principal (color de la página)", value: principal }
+                      - { label: "Secundario (contorno)", value: secundario }
+                      - { label: "Dorado", value: dorado }
+                      - { label: "Verde WhatsApp", value: whatsapp }
+                      - { label: "Cristal", value: cristal }
+              - *f_desliza
+
+          - label: "Portada con buscador de disponibilidad (albergue)"
+            name: portada_reserva
+            widget: object
+            summary: "Reserva · {{fields.titulo}}"
+            fields:
+              - *f_id
+              - *f_antetitulo
+              - *f_titulo
+              - *f_destacado
+              - *f_entradilla
+              - { label: Título del buscador, name: form_titulo, widget: string, required: false }
+              - { label: Subtítulo del buscador, name: form_subtitulo, widget: string, required: false }
+              - { label: Máximo de noches, name: noches_max, widget: number, value_type: int, min: 1, max: 14, default: 3 }
+              - { label: Máximo de personas (la última opción es «o más»), name: personas_max, widget: number, value_type: int, min: 1, max: 20, default: 6 }
+              - { label: Texto del botón de WhatsApp, name: boton_whatsapp, widget: string, required: false }
+              - { label: Texto del botón de Booking, name: boton_booking, widget: string, required: false }
+
+          - label: "Empresas en paneles apilados"
+            name: empresas
+            widget: object
+            summary: "Empresas · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - &f_pegado { label: Sin espacio arriba, name: sin_espacio_arriba, widget: boolean, required: false, default: false }
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - label: Paneles
+                name: paneles
+                widget: list
+                summary: "{{fields.rotulo}} · {{fields.nombre}}"
+                fields:
+                  - { label: Rótulo superior, name: rotulo, widget: string, required: false }
+                  - *f_color
+                  - { label: Logo, name: logo, widget: image }
+                  - { label: Segundo logo (opcional), name: logo2, widget: image, required: false }
+                  - { label: Texto alternativo del segundo logo, name: logo2_alt, widget: string, required: false }
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Texto, name: texto, widget: text, required: false }
+                  - label: Etiquetas
+                    name: chips
+                    widget: list
+                    required: false
+                    summary: "{{fields.texto}}"
+                    fields:
+                      - *f_icono
+                      - { label: Texto, name: texto, widget: string }
+                  - { label: Texto del botón, name: boton, widget: string, required: false, default: Visitar }
+                  - { label: Enlace del botón, name: enlace, widget: string, required: false }
+
+          - label: "Texto + valores"
+            name: texto_valores
+            widget: object
+            summary: "Texto · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - *f_antetitulo
+              - *f_titulo
+              - *f_destacado
+              - &f_texto { label: Texto, name: texto, widget: text, required: false }
+              - label: Valores
+                name: valores
+                widget: list
+                required: false
+                summary: "{{fields.titulo}}"
+                fields: &f_tarjeta
+                  - *f_icono
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Texto, name: texto, widget: text, required: false }
+
+          - label: "Foto + lista (comodidades)"
+            name: foto_lista
+            widget: object
+            summary: "Foto + lista · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - { label: Foto, name: foto, widget: image, required: false }
+              - { label: Icono si no hay foto, name: icono_sin_foto, widget: string, required: false, default: ti-photo }
+              - { label: Pie de foto, name: pie_foto, widget: string, required: false }
+              - *f_antetitulo
+              - *f_titulo
+              - *f_destacado
+              - *f_texto
+              - label: Elementos de la lista
+                name: elementos
+                widget: list
+                required: false
+                summary: "{{fields.texto}}"
+                fields:
+                  - *f_icono
+                  - { label: Texto, name: texto, widget: string }
+                  - { label: Descripción (si la tiene, se muestra destacado y a todo el ancho), name: descripcion, widget: text, required: false }
+
+          - label: "Ruta / etapas"
+            name: ruta
+            widget: object
+            summary: "Ruta · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - &f_rotulo { label: Rótulo del marco, name: rotulo, widget: string, required: false }
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - { label: Texto de la parada marcada, name: texto_aqui, widget: string, required: false, default: Duermes aquí }
+              - label: Paradas
+                name: paradas
+                widget: list
+                summary: "{{fields.nombre}}"
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Texto, name: texto, widget: string, required: false }
+                  - *f_icono
+                  - { label: Marcar como «aquí», name: aqui, widget: boolean, required: false, default: false }
+
+          - label: "Opiniones (nota y barras)"
+            name: opiniones
+            widget: object
+            summary: "Opiniones · {{fields.nota}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - { label: Nota (sobre 10), name: nota, widget: number, value_type: float, min: 0, max: 10, step: 0.1 }
+              - { label: Etiqueta de la nota, name: etiqueta, widget: string, required: false, hint: "Ej.: Muy bien" }
+              - { label: Número de opiniones, name: num_opiniones, widget: string, required: false, hint: "Ej.: 1.396 opiniones" }
+              - label: Barras
+                name: barras
+                widget: list
+                required: false
+                summary: "{{fields.nombre}} · {{fields.valor}}"
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+                  - { label: Valor (sobre 10), name: valor, widget: number, value_type: float, min: 0, max: 10, step: 0.1 }
+              - { label: Nota de la fuente, name: nota_pie, widget: string, required: false }
+              - { label: Enlace a las opiniones, name: enlace, widget: string, required: false }
+              - { label: Texto del enlace, name: enlace_texto, widget: string, required: false }
+
+          - label: "Tarjetas con icono"
+            name: tarjetas
+            widget: object
+            summary: "Tarjetas · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - label: Columnas
+                name: columnas
+                widget: select
+                default: 3
+                options:
+                  - { label: "2", value: 2 }
+                  - { label: "3", value: 3 }
+                  - { label: "4", value: 4 }
+              - { label: Elevar al pasar el ratón, name: elevar, widget: boolean, required: false, default: false }
+              - label: Tarjetas
+                name: tarjetas
+                widget: list
+                summary: "{{fields.titulo}}"
+                fields: *f_tarjeta
+
+          - label: "Pasos numerados"
+            name: pasos
+            widget: object
+            summary: "Pasos · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - label: Pasos
+                name: pasos
+                widget: list
+                summary: "{{fields.titulo}}"
+                fields:
+                  - { label: Título, name: titulo, widget: string }
+                  - { label: Texto, name: texto, widget: text, required: false }
+
+          - label: "Nombres destacados (p. ej. operadores)"
+            name: nombres
+            widget: object
+            summary: "Nombres · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - { label: Título, name: titulo, widget: string, required: false }
+              - *f_destacado
+              - label: Nombres
+                name: elementos
+                widget: list
+                summary: "{{fields.nombre}}"
+                fields:
+                  - { label: Nombre, name: nombre, widget: string }
+
+          - label: "Marco con texto"
+            name: marco_texto
+            widget: object
+            summary: "Marco · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - *f_rotulo
+              - *f_titulo
+              - *f_destacado
+              - *f_texto
+
+          - label: "Banda destacada con botón"
+            name: banda
+            widget: object
+            summary: "Banda · {{fields.titulo}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - *f_antetitulo
+              - *f_titulo
+              - *f_texto
+              - label: Botón
+                name: boton
+                widget: object
+                required: false
+                fields: *f_boton
+
+          - label: "Contacto"
+            name: contacto
+            widget: object
+            summary: "Contacto · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_pegado
+              - *f_rotulo
+              - *f_titulo
+              - *f_destacado
+              - *f_texto
+              - label: Filas de contacto
+                name: filas
+                widget: list
+                required: false
+                summary: "{{fields.tipo}} {{fields.valor}}"
+                fields:
+                  - label: Tipo
+                    name: tipo
+                    widget: select
+                    options:
+                      - { label: "WhatsApp (abre el chat)", value: whatsapp }
+                      - { label: "Teléfono principal (llama)", value: telefono }
+                      - { label: "Teléfono secundario (llama)", value: telefono2 }
+                      - { label: "Correo (abre el formulario)", value: correo }
+                      - { label: "Dirección con enlace al mapa", value: mapa }
+                      - { label: "Texto sin enlace", value: texto }
+                  - { label: Etiqueta pequeña (opcional), name: etiqueta, widget: string, required: false }
+                  - { label: Valor (vacío = el de Ajustes generales), name: valor, widget: string, required: false }
+                  - { label: Enlace (solo para el mapa), name: enlace, widget: string, required: false }
+                  - { label: Mensaje de WhatsApp (solo WhatsApp), name: mensaje, widget: string, required: false }
+                  - *f_icono
+              - label: Formulario que se envía por WhatsApp (opcional)
+                name: formulario
+                widget: object
+                required: false
+                collapsed: true
+                fields:
+                  - { label: Título del formulario, name: titulo, widget: string, required: false }
+                  - { label: Primera línea del mensaje, name: mensaje_inicial, widget: string, required: false }
+                  - { label: Texto del botón, name: boton, widget: string, required: false, default: Enviar por WhatsApp }
+                  - label: Campos
+                    name: campos
+                    widget: list
+                    required: false
+                    summary: "{{fields.etiqueta}}"
+                    fields:
+                      - { label: Etiqueta, name: etiqueta, widget: string }
+                      - { label: Nombre interno, name: nombre, widget: string, required: false, hint: "Sin espacios, ej.: telefono" }
+                      - label: Tipo
+                        name: tipo
+                        widget: select
+                        default: texto
+                        options:
+                          - { label: "Texto corto", value: texto }
+                          - { label: "Texto largo", value: parrafo }
+                          - { label: "Desplegable de opciones", value: seleccion }
+                      - label: Opciones (solo desplegable)
+                        name: opciones
+                        widget: list
+                        required: false
+                        field: { label: Opción, name: opcion, widget: string }
+                      - { label: Obligatorio, name: obligatorio, widget: boolean, required: false, default: false }
+                      - { label: Media anchura (va junto al siguiente), name: mitad, widget: boolean, required: false, default: false }
+                      - { label: Texto de ejemplo, name: marcador, widget: string, required: false }
+                      - { label: Etiqueta en el mensaje (si es distinta), name: etiqueta_mensaje, widget: string, required: false }
+
+          - label: "Cabecera de página sencilla"
+            name: cabecera_pagina
+            widget: object
+            summary: "Cabecera · {{fields.titulo}} {{fields.destacado}}"
+            fields:
+              - *f_id
+              - *f_titulo
+              - *f_destacado
+              - *f_texto
+              - { label: Nota pequeña, name: nota, widget: string, required: false }
+
+          - label: "Texto largo (con formato)"
+            name: texto_largo
+            widget: object
+            summary: "Texto largo"
+            fields:
+              - *f_id
+              - { label: Texto, name: cuerpo, widget: markdown }
+
+          - label: "Aviso centrado (p. ej. «¡Gracias!»)"
+            name: aviso
+            widget: object
+            summary: "Aviso · {{fields.titulo}}"
+            fields:
+              - *f_icono
+              - *f_titulo
+              - *f_destacado
+              - *f_texto
+              - { label: Texto del botón para volver, name: boton, widget: string, required: false }
+
+  # ==========================================================================
+  # AJUSTES GENERALES — datos que se usan en toda la web
+  # ==========================================================================
+  - name: ajustes
+    label: Ajustes generales
+    files:
+      - name: sitio
+        label: Contacto y datos generales
+        file: src/_data/sitio.json
+        format: json
+        fields:
+          - { label: Nombre del grupo, name: grupo, widget: string }
+          - { label: Responsable, name: responsable, widget: string, required: false }
+          - { label: Teléfono principal, name: telefono, widget: string, hint: "Tal como se muestra, ej.: +34 683 60 53 35" }
+          - { label: Teléfono secundario, name: telefono2, widget: string, required: false }
+          - label: Número de WhatsApp
+            name: whatsapp
+            widget: string
+            hint: "Con prefijo de país y sin + ni espacios, ej.: 34683605335"
+            pattern: ['^[0-9]{8,15}$', 'Solo números, con el prefijo de país (ej.: 34683605335)']
+          - { label: Correo que recibe los formularios, name: correo, widget: string }
+          - { label: Alias de FormSubmit (opcional), name: formsubmit_alias, widget: string, required: false, hint: "Tras activar FormSubmit, pega aquí el alias que te dan para no mostrar el correo en el código." }
+          - { label: Enlace del albergue en Booking, name: booking_url, widget: string, required: false }
+          - { label: Tamaño máximo del CV (MB), name: cv_max_mb, widget: number, value_type: int, min: 1, max: 20, default: 5 }
+          - label: Enlaces legales del pie
+            name: enlaces_legales
+            widget: list
+            summary: "{{fields.texto}}"
+            fields: *f_enlace
+
+      - name: empresas
+        label: Empresas del menú desplegable
+        file: src/_data/empresas.json
+        format: json
+        fields:
+          - label: Empresas
+            name: lista
+            widget: list
+            summary: "{{fields.nombre}}"
+            fields:
+              - { label: Nombre, name: nombre, widget: string }
+              - { label: Descripción corta, name: descripcion, widget: string, required: false }
+              - { label: Logo, name: logo, widget: image }
+              - { label: Enlace, name: enlace, widget: string }
+              - { label: Es el propio grupo (solo sale en las páginas de empresa), name: grupo, widget: boolean, required: false, default: false }

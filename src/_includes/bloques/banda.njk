@@ -1,0 +1,18 @@
+{%- from "macros.njk" import boton, attrs -%}
+    <!-- ============ BANDA DESTACADA ============ -->
+    <section class="section-tight"{{ attrs(s) }}>
+      <div class="container">
+        <div class="glass pad-lg cta-band reveal">
+          <div>
+            {%- if s.antetitulo %}
+            <span class="eyebrow">{{ s.antetitulo }}</span>{% endif %}
+            <h2>{{ s.titulo }}</h2>
+            {%- if s.texto %}
+            <p>{{ s.texto }}</p>{% endif %}
+          </div>
+          {%- if s.boton and s.boton.texto %}
+          {{ boton(s.boton, sitio, 'btn-lg') }}
+          {%- endif %}
+        </div>
+      </div>
+    </section>

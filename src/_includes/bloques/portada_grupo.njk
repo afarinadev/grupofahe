@@ -1,0 +1,30 @@
+    <!-- ============ PORTADA DEL GRUPO ============ -->
+    <section class="hero hero-center"{% if s.id %} id="{{ s.id }}"{% endif %}>
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container">
+        <div class="reveal">
+          <h1><span class="hero-kicker">{{ s.antetitulo }}</span><span class="wordmark">{{ s.titulo }}</span></h1>
+          {%- if s.lema %}
+          <p class="tagline grad">{{ s.lema }}</p>{% endif %}
+          {%- if s.entradilla %}
+          <p class="lead">{{ s.entradilla }}</p>{% endif %}
+        </div>
+        {%- if s.accesos and s.accesos.length %}
+        <nav class="intents reveal d1" aria-labelledby="intents-t">
+          <p class="intents-title" id="intents-t">{{ s.titulo_accesos }}</p>
+          <div class="intents-grid">
+            {%- for a in s.accesos %}
+            <a class="intent {{ a.color | color }}" href="{{ a.enlace }}">
+              <span class="intent-ic"><i class="ti {{ a.icono }}" aria-hidden="true"></i></span>
+              <span class="intent-txt"><strong>{{ a.titulo }}</strong><small>{{ a.subtitulo }}</small></span>
+              <i class="ti ti-arrow-right intent-go" aria-hidden="true"></i>
+            </a>
+            {%- endfor %}
+          </div>
+        </nav>
+        {%- endif %}
+      </div>
+      {%- if s.enlace_desliza %}
+      <a class="scroll-hint" href="{{ s.enlace_desliza }}">Desliza<i class="ti ti-chevron-down" aria-hidden="true"></i></a>{% endif %}
+    </section>

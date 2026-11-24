@@ -1,0 +1,44 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ EMPRESAS (paneles apilados) ============ -->
+    <section class="section"{{ attrs(s, 'empresas') }}>
+      <div class="container">
+        {%- if s.titulo %}
+        <div class="section-head center reveal">
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+        </div>
+        {%- endif %}
+        <div class="stack">
+          {%- for p in s.paneles %}
+          <article class="frame stack-panel {{ p.color | color }}" style="--i: {{ loop.index0 }}; --n: {{ s.paneles.length }}">
+            <p class="frame-label">{{ p.rotulo }}</p>
+            <div class="stack-body">
+              <div class="stack-visual">
+                {%- if p.logo2 %}
+                <div class="medal-pair">
+                  <span class="medal"><img src="{{ p.logo }}" alt="{{ p.nombre }}"></span>
+                  <span class="medal sm"><img src="{{ p.logo2 }}" alt="{{ p.logo2_alt }}"></span>
+                </div>
+                {%- else %}
+                <span class="medal"><img src="{{ p.logo }}" alt="{{ p.nombre }}"></span>
+                {%- endif %}
+              </div>
+              <div>
+                <h3>{{ p.nombre }}</h3>
+                <p>{{ p.texto }}</p>
+                {%- if p.chips and p.chips.length %}
+                <ul class="chips">
+                  {%- for c in p.chips %}
+                  <li class="chip">{% if c.icono %}<i class="ti {{ c.icono }}" aria-hidden="true"></i> {% endif %}{{ c.texto }}</li>
+                  {%- endfor %}
+                </ul>
+                {%- endif %}
+                {%- if p.enlace %}
+                <a class="btn btn-accent" href="{{ p.enlace }}" aria-label="{{ p.boton or 'Visitar' }} {{ p.nombre }}">{{ p.boton or 'Visitar' }} <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+                {%- endif %}
+              </div>
+            </div>
+          </article>
+          {%- endfor %}
+        </div>
+      </div>
+    </section>

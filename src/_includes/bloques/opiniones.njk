@@ -1,0 +1,26 @@
+{%- from "macros.njk" import titulo, attrs -%}
+    <!-- ============ OPINIONES ============ -->
+    <section class="section"{{ attrs(s) }}>
+      <div class="container">
+        {%- if s.titulo %}
+        <div class="section-head center reveal">
+          <h2>{{ titulo(s.titulo, s.destacado) }}</h2>
+        </div>
+        {%- endif %}
+        <div class="score-wrap reveal">
+          <div class="score-ring" style="--pct: {{ (s.nota or 0) * 10 }}%">
+            <div><b>{{ s.nota | coma }}</b><strong>{{ s.etiqueta }}</strong><span>{{ s.num_opiniones }}</span></div>
+          </div>
+          <div>
+            <div class="bars">
+              {%- for b in s.barras %}
+              <div><div class="bar-label"><span>{{ b.nombre }}</span><b>{{ b.valor | coma }}</b></div><div class="bar"><span style="--v: {{ b.valor }}"></span></div></div>
+              {%- endfor %}
+            </div>
+            {%- if s.nota_pie or s.enlace %}
+            <p class="small muted" style="margin: 1.6rem 0 0;">{{ s.nota_pie }}{% if s.nota_pie and s.enlace %} · {% endif %}{% if s.enlace %}<a href="{{ s.enlace }}" target="_blank" rel="noopener" class="inline-link" style="color: var(--gold-3);">{{ s.enlace_texto or 'Leer las opiniones' }}</a>{% endif %}</p>
+            {%- endif %}
+          </div>
+        </div>
+      </div>
+    </section>
