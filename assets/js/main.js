@@ -23,27 +23,27 @@
   };
   const fmtDate = (iso) => iso.split('-').reverse().join('/');
 
-  /* ---- Cielo de estrellas (Compostela: «campo de estrellas») ---- */
+  /* ---- Fondo de estrellas ---- */
   const canvas = $('#stars');
   if (canvas && canvas.getContext) {
     const ctx = canvas.getContext('2d');
-    let w = 0, h = 0, stars = [], shooting = null, nextShot = 4000, last = 0, raf = 0;
+    let w = 0, h = 0, stars = [], shooting = null, nextShot = 6000, last = 0, raf = 0;
 
     const build = () => {
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       w = canvas.clientWidth; h = canvas.clientHeight;
       canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-      const count = Math.min(420, Math.round((w * h) / 4200));
+      const count = Math.min(320, Math.round((w * h) / 5200));
       stars = Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        r: Math.random() * 1.3 + 0.35,
-        a: Math.random() * 0.55 + 0.4,
+        r: Math.random() * 1.2 + 0.3,
+        a: Math.random() * 0.5 + 0.3,
         phase: Math.random() * Math.PI * 2,
-        speed: Math.random() * 0.0016 + 0.0005,
-        depth: Math.random() * 0.35 + 0.05,
-        gold: Math.random() < 0.09,
+        speed: Math.random() * 0.0014 + 0.0004,
+        depth: Math.random() * 0.3 + 0.05,
+        warm: Math.random() < 0.08,
       }));
     };
 
@@ -55,7 +55,7 @@
         let y = (s.y - scroll * s.depth) % h;
         if (y < 0) y += h;
         ctx.globalAlpha = s.a * twinkle;
-        ctx.fillStyle = s.gold ? '#ffd970' : '#dfe8ff';
+        ctx.fillStyle = s.warm ? '#ffd970' : '#dfe8ff';
         ctx.beginPath();
         ctx.arc(s.x, y, s.r, 0, Math.PI * 2);
         ctx.fill();
@@ -63,13 +63,12 @@
       if (shooting) {
         const p = shooting;
         p.life += 1;
-        const len = 110;
-        const x2 = p.x - Math.cos(p.angle) * len, y2 = p.y - Math.sin(p.angle) * len;
+        const x2 = p.x - Math.cos(p.angle) * 110, y2 = p.y - Math.sin(p.angle) * 110;
         const grad = ctx.createLinearGradient(p.x, p.y, x2, y2);
-        grad.addColorStop(0, 'rgba(255,236,170,.95)');
+        grad.addColorStop(0, 'rgba(255,236,170,.9)');
         grad.addColorStop(1, 'rgba(255,236,170,0)');
         ctx.globalAlpha = Math.max(0, 1 - p.life / 60);
-        ctx.strokeStyle = grad; ctx.lineWidth = 1.4;
+        ctx.strokeStyle = grad; ctx.lineWidth = 1.3;
         ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(x2, y2); ctx.stroke();
         p.x += Math.cos(p.angle) * 9; p.y += Math.sin(p.angle) * 9;
         if (p.life > 60) shooting = null;
@@ -82,7 +81,7 @@
       nextShot -= dt;
       if (!shooting && nextShot <= 0) {
         shooting = { x: Math.random() * w * 0.7 + w * 0.2, y: Math.random() * h * 0.35, angle: Math.PI * (0.78 + Math.random() * 0.1), life: 0 };
-        nextShot = 7000 + Math.random() * 9000;
+        nextShot = 10000 + Math.random() * 12000;
       }
       draw(t);
       raf = requestAnimationFrame(loop);
@@ -111,7 +110,7 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
-  /* ---- Desplegable de empresas ---- */
+  /* ---- Desplegable ---- */
   $$('.dd').forEach((dd) => {
     const btn = $('.dd-btn', dd);
     const set = (open) => { dd.classList.toggle('open', open); btn.setAttribute('aria-expanded', String(open)); };
@@ -137,7 +136,7 @@
     window.matchMedia('(min-width: 961px)').addEventListener('change', (e) => { if (e.matches) setOpen(false); });
   }
 
-  /* ---- Aparición con desenfoque ---- */
+  /* ---- Aparición al hacer scroll ---- */
   const revealEls = $$('.reveal');
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
@@ -150,7 +149,7 @@
     revealEls.forEach((el) => el.classList.add('in'));
   }
 
-  /* ---- Luz que sigue al cursor en las tarjetas de cristal ---- */
+  /* ---- Luz que sigue al cursor en las tarjetas ---- */
   if (window.matchMedia('(hover: hover)').matches) {
     document.addEventListener('pointermove', (e) => {
       const card = e.target.closest && e.target.closest('.glass');
@@ -161,64 +160,10 @@
     }, { passive: true });
   }
 
-  /* ---- Carrusel 3D de tarjetas ---- */
-  $$('[data-coverflow]').forEach((root) => {
-    const items = $$('.cf-item', root);
-    const counter = $('[data-cf-count]', root.parentElement);
-    const prev = $('[data-cf-prev]', root.parentElement);
-    const next = $('[data-cf-next]', root.parentElement);
-    let active = Math.min(1, items.length - 1);
-
-    const render = () => {
-      const narrow = window.innerWidth < 640;
-      const gap = narrow ? 150 : 270;
-      items.forEach((el, i) => {
-        const off = i - active;
-        const abs = Math.abs(off);
-        const x = off * gap * (abs > 1 ? 0.92 : 1);
-        const z = -abs * 160;
-        const rot = off === 0 ? 0 : (off > 0 ? -32 : 32);
-        el.style.transform = `translateX(${x}px) translateZ(${z}px) rotateY(${rot}deg)`;
-        el.style.opacity = abs > 2 ? '0' : String(1 - abs * 0.22);
-        el.style.filter = abs === 0 ? 'none' : `brightness(${1 - abs * 0.18}) blur(${abs > 1 ? 1.5 : 0}px)`;
-        el.style.zIndex = String(100 - abs);
-        el.style.pointerEvents = abs > 2 ? 'none' : 'auto';
-        el.classList.toggle('is-active', off === 0);
-        el.setAttribute('aria-hidden', String(off !== 0));
-        el.tabIndex = off === 0 ? 0 : -1;
-      });
-      if (counter) counter.textContent = `${active + 1} / ${items.length}`;
-    };
-    const go = (i) => { active = (i + items.length) % items.length; render(); };
-
-    let swiped = false;
-    items.forEach((el, i) => el.addEventListener('click', () => {
-      if (swiped) { swiped = false; return; }
-      if (i !== active) { go(i); return; }
-      const link = el.dataset.href;
-      if (link) window.location.href = link;
-    }));
-    prev && prev.addEventListener('click', () => go(active - 1));
-    next && next.addEventListener('click', () => go(active + 1));
-    root.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') go(active - 1);
-      if (e.key === 'ArrowRight') go(active + 1);
-    });
-    let startX = null;
-    root.addEventListener('pointerdown', (e) => { startX = e.clientX; });
-    root.addEventListener('pointerup', (e) => {
-      if (startX === null) return;
-      const dx = e.clientX - startX; startX = null;
-      if (Math.abs(dx) > 40) { swiped = true; go(active + (dx < 0 ? 1 : -1)); setTimeout(() => { swiped = false; }, 0); }
-    });
-    window.addEventListener('resize', render);
-    render();
-  });
-
   /* ---- Año en el pie ---- */
   $$('[data-year]').forEach((el) => { el.textContent = String(new Date().getFullYear()); });
 
-  /* ---- Buscador de disponibilidad (página del peregrino) ---- */
+  /* ---- Disponibilidad del albergue (Hospederías do Camiño) ---- */
   const bf = $('#booking-form');
   if (bf) {
     const date = $('[name="llegada"]', bf);
@@ -229,7 +174,6 @@
       llegada: date.value,
       noches: Number(bf.elements.noches.value),
       personas: Number(bf.elements.personas.value),
-      tipo: ($('[name="tipo"]:checked', bf) || {}).value || 'Albergue Urraca – litera',
     });
     const fail = (msg) => { err.textContent = msg; err.classList.add('show'); date.focus(); return false; };
     const validate = (d) => {
@@ -245,11 +189,10 @@
       const d = read();
       if (!validate(d)) return;
       openTab(waLink([
-        '¡Hola! Os escribo desde la web. Quería consultar disponibilidad:',
-        `• Alojamiento: ${d.tipo}`,
+        '¡Hola! Quería consultar disponibilidad en el Albergue Urraca:',
         `• Llegada: ${fmtDate(d.llegada)}`,
         `• Noches: ${d.noches}`,
-        `• Peregrinos: ${d.personas}`,
+        `• Personas: ${d.personas}`,
         '',
         '¡Gracias!',
       ].join('\n')));
