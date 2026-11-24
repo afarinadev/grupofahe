@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Albergue Urraca y Hospederías do Camiño · Dormir en Caldas de Reis, Camino Portugués</title>
+  <meta name="description" content="Albergue para peregrinos en Caldas de Reis, en el Camino Portugués: literas en habitaciones de 4, cocina, terraza junto a la cascada, wifi y parking gratis. Consulta disponibilidad por WhatsApp.">
+  <meta name="theme-color" content="#040a1a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Albergue Urraca · Caldas de Reis">
+  <meta property="og:description" content="Tu cama en Caldas de Reis, a dos etapas de Santiago.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body class="theme-camino">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="peregrinos.html" aria-label="Albergue Urraca y Hospederías do Camiño, inicio">
+        <img class="brand-logo" src="assets/img/logos/albergue-urraca-light.png" alt="">
+        <span class="brand-name">Albergue Urraca<small>Hospederías do Camiño</small></span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Principal">
+        <div class="dd">
+          <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-empresas">Grupo FAHE <i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+          <div class="dd-panel" id="dd-empresas">
+            <a href="index.html"><img src="assets/img/favicon.svg" alt=""><span><strong>Grupo FAHE</strong><span>Quiénes somos</span></span></a>
+            <a href="peregrinos.html" aria-current="page"><img src="assets/img/logos/albergue-urraca-light.png" alt=""><span><strong>Albergue y hospederías</strong><span>Alojamiento para peregrinos</span></span></a>
+            <a href="caldasgo.html"><img src="assets/img/logos/caldas-go-light.png" alt=""><span><strong>Caldas GO</strong><span>Paquetería, mochilas y traslados</span></span></a>
+            <a href="infaes.html"><img src="assets/img/logos/infaes-light.png" alt=""><span><strong>Infaes</strong><span>Gestión y promoción inmobiliaria</span></span></a>
+          </div>
+        </div>
+        <a href="#alojamiento">Alojamiento</a>
+        <a href="#servicios">Servicios</a>
+        <a href="#etapa">La etapa</a>
+        <a href="#opiniones">Opiniones</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn btn-gold btn-sm nav-cta" href="#reservar"><i class="ti ti-calendar-event" aria-hidden="true"></i> Reservar</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menú"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO + RESERVA ============ -->
+    <section class="hero hero-split" id="reservar">
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container hero-grid">
+        <div class="reveal">
+          <span class="eyebrow">Camino Portugués · Caldas de Reis</span>
+          <h1>Tu cama en Caldas de Reis
+            <span class="line serif grad">a dos etapas de Santiago</span>
+          </h1>
+          <p class="lead">Literas en habitaciones pequeñas, cocina para compartir y una terraza junto a la cascada para recuperar las piernas. Trato cercano y sin intermediarios.</p>
+          <a class="glass score-pill" href="#opiniones">
+            <b>8,1</b>
+            <span><strong>Muy bien</strong>1.396 opiniones en Booking</span>
+          </a>
+          <ul class="quick-facts">
+            <li><i class="ti ti-clock" aria-hidden="true"></i> Entrada de 13:00 a 18:00</li>
+            <li><i class="ti ti-parking" aria-hidden="true"></i> Parking gratis</li>
+            <li><i class="ti ti-wifi" aria-hidden="true"></i> Wifi gratis</li>
+          </ul>
+        </div>
+
+        <form class="glass pad form-card reveal d2" id="booking-form" novalidate>
+          <span class="eyebrow">Reserva en un minuto</span>
+          <h2>Consulta disponibilidad</h2>
+          <p class="sub">Te respondemos por WhatsApp en persona.</p>
+          <fieldset class="seg">
+            <legend>¿Cómo quieres dormir?</legend>
+            <input type="radio" name="tipo" id="t-litera" value="Albergue Urraca – litera en habitación compartida" checked>
+            <label for="t-litera"><i class="ti ti-bed-flat" aria-hidden="true"></i>Litera<span>Albergue Urraca</span></label>
+            <input type="radio" name="tipo" id="t-privada" value="Habitación privada o familiar">
+            <label for="t-privada"><i class="ti ti-door" aria-hidden="true"></i>Habitación<span>Privada o familiar</span></label>
+          </fieldset>
+          <div class="field">
+            <label for="b-llegada">Fecha de llegada</label>
+            <input type="date" id="b-llegada" name="llegada" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="b-noches">Noches</label>
+              <select id="b-noches" name="noches">
+                <option value="1" selected>1 noche</option>
+                <option value="2">2 noches</option>
+                <option value="3">3 noches</option>
+                <option value="4">4 noches</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="b-personas">Peregrinos</label>
+              <select id="b-personas" name="personas">
+                <option value="1" selected>1 persona</option>
+                <option value="2">2 personas</option>
+                <option value="3">3 personas</option>
+                <option value="4">4 personas</option>
+                <option value="5">5 personas</option>
+                <option value="6">6 personas</option>
+                <option value="7">7 personas</option>
+                <option value="8">8 o más</option>
+              </select>
+            </div>
+          </div>
+          <p class="form-error" role="alert"></p>
+          <div class="form-actions">
+            <button class="btn btn-wa btn-lg btn-block" type="submit"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Consultar por WhatsApp</button>
+            <button class="btn btn-glass btn-block" type="button" data-booking><i class="ti ti-external-link" aria-hidden="true"></i> Ver precios en Booking</button>
+          </div>
+          <p class="form-note"><i class="ti ti-shield-check" aria-hidden="true"></i> Reservando directamente hablas con nosotros desde el primer momento.</p>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ FRANJA ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Literas</span><b>✦</b><span>Habitaciones privadas</span><b>✦</b><span>Cocina</span><b>✦</b><span>Terraza con cascada</span><b>✦</b><span>Wifi</span><b>✦</b><span>Parking gratis</span><b>✦</b><span>Mochila a la siguiente etapa</span><b>✦</b>
+        <span>Literas</span><b>✦</b><span>Habitaciones privadas</span><b>✦</b><span>Cocina</span><b>✦</b><span>Terraza con cascada</span><b>✦</b><span>Wifi</span><b>✦</b><span>Parking gratis</span><b>✦</b><span>Mochila a la siguiente etapa</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ ALOJAMIENTO ============ -->
+    <section class="section" id="alojamiento">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow both">Dónde dormir</span>
+          <h2>Dos formas de <span class="serif grad">descansar</span></h2>
+          <p class="lead">Litera en el albergue o una habitación para ti y los tuyos. El mismo trato cercano en los dos casos.</p>
+        </div>
+        <div class="grid grid-2">
+          <article class="glass lift pad reveal">
+            <!-- PENDIENTE: sustituir por foto real del dormitorio (assets/img/fotos/dormitorio.jpg) -->
+            <figure class="photo" style="margin-bottom: 1.6rem;"><i class="ti ti-bed-flat" aria-hidden="true"></i><figcaption>Habitaciones de 4 camas</figcaption></figure>
+            <span class="tag">Albergue</span>
+            <h3 style="margin-top: .9rem;">Albergue Urraca</h3>
+            <p>Literas en habitaciones compartidas, muchas de solo cuatro camas: más tranquilidad para dormir y madrugar sin molestar.</p>
+            <ul class="checks">
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Baños compartidos</span></li>
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Cocina compartida equipada y salón común</span></li>
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Terraza-jardín junto a una pequeña cascada</span></li>
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Zona para secar la ropa</span></li>
+            </ul>
+            <a class="btn btn-gold mt-2" href="#reservar">Consultar disponibilidad <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
+          <article class="glass lift pad reveal d1">
+            <!-- PENDIENTE: confirmar qué ofrece Hospederías do Camiño (tipo y número de habitaciones) y poner foto real -->
+            <figure class="photo" style="margin-bottom: 1.6rem;"><i class="ti ti-door" aria-hidden="true"></i><figcaption>Habitaciones privadas</figcaption></figure>
+            <span class="tag">Hospedería</span>
+            <h3 style="margin-top: .9rem;">Hospederías do Camiño</h3>
+            <p>Para quien prefiere intimidad al final del día: habitaciones para parejas, familias o grupos pequeños que caminan juntos.</p>
+            <ul class="checks">
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Habitaciones privadas y familiares</span></li>
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Atención directa de la familia</span></li>
+              <li><i class="ti ti-circle-check" aria-hidden="true"></i><span>Reserva por WhatsApp o por teléfono</span></li>
+            </ul>
+            <a class="btn btn-glow mt-2" href="#reservar">Consultar disponibilidad <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LA TERRAZA ============ -->
+    <section class="section-tight">
+      <div class="container split">
+        <!-- PENDIENTE: foto real de la terraza con la cascada -->
+        <figure class="photo reveal" style="min-height: 380px; border-radius: var(--radius-lg);"><i class="ti ti-plant-2" aria-hidden="true"></i><figcaption>Terraza junto a la cascada</figcaption></figure>
+        <div class="reveal d1">
+          <span class="eyebrow">Lo que más gusta</span>
+          <h2>Un patio para <span class="serif grad">recuperar las piernas</span></h2>
+          <p class="lead">Quienes se alojan con nosotros destacan tres cosas: la atención en recepción, la terraza junto a la cascada y dormir en habitaciones de pocas camas.</p>
+          <p class="muted">Al llegar te explicamos cómo funciona el albergue, te damos un mapa de Caldas y te contamos qué merece la pena ver y dónde comprar o comer.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SERVICIOS (carrusel 3D) ============ -->
+    <section class="section" id="servicios">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow both">Servicios</span>
+          <h2>Todo lo que necesitas <span class="serif grad">al final de la etapa</span></h2>
+          <p class="lead">Usa las flechas o desliza para verlos todos.</p>
+        </div>
+        <div class="cf-wrap reveal">
+          <div class="coverflow" data-coverflow tabindex="0" aria-roledescription="carrusel" aria-label="Servicios del albergue">
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i></div><span class="tag">Incluido</span><h3>Cocina equipada</h3><p>Prepara tu cena y el desayuno antes de salir.</p></article>
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-plant-2" aria-hidden="true"></i></div><span class="tag">Incluido</span><h3>Terraza y jardín</h3><p>Junto a una pequeña cascada, para estirar al sol.</p></article>
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-wifi" aria-hidden="true"></i></div><span class="tag">Gratis</span><h3>Wifi</h3><p>En todo el alojamiento, valorado con un 8,9.</p></article>
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-parking" aria-hidden="true"></i></div><span class="tag">Gratis</span><h3>Parking</h3><p>En la calle, para quien llega en coche o bici.</p></article>
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-shirt" aria-hidden="true"></i></div><span class="tag">Incluido</span><h3>Zona de secado</h3><p>Lava tu ropa y tenla lista para mañana.</p></article>
+            <article class="cf-item glass"><div class="cf-art"><i class="ti ti-users" aria-hidden="true"></i></div><span class="tag">Bajo petición</span><h3>Habitaciones familiares</h3><p>Para quien viaja en familia o en grupo.</p></article>
+            <article class="cf-item glass" data-href="caldasgo.html#peregrinos"><div class="cf-art"><i class="ti ti-backpack" aria-hidden="true"></i></div><span class="tag go">Caldas GO</span><h3>Mochila a la siguiente etapa</h3><p>Camina ligero: te la llevamos a tu próximo alojamiento.</p></article>
+            <article class="cf-item glass" data-href="caldasgo.html#peregrinos"><div class="cf-art"><i class="ti ti-plane-departure" aria-hidden="true"></i></div><span class="tag go">Caldas GO</span><h3>Traslado al aeropuerto</h3><p>De pago y bajo reserva. Vigo está a unos 57 km.</p></article>
+          </div>
+          <div class="cf-controls">
+            <button class="cf-btn" type="button" data-cf-prev aria-label="Servicio anterior"><i class="ti ti-arrow-left" aria-hidden="true"></i></button>
+            <span data-cf-count aria-live="polite">2 / 8</span>
+            <button class="cf-btn" type="button" data-cf-next aria-label="Servicio siguiente"><i class="ti ti-arrow-right" aria-hidden="true"></i></button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LA ETAPA ============ -->
+    <section class="section" id="etapa">
+      <div class="container">
+        <div class="frame reveal" style="padding: 0 clamp(1.3rem, .8rem + 3vw, 3.6rem) clamp(1.8rem, 1rem + 3vw, 3.4rem);">
+          <p class="frame-label">La etapa</p>
+          <div class="section-head center" style="margin-bottom: 3rem;">
+            <h2>Caldas de Reis, <span class="serif grad">a mitad de camino</span></h2>
+            <p class="lead">Llegas desde Pontevedra, duermes en Caldas y en dos etapas más estás en la plaza del Obradoiro.</p>
+          </div>
+          <ol class="route">
+            <li><span class="pin"><i class="ti ti-flag" aria-hidden="true"></i></span><div><h3>Pontevedra</h3><p>Salida de la etapa</p></div></li>
+            <li class="here"><span class="pin"><i class="ti ti-bed" aria-hidden="true"></i></span><div><h3>Caldas de Reis</h3><span class="badge">Duermes aquí</span><p>≈ 21 km desde Pontevedra</p></div></li>
+            <li><span class="pin"><i class="ti ti-map-pin" aria-hidden="true"></i></span><div><h3>Padrón</h3><p>≈ 18 km desde Caldas</p></div></li>
+            <li><span class="pin"><i class="ti ti-building-church" aria-hidden="true"></i></span><div><h3>Santiago</h3><p>≈ 25 km desde Padrón</p></div></li>
+          </ol>
+          <div class="grid grid-3" style="margin-top: clamp(2.5rem, 2rem + 2vw, 3.5rem);">
+            <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-droplet-half-2" aria-hidden="true"></i></span><h3>Aguas termales</h3><p>Caldas debe su nombre a sus aguas calientes: perfectas para los pies después de caminar.</p></div>
+            <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-trees" aria-hidden="true"></i></span><h3>La Carballeira</h3><p>Un jardín botánico junto al río, a unos 10 minutos a pie del albergue.</p></div>
+            <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-crown" aria-hidden="true"></i></span><h3>Villa de reyes</h3><p>Aquí nació Alfonso VII, hijo de la reina Urraca, que da nombre al albergue.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ OPINIONES ============ -->
+    <section class="section" id="opiniones">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow both">Opiniones</span>
+          <h2>Lo que dicen <span class="serif grad">los peregrinos</span></h2>
+        </div>
+        <div class="score-wrap reveal">
+          <div class="score-ring">
+            <div><b>8,1</b><strong>Muy bien</strong><span>1.396 opiniones en Booking</span></div>
+          </div>
+          <div>
+            <div class="bars">
+              <div><div class="bar-label"><span>Ubicación</span><b>9,2</b></div><div class="bar"><span style="--v: 9.2"></span></div></div>
+              <div><div class="bar-label"><span>Personal</span><b>9,1</b></div><div class="bar"><span style="--v: 9.1"></span></div></div>
+              <div><div class="bar-label"><span>Wifi</span><b>8,9</b></div><div class="bar"><span style="--v: 8.9"></span></div></div>
+              <div><div class="bar-label"><span>Limpieza</span><b>8,4</b></div><div class="bar"><span style="--v: 8.4"></span></div></div>
+              <div><div class="bar-label"><span>Calidad-precio</span><b>8,4</b></div><div class="bar"><span style="--v: 8.4"></span></div></div>
+              <div><div class="bar-label"><span>Confort</span><b>8,3</b></div><div class="bar"><span style="--v: 8.3"></span></div></div>
+            </div>
+            <div class="glass pad quote-box">
+              <i class="ti ti-quote" aria-hidden="true"></i>
+              <p>Los huéspedes destacan sobre todo el trato en recepción, la ubicación y las camas cómodas. <a href="https://www.booking.com/hotel/es/la-torre-hostel.es.html#tab-reviews" target="_blank" rel="noopener">Leer todas las opiniones en Booking</a>.</p>
+            </div>
+            <p class="small muted" style="margin-top: 1rem;">Datos de Booking.com, noviembre de 2026.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INFORMACIÓN PRÁCTICA ============ -->
+    <section class="section" id="info">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Información práctica</span>
+          <h2>Antes de <span class="serif grad">llegar</span></h2>
+        </div>
+        <div class="grid grid-4 reveal">
+          <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-login-2" aria-hidden="true"></i></span><h3>Entrada</h3><p>De 13:00 a 18:00. Avísanos de tu hora de llegada.</p></div>
+          <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-sunrise" aria-hidden="true"></i></span><h3>Salida</h3><p>De 5:00 a 9:30, para que salgas temprano a caminar.</p></div>
+          <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-id" aria-hidden="true"></i></span><h3>Documentación</h3><p>DNI o pasaporte al hacer el registro de entrada.</p></div>
+          <div class="glass pad card-sm"><span class="icon-glow"><i class="ti ti-smoking-no" aria-hidden="true"></i></span><h3>Normas</h3><p>No se admiten mascotas y no se puede fumar.</p></div>
+        </div>
+
+        <div class="split top" style="margin-top: clamp(3.5rem, 2.5rem + 3vw, 5rem);">
+          <div class="reveal">
+            <h2 style="font-size: clamp(1.8rem, 1.3rem + 1.5vw, 2.5rem);">Preguntas frecuentes</h2>
+            <p class="lead">¿No encuentras lo que buscas? Escríbenos por WhatsApp y te contestamos enseguida.</p>
+            <a class="btn btn-wa" href="https://wa.me/34683605335" data-wa="¡Hola! Tengo una pregunta sobre el albergue."><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Preguntar por WhatsApp</a>
+          </div>
+          <div class="faq reveal d1">
+            <details class="glass"><summary>¿Tengo que avisar de mi hora de llegada?</summary><p>Sí, por favor. La entrada es de 13:00 a 18:00; si sabes a qué hora llegarás, avísanos al reservar o por WhatsApp.</p></details>
+            <details class="glass"><summary>¿Puedo cocinar en el albergue?</summary><p>Sí. Hay una cocina compartida equipada y un salón común para comer con calma.</p></details>
+            <details class="glass"><summary>¿Dónde aparco el coche o la bici?</summary><p>El aparcamiento en la calle es gratuito junto al albergue.</p></details>
+            <details class="glass"><summary>¿Podéis llevarme la mochila a la siguiente etapa?</summary><p>Sí, con Caldas GO, la empresa de transporte del grupo. Pregúntanos por WhatsApp y te contamos cómo funciona y cuánto cuesta.</p></details>
+            <details class="glass"><summary>¿Cómo llego o vuelvo del aeropuerto?</summary><p>Ofrecemos traslado de pago bajo reserva. El aeropuerto de Vigo está a unos 57 km de Caldas.</p></details>
+            <details class="glass"><summary>¿Se admiten mascotas?</summary><p>Lo sentimos, no se admiten mascotas en el alojamiento.</p></details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section" id="contacto" style="padding-top: 0;">
+      <div class="container">
+        <div class="frame reveal" style="padding: 0 clamp(1.4rem, .8rem + 3vw, 3.6rem) clamp(1.8rem, 1rem + 3vw, 3.6rem);">
+          <p class="frame-label">Dónde estamos</p>
+          <div class="contact-grid">
+            <div>
+              <h2>Te esperamos <span class="serif grad">en Caldas</span></h2>
+              <p class="lead">En el centro de la villa, a pocos minutos a pie del Camino, la Carballeira y las aguas termales.</p>
+              <ul class="contact-list">
+                <!-- PENDIENTE: confirmar formato exacto de la dirección -->
+                <li><span class="ic"><i class="ti ti-map-pin" aria-hidden="true"></i></span><a href="https://www.google.com/maps/search/?api=1&amp;query=Albergue%20Urraca%20Rua%20Campo%20da%20Torre%20Caldas%20de%20Reis" target="_blank" rel="noopener"><small>Dirección · cómo llegar</small>Rúa Campo da Torre, 1 · 36650 Caldas de Reis</a></li>
+                <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34683605335"><small>Teléfono</small>+34 683 60 53 35</a></li>
+                <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34630542897"><small>Teléfono</small>+34 630 54 28 97</a></li>
+                <li><span class="ic"><i class="ti ti-mail" aria-hidden="true"></i></span><a href="mailto:hospederiasdocaminosl@gmail.com"><small>Correo</small>hospederiasdocaminosl@gmail.com</a></li>
+              </ul>
+            </div>
+            <div class="glass pad-lg center">
+              <span class="medal sm" style="margin: 0 auto 1.8rem;"><img src="assets/img/logos/albergue-urraca-light.png" alt=""></span>
+              <h2 style="font-size: clamp(1.6rem, 1.3rem + 1vw, 2.1rem);">¿Llegas hoy?</h2>
+              <p class="lead" style="margin-inline: auto;">Escríbenos y te confirmamos si quedan camas libres para esta noche.</p>
+              <div class="form-actions" style="margin-top: 1.6rem;">
+                <a class="btn btn-wa btn-lg btn-block" href="https://wa.me/34683605335" data-wa="¡Hola! Llego hoy a Caldas de Reis. ¿Os quedan camas libres para esta noche?"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Preguntar si hay sitio</a>
+                <a class="btn btn-glass btn-block" href="tel:+34683605335"><i class="ti ti-phone" aria-hidden="true"></i> Llamar ahora</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Grupo FAHE, inicio">
+            <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(0 4)"><path d="M32 48 L7.9 23.5 Q5.9 17.4 11.9 15.2 Q12.3 8.7 18.7 8.8 Q21.4 3 27.4 5.4 Q32 1 36.6 5.4 Q42.6 3 45.3 8.8 Q51.7 8.7 52.1 15.2 Q58.1 17.4 56.1 23.5 Z" fill="#ffc72c"/><g stroke="#b97f00" stroke-width="2" stroke-linecap="round" fill="none"><path d="M32 45 L11.9 15.2"/><path d="M32 45 L18.7 8.8"/><path d="M32 45 L27.4 5.4"/><path d="M32 45 L36.6 5.4"/><path d="M32 45 L45.3 8.8"/><path d="M32 45 L52.1 15.2"/></g><path d="M22 45 h20 l-3 8 h-14 z" fill="#ffc72c"/></g></svg></span>
+            <span class="brand-name">Grupo FAHE</span>
+          </a>
+          <p>Albergue Urraca y Hospederías do Camiño son parte de Grupo FAHE, una empresa familiar de Caldas de Reis.</p>
+          <div class="footer-logos">
+            <a href="peregrinos.html" aria-label="Albergue Urraca"><img src="assets/img/logos/albergue-urraca-light.png" alt=""></a>
+            <a href="peregrinos.html" aria-label="Hospederías do Camiño"><img src="assets/img/logos/hospederias-light.png" alt=""></a>
+            <a href="caldasgo.html" aria-label="Caldas GO"><img src="assets/img/logos/caldas-go-light.png" alt=""></a>
+            <a href="infaes.html" aria-label="Infaes"><img src="assets/img/logos/infaes-light.png" alt=""></a>
+          </div>
+        </div>
+        <div>
+          <h4>Alojamiento</h4>
+          <ul>
+            <li><a href="#reservar">Consultar disponibilidad</a></li>
+            <li><a href="#alojamiento">Habitaciones</a></li>
+            <li><a href="#servicios">Servicios</a></li>
+            <li><a href="#info">Información práctica</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>El Camino</h4>
+          <ul>
+            <li><a href="#etapa">La etapa</a></li>
+            <li><a href="caldasgo.html#peregrinos">Transporte de mochila</a></li>
+            <li><a href="caldasgo.html#peregrinos">Traslado al aeropuerto</a></li>
+            <li><a href="https://www.booking.com/hotel/es/la-torre-hostel.es.html" target="_blank" rel="noopener">Booking.com</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:+34683605335">+34 683 60 53 35</a></li>
+            <li><a href="tel:+34630542897">+34 630 54 28 97</a></li>
+            <li><a href="mailto:hospederiasdocaminosl@gmail.com">Escríbenos un correo</a></li>
+            <li>Rúa Campo da Torre, 1 · Caldas de Reis</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-word" aria-hidden="true">URRACA</p>
+      <div class="footer-bottom">
+        <!-- PENDIENTE: añadir el número de inscripción en el registro de turismo de la Xunta (REAT) -->
+        <span>© <span data-year>2026</span> Hospederías do Camiño SLU · Grupo FAHE</span>
+        <nav aria-label="Legal">
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <a class="wa-float" href="https://wa.me/34683605335" data-wa="¡Hola! Os escribo desde la web del albergue." aria-label="Escríbenos por WhatsApp"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i><span>¿Hablamos?</span></a>
+</body>
+</html>

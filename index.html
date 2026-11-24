@@ -1,0 +1,357 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Grupo FAHE · Turismo, patrimonio y desarrollo sostenible en Caldas de Reis</title>
+  <meta name="description" content="Grupo FAHE es una empresa familiar de Caldas de Reis, en el Camino Portugués: Albergue Urraca, Hospederías do Camiño, Caldas GO e Infaes.">
+  <meta name="theme-color" content="#040a1a">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Grupo FAHE · Caldas de Reis">
+  <meta property="og:description" content="Turismo, patrimonio y desarrollo sostenible en el Camino Portugués.">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="assets/css/styles.css">
+  <script>document.documentElement.classList.add('js');</script>
+  <script src="assets/js/main.js" defer></script>
+</head>
+<body class="theme-fahe">
+  <canvas id="stars" aria-hidden="true"></canvas>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+
+  <header class="site-header">
+    <div class="nav-shell">
+      <a class="brand" href="index.html" aria-label="Grupo FAHE, inicio">
+        <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(0 4)"><path d="M32 48 L7.9 23.5 Q5.9 17.4 11.9 15.2 Q12.3 8.7 18.7 8.8 Q21.4 3 27.4 5.4 Q32 1 36.6 5.4 Q42.6 3 45.3 8.8 Q51.7 8.7 52.1 15.2 Q58.1 17.4 56.1 23.5 Z" fill="#ffc72c"/><g stroke="#b97f00" stroke-width="2" stroke-linecap="round" fill="none"><path d="M32 45 L11.9 15.2"/><path d="M32 45 L18.7 8.8"/><path d="M32 45 L27.4 5.4"/><path d="M32 45 L36.6 5.4"/><path d="M32 45 L45.3 8.8"/><path d="M32 45 L52.1 15.2"/></g><path d="M22 45 h20 l-3 8 h-14 z" fill="#ffc72c"/></g></svg></span>
+        <span class="brand-name">Grupo FAHE<small>Caldas de Reis</small></span>
+      </a>
+      <nav class="nav" id="site-nav" aria-label="Principal">
+        <div class="dd">
+          <button class="dd-btn" type="button" aria-expanded="false" aria-controls="dd-empresas">Empresas <i class="ti ti-chevron-down" aria-hidden="true"></i></button>
+          <div class="dd-panel" id="dd-empresas">
+            <a href="peregrinos.html"><img src="assets/img/logos/albergue-urraca-light.png" alt=""><span><strong>Albergue Urraca</strong><span>Literas para peregrinos</span></span></a>
+            <a href="peregrinos.html#alojamiento"><img src="assets/img/logos/hospederias-light.png" alt=""><span><strong>Hospederías do Camiño</strong><span>Habitaciones privadas</span></span></a>
+            <a href="caldasgo.html"><img src="assets/img/logos/caldas-go-light.png" alt=""><span><strong>Caldas GO</strong><span>Paquetería, mochilas y traslados</span></span></a>
+            <a href="infaes.html"><img src="assets/img/logos/infaes-light.png" alt=""><span><strong>Infaes</strong><span>Gestión y promoción inmobiliaria</span></span></a>
+          </div>
+        </div>
+        <a href="#como-encajamos">Cómo trabajamos</a>
+        <a href="#caldas">Caldas de Reis</a>
+        <a href="#contacto">Contacto</a>
+        <a class="btn btn-gold btn-sm nav-cta" href="peregrinos.html#reservar"><i class="ti ti-bed" aria-hidden="true"></i> Reservar cama</a>
+      </nav>
+      <button class="nav-toggle" type="button" aria-controls="site-nav" aria-expanded="false" aria-label="Abrir menú"><i class="ti ti-menu-2" aria-hidden="true"></i></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero hero-center">
+      <span class="orb orb-a" aria-hidden="true"></span>
+      <span class="orb orb-b" aria-hidden="true"></span>
+      <div class="container">
+        <div class="reveal">
+          <svg class="hero-medal" viewBox="0 0 120 120" aria-hidden="true">
+            <defs><linearGradient id="gold-shell" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#ffecb3"/><stop offset="1" stop-color="#f0a500"/></linearGradient></defs>
+            <circle cx="60" cy="60" r="57" fill="none" stroke="rgba(255,199,44,.6)" stroke-width="1"/>
+            <circle cx="60" cy="60" r="50" fill="rgba(255,199,44,.05)" stroke="rgba(255,199,44,.3)" stroke-width="1" stroke-dasharray="2 4"/>
+            <g transform="translate(18.4 24.9) scale(1.3)">
+              <path d="M32 48 L7.9 23.5 Q5.9 17.4 11.9 15.2 Q12.3 8.7 18.7 8.8 Q21.4 3 27.4 5.4 Q32 1 36.6 5.4 Q42.6 3 45.3 8.8 Q51.7 8.7 52.1 15.2 Q58.1 17.4 56.1 23.5 Z" fill="url(#gold-shell)"/>
+              <g stroke="#b97f00" stroke-width="1.5" stroke-linecap="round" fill="none" opacity=".85"><path d="M32 45 L11.9 15.2"/><path d="M32 45 L18.7 8.8"/><path d="M32 45 L27.4 5.4"/><path d="M32 45 L36.6 5.4"/><path d="M32 45 L45.3 8.8"/><path d="M32 45 L52.1 15.2"/></g>
+              <path d="M22 45 h20 l-3 8 h-14 z" fill="url(#gold-shell)"/>
+            </g>
+          </svg>
+          <span class="hero-kicker">Grupo</span>
+          <p class="wordmark" aria-hidden="true">FAHE</p>
+          <h1><span class="sr-only">Grupo FAHE: </span>Cuidamos el Camino,
+            <span class="line"><span class="grad">de la casa al</span> <span class="serif grad">peregrino</span></span>
+          </h1>
+          <p class="lead">Una familia de Caldas de Reis con cuatro proyectos que se dan la mano: alojamos a peregrinos, cuidamos inmuebles del pueblo y movemos paquetes, mochilas y personas.</p>
+          <div class="hero-actions">
+            <a class="btn btn-gold btn-lg" href="peregrinos.html"><i class="ti ti-bed" aria-hidden="true"></i> Busco alojamiento</a>
+            <a class="btn btn-glow btn-lg" href="#empresas">Conoce el grupo</a>
+          </div>
+        </div>
+      </div>
+      <a class="scroll-hint" href="#empresas">Desliza<i class="ti ti-chevron-down" aria-hidden="true"></i></a>
+    </section>
+
+    <!-- ============ FRANJA ============ -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Albergue Urraca</span><b>✦</b><span>Hospederías do Camiño</span><b>✦</b><span>Caldas GO</span><b>✦</b><span>Infaes</span><b>✦</b><span>Camino Portugués</span><b>✦</b><span>Caldas de Reis</span><b>✦</b>
+        <span>Albergue Urraca</span><b>✦</b><span>Hospederías do Camiño</span><b>✦</b><span>Caldas GO</span><b>✦</b><span>Infaes</span><b>✦</b><span>Camino Portugués</span><b>✦</b><span>Caldas de Reis</span><b>✦</b>
+      </div>
+    </div>
+
+    <!-- ============ DATOS ============ -->
+    <section class="section-tight">
+      <div class="container">
+        <div class="glass stats reveal">
+          <div class="stat"><b class="grad">8,1</b><span>Nota del Albergue Urraca con 1.396 opiniones en Booking</span></div>
+          <div class="stat"><b class="grad">43 km</b><span>Aproximadamente, de Caldas de Reis a Santiago de Compostela</span></div>
+          <div class="stat"><b class="grad">4</b><span>Empresas y una sola familia detrás</span></div>
+          <div class="stat"><b class="grad">4</b><span>Operadores de paquetería con los que reparte Caldas GO</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMPRESAS (paneles apilados) ============ -->
+    <section class="section" id="empresas">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow both">Nuestras empresas</span>
+          <h2>Tres pilares, <span class="grad">cuatro empresas</span></h2>
+          <p class="lead">Cada empresa trabaja por su cuenta, pero todas comparten lo mismo: Caldas de Reis, el Camino y el trato cercano de una familia que vive aquí.</p>
+        </div>
+
+        <div class="stack">
+          <article class="frame stack-panel pc-gold" style="--i: 0">
+            <p class="frame-label">Turismo · Alojamiento para peregrinos</p>
+            <div class="stack-body">
+              <div class="stack-visual">
+                <div class="medal-pair">
+                  <span class="medal"><img src="assets/img/logos/albergue-urraca-light.png" alt="Albergue Urraca de Caldas de Reis"></span>
+                  <span class="medal sm"><img src="assets/img/logos/hospederias-light.png" alt="Hospederías do Camiño"></span>
+                </div>
+              </div>
+              <div>
+                <h3>Albergue Urraca y Hospederías do Camiño</h3>
+                <p>Literas en habitaciones pequeñas y habitaciones privadas en pleno Camino Portugués, a una etapa de Padrón y a dos de Santiago.</p>
+                <ul class="chips">
+                  <li class="chip"><i class="ti ti-bed" aria-hidden="true"></i> Literas y habitaciones</li>
+                  <li class="chip"><i class="ti ti-tools-kitchen-2" aria-hidden="true"></i> Cocina</li>
+                  <li class="chip"><i class="ti ti-plant-2" aria-hidden="true"></i> Terraza con cascada</li>
+                </ul>
+                <a class="btn btn-gold" href="peregrinos.html">Ir al portal del peregrino <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="frame stack-panel pc-teal" style="--i: 1">
+            <p class="frame-label">Desarrollo sostenible · Transporte y movilidad</p>
+            <div class="stack-body">
+              <div class="stack-visual">
+                <span class="medal"><img src="assets/img/logos/caldas-go-light.png" alt="Caldas GO, transporte y movilidad sostenible"></span>
+              </div>
+              <div>
+                <h3>Caldas GO</h3>
+                <p>Reparto de última milla para grandes operadores de paquetería y servicios para peregrinos: llevamos tu mochila a la siguiente etapa y te acercamos al aeropuerto.</p>
+                <ul class="chips">
+                  <li class="chip"><i class="ti ti-package" aria-hidden="true"></i> Paquetería</li>
+                  <li class="chip"><i class="ti ti-backpack" aria-hidden="true"></i> Mochilas</li>
+                  <li class="chip"><i class="ti ti-plane-departure" aria-hidden="true"></i> Traslados</li>
+                </ul>
+                <a class="btn btn-glow" href="caldasgo.html">Conocer Caldas GO <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </article>
+
+          <article class="frame stack-panel pc-coral" style="--i: 2">
+            <p class="frame-label">Patrimonio · Gestión inmobiliaria</p>
+            <div class="stack-body">
+              <div class="stack-visual">
+                <span class="medal"><img src="assets/img/logos/infaes-light.png" alt="Infaes, gestión y promoción de bienes inmuebles"></span>
+              </div>
+              <div>
+                <h3>Infaes</h3>
+                <p>Cuidamos, rehabilitamos y damos uso a inmuebles de Caldas de Reis y su comarca. Si tienes una casa en el Camino, podemos convertirla en alojamiento para peregrinos.</p>
+                <ul class="chips">
+                  <li class="chip"><i class="ti ti-key" aria-hidden="true"></i> Gestión</li>
+                  <li class="chip"><i class="ti ti-hammer" aria-hidden="true"></i> Rehabilitación</li>
+                  <li class="chip"><i class="ti ti-building-estate" aria-hidden="true"></i> Promoción</li>
+                </ul>
+                <a class="btn btn-glow" href="infaes.html">Conocer Infaes <i class="ti ti-arrow-right" aria-hidden="true"></i></a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO ENCAJAMOS ============ -->
+    <section class="section" id="como-encajamos">
+      <div class="container">
+        <div class="section-head center reveal">
+          <span class="eyebrow both">Compostela, campo de estrellas</span>
+          <h2>Cuatro estrellas, <span class="serif grad">un mismo camino</span></h2>
+          <p class="lead">Dice la tradición que Compostela viene de <em>campus stellae</em>, el campo de estrellas. Lo nuestro es más modesto: cuatro proyectos que se encienden unos a otros.</p>
+        </div>
+        <ol class="constellation">
+          <li class="reveal">
+            <span class="star"><i class="ti ti-building-estate" aria-hidden="true"></i></span>
+            <small>01 · La casa</small>
+            <h3>Infaes</h3>
+            <p>Recupera y gestiona inmuebles para darles una nueva vida.</p>
+          </li>
+          <li class="reveal d1">
+            <span class="star"><i class="ti ti-bed" aria-hidden="true"></i></span>
+            <small>02 · La cama</small>
+            <h3>Albergue y hospederías</h3>
+            <p>Esos espacios se convierten en descanso para peregrinos.</p>
+          </li>
+          <li class="reveal d2">
+            <span class="star"><i class="ti ti-backpack" aria-hidden="true"></i></span>
+            <small>03 · La mochila</small>
+            <h3>Caldas GO</h3>
+            <p>Lleva equipajes, personas y paquetes de un punto a otro.</p>
+          </li>
+          <li class="reveal d3">
+            <span class="star"><i class="ti ti-heart-handshake" aria-hidden="true"></i></span>
+            <small>04 · El pueblo</small>
+            <h3>Caldas de Reis</h3>
+            <p>Todo se queda aquí: empleo local y un Camino mejor cuidado.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ CALDAS DE REIS ============ -->
+    <section class="section" id="caldas">
+      <div class="container split">
+        <div class="reveal">
+          <span class="eyebrow">Nuestra casa</span>
+          <h2>Caldas de Reis, <span class="serif grad">la villa termal</span> del Camino</h2>
+          <p class="lead">Llegas desde Pontevedra tras unos 21 km, descansas los pies en sus aguas termales y a la mañana siguiente sigues hacia Padrón.</p>
+          <p class="muted">Aquí nació el rey Alfonso VII, hijo de la reina Urraca, que da nombre a nuestro albergue.</p>
+          <ul class="checks">
+            <li><i class="ti ti-sparkles" aria-hidden="true"></i><span>Aguas termales, la Carballeira y el río Umia, a pocos minutos a pie</span></li>
+            <li><i class="ti ti-sparkles" aria-hidden="true"></i><span>A unos 43 km de Santiago de Compostela, en dos etapas</span></li>
+            <li><i class="ti ti-sparkles" aria-hidden="true"></i><span>Aeropuerto de Vigo a unos 57 km, con traslado bajo reserva</span></li>
+          </ul>
+        </div>
+        <div class="frame reveal d2" style="padding: 0 clamp(1.4rem, 1rem + 2vw, 2.6rem) clamp(1.6rem, 1.2rem + 2vw, 2.6rem);">
+          <p class="frame-label">Tu etapa por Caldas</p>
+          <ol class="route vertical">
+            <li><span class="pin"><i class="ti ti-flag" aria-hidden="true"></i></span><div><h3>Pontevedra</h3><p>Salida de la etapa</p></div></li>
+            <li class="here"><span class="pin"><i class="ti ti-bed" aria-hidden="true"></i></span><div><h3>Caldas de Reis</h3><span class="badge">Duermes aquí</span><p>≈ 21 km desde Pontevedra</p></div></li>
+            <li><span class="pin"><i class="ti ti-map-pin" aria-hidden="true"></i></span><div><h3>Padrón</h3><p>≈ 18 km desde Caldas</p></div></li>
+            <li><span class="pin"><i class="ti ti-building-church" aria-hidden="true"></i></span><div><h3>Santiago de Compostela</h3><p>≈ 25 km desde Padrón</p></div></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMPLEO ============ -->
+    <section class="section-tight" id="empleo">
+      <div class="container">
+        <div class="glass pad-lg cta-band reveal">
+          <div>
+            <span class="eyebrow">Trabaja con nosotros</span>
+            <h2>Buscamos gente de Caldas</h2>
+            <p>Para recepción y limpieza en los alojamientos y para reparto en Caldas GO.</p>
+          </div>
+          <a class="btn btn-gold btn-lg" href="mailto:hospederiasdocaminosl@gmail.com?subject=Trabajar%20en%20Grupo%20FAHE"><i class="ti ti-send" aria-hidden="true"></i> Envíanos tu CV</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CONTACTO ============ -->
+    <section class="section" id="contacto">
+      <div class="container">
+        <div class="frame reveal" style="padding: 0 clamp(1.4rem, .8rem + 3vw, 3.6rem) clamp(1.8rem, 1rem + 3vw, 3.6rem);">
+          <p class="frame-label">Contacto</p>
+          <div class="contact-grid">
+            <div>
+              <h2>Hablemos</h2>
+              <p class="lead">Reservas, empresas, propietarios o cualquier duda: te atendemos directamente, sin intermediarios.</p>
+              <ul class="contact-list">
+                <li><span class="ic"><i class="ti ti-user" aria-hidden="true"></i></span><span class="val"><small>Responsable</small>Jesús Fariña</span></li>
+                <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34683605335"><small>Teléfono</small>+34 683 60 53 35</a></li>
+                <li><span class="ic"><i class="ti ti-phone" aria-hidden="true"></i></span><a href="tel:+34630542897"><small>Teléfono</small>+34 630 54 28 97</a></li>
+                <li><span class="ic"><i class="ti ti-mail" aria-hidden="true"></i></span><a href="mailto:hospederiasdocaminosl@gmail.com"><small>Correo</small>hospederiasdocaminosl@gmail.com</a></li>
+              </ul>
+            </div>
+            <form class="glass pad form-card" data-wa-form="¡Hola! Os escribo desde la web de Grupo FAHE." novalidate>
+              <h2>Escríbenos</h2>
+              <p class="sub">Te contestamos por WhatsApp lo antes posible.</p>
+              <div class="field">
+                <label for="c-nombre">Nombre</label>
+                <input id="c-nombre" name="nombre" autocomplete="name" required data-label="Nombre">
+              </div>
+              <div class="field">
+                <label for="c-tema">¿Sobre qué nos escribes?</label>
+                <select id="c-tema" name="tema" data-label="Tema">
+                  <option>Alojamiento para peregrinos</option>
+                  <option>Caldas GO: reparto o traslados</option>
+                  <option>Infaes: inmuebles</option>
+                  <option>Trabajo</option>
+                  <option>Otro</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="c-msg">Mensaje</label>
+                <textarea id="c-msg" name="mensaje" required data-label="Mensaje"></textarea>
+              </div>
+              <p class="form-error" role="alert"></p>
+              <button class="btn btn-wa btn-lg btn-block" type="submit"><i class="ti ti-brand-whatsapp" aria-hidden="true"></i> Enviar por WhatsApp</button>
+              <p class="form-note"><i class="ti ti-info-circle" aria-hidden="true"></i> Se abrirá WhatsApp con tu mensaje listo para enviar.</p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="brand" href="index.html" aria-label="Grupo FAHE, inicio">
+            <span class="mark"><svg viewBox="0 0 64 64" aria-hidden="true"><g transform="translate(0 4)"><path d="M32 48 L7.9 23.5 Q5.9 17.4 11.9 15.2 Q12.3 8.7 18.7 8.8 Q21.4 3 27.4 5.4 Q32 1 36.6 5.4 Q42.6 3 45.3 8.8 Q51.7 8.7 52.1 15.2 Q58.1 17.4 56.1 23.5 Z" fill="#ffc72c"/><g stroke="#b97f00" stroke-width="2" stroke-linecap="round" fill="none"><path d="M32 45 L11.9 15.2"/><path d="M32 45 L18.7 8.8"/><path d="M32 45 L27.4 5.4"/><path d="M32 45 L36.6 5.4"/><path d="M32 45 L45.3 8.8"/><path d="M32 45 L52.1 15.2"/></g><path d="M22 45 h20 l-3 8 h-14 z" fill="#ffc72c"/></g></svg></span>
+            <span class="brand-name">Grupo FAHE</span>
+          </a>
+          <span class="serif">Turismo, patrimonio y desarrollo sostenible</span>
+          <div class="footer-logos">
+            <a href="peregrinos.html" aria-label="Albergue Urraca"><img src="assets/img/logos/albergue-urraca-light.png" alt=""></a>
+            <a href="peregrinos.html" aria-label="Hospederías do Camiño"><img src="assets/img/logos/hospederias-light.png" alt=""></a>
+            <a href="caldasgo.html" aria-label="Caldas GO"><img src="assets/img/logos/caldas-go-light.png" alt=""></a>
+            <a href="infaes.html" aria-label="Infaes"><img src="assets/img/logos/infaes-light.png" alt=""></a>
+          </div>
+        </div>
+        <div>
+          <h4>Empresas</h4>
+          <ul>
+            <li><a href="peregrinos.html">Albergue Urraca</a></li>
+            <li><a href="peregrinos.html#alojamiento">Hospederías do Camiño</a></li>
+            <li><a href="caldasgo.html">Caldas GO</a></li>
+            <li><a href="infaes.html">Infaes</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Peregrinos</h4>
+          <ul>
+            <li><a href="peregrinos.html#reservar">Reservar cama</a></li>
+            <li><a href="peregrinos.html#servicios">Servicios</a></li>
+            <li><a href="peregrinos.html#etapa">La etapa</a></li>
+            <li><a href="caldasgo.html#peregrinos">Transporte de mochila</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contacto</h4>
+          <ul>
+            <li><a href="tel:+34683605335">+34 683 60 53 35</a></li>
+            <li><a href="tel:+34630542897">+34 630 54 28 97</a></li>
+            <li><a href="mailto:hospederiasdocaminosl@gmail.com">Escríbenos un correo</a></li>
+            <li>Caldas de Reis (Pontevedra)</li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-word" aria-hidden="true">FAHE</p>
+      <div class="footer-bottom">
+        <span>© <span data-year>2026</span> Grupo FAHE · Caldas de Reis</span>
+        <nav aria-label="Legal">
+          <!-- PENDIENTE: páginas legales (aviso legal, privacidad, cookies) -->
+          <a href="#">Aviso legal</a>
+          <a href="#">Privacidad</a>
+          <a href="#">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
